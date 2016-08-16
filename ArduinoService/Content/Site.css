@@ -1,0 +1,289 @@
+﻿:root {
+    --background-color-iot : #79b03b;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-top: 65px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+
+a[href="http://somee.com"] {
+    display: none !important;
+}
+
+.alert {
+    padding: 10px !important;
+}
+
+.flat {
+    border-radius: 0px !important;
+}
+
+header {
+    min-height: 50px;
+}
+
+.box {
+    float: left;
+    padding: 10px;
+    margin: 5px;
+    background: red;
+    color: white;
+}
+
+@media (max-width: 768px) {
+    .block-left {
+        display: none;
+    }
+}
+
+@media (min-width: 1200px) {
+    .container {
+        max-width: 1348px;
+    }
+}
+
+.dashboard-div-icon {
+    height: 75px;
+    width: 75px;
+    border: 2px solid #fff;
+    padding: 20px;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    font-size: 30px;
+    margin-bottom: 20px;
+    color: #fff;
+}
+
+.box-garden {
+    border-radius: 5px;
+    text-align: center;
+    color: #fff;
+}
+
+    .box-garden img {
+        width: 100%;
+        height: 200px;
+    }
+
+#ModalEditGarden img, #ModalAddGarden img {
+    width: 100%;
+    height: 300px;
+}
+
+.form-control {
+    height: 30px;
+}
+
+.statis {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.dashboard-div-icon {
+    height: 75px;
+    width: 75px;
+    border: 2px solid #4B8609;
+    padding: 20px;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    font-size: 30px;
+    margin-bottom: 20px;
+    color: #4B8609;
+}
+
+.dashboard-div-wrapper {
+    border-radius: 5px;
+    text-align: center;
+    padding: 15px;
+    color: #4B8609;
+    background-color: #fff;
+    min-height: 180px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.control-system .btn {
+    width: 100px !important;
+    height: 50px !important;
+    border: none;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.status {
+    font-size: 15px;
+    padding: 10px;
+}
+
+#contain {
+    text-align: center;
+}
+
+.box-shadow {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    background: white;
+}
+
+.title-boxshadow {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #D4CDCD;
+    margin-bottom: 10px;
+    width: 60%;
+    text-align: center;
+    margin: 10px auto;
+}
+
+.margin-bottom-10 {
+    margin-bottom: 10px;
+}
+
+.ctrl {
+    padding-bottom: 25px;
+    text-align: center;
+    width: 100%;
+}
+
+.btn-file {
+    position: relative;
+    overflow: hidden;
+}
+
+    .btn-file input[type=file] {
+        position: absolute;
+        top: 0;
+        right: 0;
+        min-width: 100%;
+        min-height: 100%;
+        font-size: 100px;
+        text-align: right;
+        filter: alpha(opacity=0);
+        opacity: 0;
+        outline: none;
+        background: white;
+        cursor: inherit;
+        display: block;
+    }
+
+.breadcrumb .fa {
+    margin-right: 5px;
+}
+
+#listgarden .x_panel {
+    transition: 0.3s all;
+    -webkit-transition: 0.3s all;
+    -moz-transition: 0.3s all;
+}
+
+    #listgarden .x_panel:hover {
+        box-shadow: none;
+    }
+
+#add-control, #add-tracking {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    padding: 13px;
+    background: #4B8609;
+    color: #fff;
+    border-radius: 50%;
+    z-index: 99;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    cursor: pointer;
+    width: 45px;
+    text-align: center;
+}
+
+    #add-control:hover,, #add-tracking:hover {
+        background: #26B99A;
+    }
+
+    #add-control .fa,, #add-tracking .fa {
+        font-size: 20px;
+        padding: 5px;
+    }
+
+.modal {
+    text-align: center;
+    padding: 0 !important;
+}
+
+    .modal:before {
+        content: '';
+        display: inline-block;
+        height: 100%;
+        vertical-align: middle;
+        margin-right: -4px; /* Adjusts for spacing */
+    }
+
+.modal-dialog {
+    display: inline-block;
+    text-align: left;
+    vertical-align: middle;
+}
+
+.modal-footer .btn + .btn {
+    margin-bottom: 5px;
+}
+
+#txtdevicename {
+    float: left;
+    display: block;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    width: 230px;
+    font-size: 15px;
+    border: none;
+    background: #F7F7F7;
+    padding-left: 0px;
+}
+
+.box-shadow {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    position: relative;
+}
+
+#currenttracking {
+    height: 100px;
+    min-width: 270px !important;
+}
+
+#trackinghis {
+    margin-top: 10px;
+}
+
+.current-tracking {
+    height: 100px;
+    margin: 10px auto;
+    position: relative;
+}
+
+    .current-tracking span {
+        text-align: center;
+        line-height: 20px;
+        font-size: 30px;
+        color: gray;
+        margin-top: 35px;
+        width: 80%;
+        position: absolute;
+    }
+
+/* Landscape phones and portrait tablets */
+@media (max-width: 767px) {
+    .current-tracking span {
+        font-size: 20px;
+    }
+}

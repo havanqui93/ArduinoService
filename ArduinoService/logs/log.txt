@@ -1,0 +1,573 @@
+ERROR 2016-07-03 22:58:49,275 35491ms TrackingModel          etListDataTracking - The underlying provider failed on Open.
+ERROR 2016-07-03 22:59:33,390 79606ms TrackingModel          etListDataTracking - The underlying provider failed on Open.
+ERROR 2016-07-03 22:59:33,463 79679ms TrackingModel          etListDataTracking - The underlying provider failed on Open.
+ERROR 2016-07-03 23:00:06,261 112477ms TrackingModel          etListDataTracking - The underlying provider failed on Open.
+ERROR 2016-07-03 23:04:02,160 348375ms TrackingModel          etListDataTracking - The underlying provider failed on Open.
+ERROR 2016-07-23 13:33:40,178 105755ms AccountModel           Login              - Login - System.Data.Entity.Core.EntityCommandExecutionException: An error occurred while executing the command definition. See the inner exception for details. ---> System.Data.SqlClient.SqlException: Invalid object name 'dbo.USERS'.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   at System.Data.Common.DbCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.Entity.Infrastructure.Interception.DbCommandDispatcher.<Reader>b__c(DbCommand t, DbCommandInterceptionContext`1 c)
+   at System.Data.Entity.Infrastructure.Interception.InternalDispatcher`1.Dispatch[TTarget,TInterceptionContext,TResult](TTarget target, Func`3 operation, TInterceptionContext interceptionContext, Action`3 executing, Action`3 executed)
+   at System.Data.Entity.Infrastructure.Interception.DbCommandDispatcher.Reader(DbCommand command, DbCommandInterceptionContext interceptionContext)
+   at System.Data.Entity.Internal.InterceptableDbCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   at System.Data.Common.DbCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.Entity.Core.EntityClient.Internal.EntityCommandDefinition.ExecuteStoreCommands(EntityCommand entityCommand, CommandBehavior behavior)
+   --- End of inner exception stack trace ---
+   at System.Data.Entity.Core.EntityClient.Internal.EntityCommandDefinition.ExecuteStoreCommands(EntityCommand entityCommand, CommandBehavior behavior)
+   at System.Data.Entity.Core.Objects.Internal.ObjectQueryExecutionPlan.Execute[TResultType](ObjectContext context, ObjectParameterCollection parameterValues)
+   at System.Data.Entity.Core.Objects.ObjectQuery`1.<>c__DisplayClass7.<GetResults>b__6()
+   at System.Data.Entity.Core.Objects.ObjectContext.ExecuteInTransaction[T](Func`1 func, IDbExecutionStrategy executionStrategy, Boolean startLocalTransaction, Boolean releaseConnectionOnSuccess)
+   at System.Data.Entity.Core.Objects.ObjectQuery`1.<>c__DisplayClass7.<GetResults>b__5()
+   at System.Data.Entity.SqlServer.DefaultSqlExecutionStrategy.Execute[TResult](Func`1 operation)
+   at System.Data.Entity.Core.Objects.ObjectQuery`1.GetResults(Nullable`1 forMergeOption)
+   at System.Data.Entity.Core.Objects.ObjectQuery`1.<System.Collections.Generic.IEnumerable<T>.GetEnumerator>b__0()
+   at System.Data.Entity.Internal.LazyEnumerator`1.MoveNext()
+   at System.Linq.Enumerable.FirstOrDefault[TSource](IEnumerable`1 source)
+   at System.Data.Entity.Core.Objects.ELinq.ObjectQueryProvider.<GetElementFunction>b__1[TResult](IEnumerable`1 sequence)
+   at System.Data.Entity.Core.Objects.ELinq.ObjectQueryProvider.ExecuteSingle[TResult](IEnumerable`1 query, Expression queryRoot)
+   at System.Data.Entity.Core.Objects.ELinq.ObjectQueryProvider.System.Linq.IQueryProvider.Execute[TResult](Expression expression)
+   at System.Data.Entity.Internal.Linq.DbQueryProvider.Execute[TResult](Expression expression)
+   at System.Linq.Queryable.FirstOrDefault[TSource](IQueryable`1 source, Expression`1 predicate)
+   at ArduinoService.DataModels.AccountModel.Login(AccountRowData data) in E:\ArduinoProject\ArduinoService\ArduinoService\DataModels\AccountModel.cs:line 28
+ERROR 2016-07-23 13:34:07,785 133363ms AccountModel           Login              - Login - System.Data.Entity.Core.EntityCommandExecutionException: An error occurred while executing the command definition. See the inner exception for details. ---> System.Data.SqlClient.SqlException: Invalid object name 'dbo.USERS'.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   at System.Data.Common.DbCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.Entity.Infrastructure.Interception.DbCommandDispatcher.<Reader>b__c(DbCommand t, DbCommandInterceptionContext`1 c)
+   at System.Data.Entity.Infrastructure.Interception.InternalDispatcher`1.Dispatch[TTarget,TInterceptionContext,TResult](TTarget target, Func`3 operation, TInterceptionContext interceptionContext, Action`3 executing, Action`3 executed)
+   at System.Data.Entity.Infrastructure.Interception.DbCommandDispatcher.Reader(DbCommand command, DbCommandInterceptionContext interceptionContext)
+   at System.Data.Entity.Internal.InterceptableDbCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   at System.Data.Common.DbCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.Entity.Core.EntityClient.Internal.EntityCommandDefinition.ExecuteStoreCommands(EntityCommand entityCommand, CommandBehavior behavior)
+   --- End of inner exception stack trace ---
+   at System.Data.Entity.Core.EntityClient.Internal.EntityCommandDefinition.ExecuteStoreCommands(EntityCommand entityCommand, CommandBehavior behavior)
+   at System.Data.Entity.Core.Objects.Internal.ObjectQueryExecutionPlan.Execute[TResultType](ObjectContext context, ObjectParameterCollection parameterValues)
+   at System.Data.Entity.Core.Objects.ObjectQuery`1.<>c__DisplayClass7.<GetResults>b__6()
+   at System.Data.Entity.Core.Objects.ObjectContext.ExecuteInTransaction[T](Func`1 func, IDbExecutionStrategy executionStrategy, Boolean startLocalTransaction, Boolean releaseConnectionOnSuccess)
+   at System.Data.Entity.Core.Objects.ObjectQuery`1.<>c__DisplayClass7.<GetResults>b__5()
+   at System.Data.Entity.SqlServer.DefaultSqlExecutionStrategy.Execute[TResult](Func`1 operation)
+   at System.Data.Entity.Core.Objects.ObjectQuery`1.GetResults(Nullable`1 forMergeOption)
+   at System.Data.Entity.Core.Objects.ObjectQuery`1.<System.Collections.Generic.IEnumerable<T>.GetEnumerator>b__0()
+   at System.Data.Entity.Internal.LazyEnumerator`1.MoveNext()
+   at System.Linq.Enumerable.FirstOrDefault[TSource](IEnumerable`1 source)
+   at System.Data.Entity.Core.Objects.ELinq.ObjectQueryProvider.<GetElementFunction>b__1[TResult](IEnumerable`1 sequence)
+   at System.Data.Entity.Core.Objects.ELinq.ObjectQueryProvider.ExecuteSingle[TResult](IEnumerable`1 query, Expression queryRoot)
+   at System.Data.Entity.Core.Objects.ELinq.ObjectQueryProvider.System.Linq.IQueryProvider.Execute[TResult](Expression expression)
+   at System.Data.Entity.Internal.Linq.DbQueryProvider.Execute[TResult](Expression expression)
+   at System.Linq.Queryable.FirstOrDefault[TSource](IQueryable`1 source, Expression`1 predicate)
+   at ArduinoService.DataModels.AccountModel.Login(AccountRowData data) in E:\ArduinoProject\ArduinoService\ArduinoService\DataModels\AccountModel.cs:line 28
+ERROR 2016-07-23 13:34:10,567 136144ms AccountModel           Login              - Login - System.Data.Entity.Core.EntityCommandExecutionException: An error occurred while executing the command definition. See the inner exception for details. ---> System.Data.SqlClient.SqlException: Invalid object name 'dbo.USERS'.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   at System.Data.Common.DbCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.Entity.Infrastructure.Interception.DbCommandDispatcher.<Reader>b__c(DbCommand t, DbCommandInterceptionContext`1 c)
+   at System.Data.Entity.Infrastructure.Interception.InternalDispatcher`1.Dispatch[TTarget,TInterceptionContext,TResult](TTarget target, Func`3 operation, TInterceptionContext interceptionContext, Action`3 executing, Action`3 executed)
+   at System.Data.Entity.Infrastructure.Interception.DbCommandDispatcher.Reader(DbCommand command, DbCommandInterceptionContext interceptionContext)
+   at System.Data.Entity.Internal.InterceptableDbCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   at System.Data.Common.DbCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.Entity.Core.EntityClient.Internal.EntityCommandDefinition.ExecuteStoreCommands(EntityCommand entityCommand, CommandBehavior behavior)
+   --- End of inner exception stack trace ---
+   at System.Data.Entity.Core.EntityClient.Internal.EntityCommandDefinition.ExecuteStoreCommands(EntityCommand entityCommand, CommandBehavior behavior)
+   at System.Data.Entity.Core.Objects.Internal.ObjectQueryExecutionPlan.Execute[TResultType](ObjectContext context, ObjectParameterCollection parameterValues)
+   at System.Data.Entity.Core.Objects.ObjectQuery`1.<>c__DisplayClass7.<GetResults>b__6()
+   at System.Data.Entity.Core.Objects.ObjectContext.ExecuteInTransaction[T](Func`1 func, IDbExecutionStrategy executionStrategy, Boolean startLocalTransaction, Boolean releaseConnectionOnSuccess)
+   at System.Data.Entity.Core.Objects.ObjectQuery`1.<>c__DisplayClass7.<GetResults>b__5()
+   at System.Data.Entity.SqlServer.DefaultSqlExecutionStrategy.Execute[TResult](Func`1 operation)
+   at System.Data.Entity.Core.Objects.ObjectQuery`1.GetResults(Nullable`1 forMergeOption)
+   at System.Data.Entity.Core.Objects.ObjectQuery`1.<System.Collections.Generic.IEnumerable<T>.GetEnumerator>b__0()
+   at System.Data.Entity.Internal.LazyEnumerator`1.MoveNext()
+   at System.Linq.Enumerable.FirstOrDefault[TSource](IEnumerable`1 source)
+   at System.Data.Entity.Core.Objects.ELinq.ObjectQueryProvider.<GetElementFunction>b__1[TResult](IEnumerable`1 sequence)
+   at System.Data.Entity.Core.Objects.ELinq.ObjectQueryProvider.ExecuteSingle[TResult](IEnumerable`1 query, Expression queryRoot)
+   at System.Data.Entity.Core.Objects.ELinq.ObjectQueryProvider.System.Linq.IQueryProvider.Execute[TResult](Expression expression)
+   at System.Data.Entity.Internal.Linq.DbQueryProvider.Execute[TResult](Expression expression)
+   at System.Linq.Queryable.FirstOrDefault[TSource](IQueryable`1 source, Expression`1 predicate)
+   at ArduinoService.DataModels.AccountModel.Login(AccountRowData data) in E:\ArduinoProject\ArduinoService\ArduinoService\DataModels\AccountModel.cs:line 28
+ERROR 2016-07-25 10:06:56,363 29052ms AccountModel           Login              - Login - System.Data.Entity.Core.EntityCommandExecutionException: An error occurred while executing the command definition. See the inner exception for details. ---> System.Data.SqlClient.SqlException: Invalid object name 'dbo.USERS'.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   at System.Data.Common.DbCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.Entity.Infrastructure.Interception.DbCommandDispatcher.<Reader>b__c(DbCommand t, DbCommandInterceptionContext`1 c)
+   at System.Data.Entity.Infrastructure.Interception.InternalDispatcher`1.Dispatch[TTarget,TInterceptionContext,TResult](TTarget target, Func`3 operation, TInterceptionContext interceptionContext, Action`3 executing, Action`3 executed)
+   at System.Data.Entity.Infrastructure.Interception.DbCommandDispatcher.Reader(DbCommand command, DbCommandInterceptionContext interceptionContext)
+   at System.Data.Entity.Internal.InterceptableDbCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   at System.Data.Common.DbCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.Entity.Core.EntityClient.Internal.EntityCommandDefinition.ExecuteStoreCommands(EntityCommand entityCommand, CommandBehavior behavior)
+   --- End of inner exception stack trace ---
+   at System.Data.Entity.Core.EntityClient.Internal.EntityCommandDefinition.ExecuteStoreCommands(EntityCommand entityCommand, CommandBehavior behavior)
+   at System.Data.Entity.Core.Objects.Internal.ObjectQueryExecutionPlan.Execute[TResultType](ObjectContext context, ObjectParameterCollection parameterValues)
+   at System.Data.Entity.Core.Objects.ObjectQuery`1.<>c__DisplayClass7.<GetResults>b__6()
+   at System.Data.Entity.Core.Objects.ObjectContext.ExecuteInTransaction[T](Func`1 func, IDbExecutionStrategy executionStrategy, Boolean startLocalTransaction, Boolean releaseConnectionOnSuccess)
+   at System.Data.Entity.Core.Objects.ObjectQuery`1.<>c__DisplayClass7.<GetResults>b__5()
+   at System.Data.Entity.SqlServer.DefaultSqlExecutionStrategy.Execute[TResult](Func`1 operation)
+   at System.Data.Entity.Core.Objects.ObjectQuery`1.GetResults(Nullable`1 forMergeOption)
+   at System.Data.Entity.Core.Objects.ObjectQuery`1.<System.Collections.Generic.IEnumerable<T>.GetEnumerator>b__0()
+   at System.Data.Entity.Internal.LazyEnumerator`1.MoveNext()
+   at System.Linq.Enumerable.FirstOrDefault[TSource](IEnumerable`1 source)
+   at System.Data.Entity.Core.Objects.ELinq.ObjectQueryProvider.<GetElementFunction>b__1[TResult](IEnumerable`1 sequence)
+   at System.Data.Entity.Core.Objects.ELinq.ObjectQueryProvider.ExecuteSingle[TResult](IEnumerable`1 query, Expression queryRoot)
+   at System.Data.Entity.Core.Objects.ELinq.ObjectQueryProvider.System.Linq.IQueryProvider.Execute[TResult](Expression expression)
+   at System.Data.Entity.Internal.Linq.DbQueryProvider.Execute[TResult](Expression expression)
+   at System.Linq.Queryable.FirstOrDefault[TSource](IQueryable`1 source, Expression`1 predicate)
+   at ArduinoService.DataModels.AccountModel.Login(AccountRowData data) in E:\ArduinoProject\ArduinoService\ArduinoService\DataModels\AccountModel.cs:line 28
+ERROR 2016-07-25 16:51:45,682 24421ms AccountModel           Login              - Login - System.InvalidOperationException: The specified cast from a materialized 'System.String' type to the 'System.Int64' type is not valid.
+   at System.Data.Entity.Core.Common.Internal.Materialization.Shaper.ErrorHandlingValueReader`1.GetValue(DbDataReader reader, Int32 ordinal)
+   at lambda_method(Closure , Shaper )
+   at System.Data.Entity.Core.Common.Internal.Materialization.Coordinator`1.ReadNextElement(Shaper shaper)
+   at System.Data.Entity.Core.Common.Internal.Materialization.Shaper`1.SimpleEnumerator.MoveNext()
+   at System.Data.Entity.Internal.LazyEnumerator`1.MoveNext()
+   at System.Linq.Enumerable.FirstOrDefault[TSource](IEnumerable`1 source)
+   at System.Data.Entity.Core.Objects.ELinq.ObjectQueryProvider.<GetElementFunction>b__1[TResult](IEnumerable`1 sequence)
+   at System.Data.Entity.Core.Objects.ELinq.ObjectQueryProvider.ExecuteSingle[TResult](IEnumerable`1 query, Expression queryRoot)
+   at System.Data.Entity.Core.Objects.ELinq.ObjectQueryProvider.System.Linq.IQueryProvider.Execute[TResult](Expression expression)
+   at System.Data.Entity.Internal.Linq.DbQueryProvider.Execute[TResult](Expression expression)
+   at System.Linq.Queryable.FirstOrDefault[TSource](IQueryable`1 source, Expression`1 predicate)
+   at ArduinoService.DataModels.AccountModel.Login(AccountRowData data) in E:\ArduinoProject\ArduinoService\ArduinoService\DataModels\AccountModel.cs:line 28
+ERROR 2016-07-25 16:51:58,094 36833ms AccountModel           Login              - Login - System.InvalidOperationException: The specified cast from a materialized 'System.String' type to the 'System.Int64' type is not valid.
+   at System.Data.Entity.Core.Common.Internal.Materialization.Shaper.ErrorHandlingValueReader`1.GetValue(DbDataReader reader, Int32 ordinal)
+   at lambda_method(Closure , Shaper )
+   at System.Data.Entity.Core.Common.Internal.Materialization.Coordinator`1.ReadNextElement(Shaper shaper)
+   at System.Data.Entity.Core.Common.Internal.Materialization.Shaper`1.SimpleEnumerator.MoveNext()
+   at System.Data.Entity.Internal.LazyEnumerator`1.MoveNext()
+   at System.Linq.Enumerable.FirstOrDefault[TSource](IEnumerable`1 source)
+   at System.Data.Entity.Core.Objects.ELinq.ObjectQueryProvider.<GetElementFunction>b__1[TResult](IEnumerable`1 sequence)
+   at System.Data.Entity.Core.Objects.ELinq.ObjectQueryProvider.ExecuteSingle[TResult](IEnumerable`1 query, Expression queryRoot)
+   at System.Data.Entity.Core.Objects.ELinq.ObjectQueryProvider.System.Linq.IQueryProvider.Execute[TResult](Expression expression)
+   at System.Data.Entity.Internal.Linq.DbQueryProvider.Execute[TResult](Expression expression)
+   at System.Linq.Queryable.FirstOrDefault[TSource](IQueryable`1 source, Expression`1 predicate)
+   at ArduinoService.DataModels.AccountModel.Login(AccountRowData data) in E:\ArduinoProject\ArduinoService\ArduinoService\DataModels\AccountModel.cs:line 28
+ERROR 2016-07-25 16:52:06,410 45150ms AccountModel           Login              - Login - System.InvalidOperationException: The specified cast from a materialized 'System.String' type to the 'System.Int64' type is not valid.
+   at System.Data.Entity.Core.Common.Internal.Materialization.Shaper.ErrorHandlingValueReader`1.GetValue(DbDataReader reader, Int32 ordinal)
+   at lambda_method(Closure , Shaper )
+   at System.Data.Entity.Core.Common.Internal.Materialization.Coordinator`1.ReadNextElement(Shaper shaper)
+   at System.Data.Entity.Core.Common.Internal.Materialization.Shaper`1.SimpleEnumerator.MoveNext()
+   at System.Data.Entity.Internal.LazyEnumerator`1.MoveNext()
+   at System.Linq.Enumerable.FirstOrDefault[TSource](IEnumerable`1 source)
+   at System.Data.Entity.Core.Objects.ELinq.ObjectQueryProvider.<GetElementFunction>b__1[TResult](IEnumerable`1 sequence)
+   at System.Data.Entity.Core.Objects.ELinq.ObjectQueryProvider.ExecuteSingle[TResult](IEnumerable`1 query, Expression queryRoot)
+   at System.Data.Entity.Core.Objects.ELinq.ObjectQueryProvider.System.Linq.IQueryProvider.Execute[TResult](Expression expression)
+   at System.Data.Entity.Internal.Linq.DbQueryProvider.Execute[TResult](Expression expression)
+   at System.Linq.Queryable.FirstOrDefault[TSource](IQueryable`1 source, Expression`1 predicate)
+   at ArduinoService.DataModels.AccountModel.Login(AccountRowData data) in E:\ArduinoProject\ArduinoService\ArduinoService\DataModels\AccountModel.cs:line 28
+ERROR 2016-07-25 16:52:26,371 65110ms AccountModel           Login              - Login - System.InvalidOperationException: The specified cast from a materialized 'System.String' type to the 'System.Int64' type is not valid.
+   at System.Data.Entity.Core.Common.Internal.Materialization.Shaper.ErrorHandlingValueReader`1.GetValue(DbDataReader reader, Int32 ordinal)
+   at lambda_method(Closure , Shaper )
+   at System.Data.Entity.Core.Common.Internal.Materialization.Coordinator`1.ReadNextElement(Shaper shaper)
+   at System.Data.Entity.Core.Common.Internal.Materialization.Shaper`1.SimpleEnumerator.MoveNext()
+   at System.Data.Entity.Internal.LazyEnumerator`1.MoveNext()
+   at System.Linq.Enumerable.FirstOrDefault[TSource](IEnumerable`1 source)
+   at System.Data.Entity.Core.Objects.ELinq.ObjectQueryProvider.<GetElementFunction>b__1[TResult](IEnumerable`1 sequence)
+   at System.Data.Entity.Core.Objects.ELinq.ObjectQueryProvider.ExecuteSingle[TResult](IEnumerable`1 query, Expression queryRoot)
+   at System.Data.Entity.Core.Objects.ELinq.ObjectQueryProvider.System.Linq.IQueryProvider.Execute[TResult](Expression expression)
+   at System.Data.Entity.Internal.Linq.DbQueryProvider.Execute[TResult](Expression expression)
+   at System.Linq.Queryable.FirstOrDefault[TSource](IQueryable`1 source, Expression`1 predicate)
+   at ArduinoService.DataModels.AccountModel.Login(AccountRowData data) in E:\ArduinoProject\ArduinoService\ArduinoService\DataModels\AccountModel.cs:line 28
+ERROR 2016-07-25 17:27:08,371 1335565ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-07-25 17:27:08,410 1335604ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-07-25 17:27:08,427 1335621ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-07-26 01:03:56,466 735548ms AccountModel           Register           - Register - System.Data.Entity.Validation.DbEntityValidationException: Validation failed for one or more entities. See 'EntityValidationErrors' property for more details.
+   at System.Data.Entity.Internal.InternalContext.SaveChanges()
+   at System.Data.Entity.Internal.LazyInternalContext.SaveChanges()
+   at System.Data.Entity.DbContext.SaveChanges()
+   at ArduinoService.DataModels.AccountModel.Register(RegisterRowData data) in E:\ArduinoProject\ArduinoService\ArduinoService\DataModels\AccountModel.cs:line 58
+ERROR 2016-07-26 22:00:43,962 1797768ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-07-26 22:00:44,105 1797912ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-07-26 22:00:44,125 1797932ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-07-26 22:54:00,890 662399ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-07-26 22:54:01,016 662525ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-07-26 22:54:01,039 662548ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-07-26 23:10:05,029 51509ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-07-26 23:10:05,146 51626ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-07-26 23:10:05,180 51660ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-07-26 23:10:12,486 58966ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-07-26 23:10:12,562 59042ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-07-26 23:10:12,613 59093ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-07-26 23:10:18,766 65246ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-07-26 23:10:18,803 65283ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-07-26 23:10:18,838 65318ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-07-26 23:33:14,658 1441138ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-07-26 23:33:14,692 1441172ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-07-26 23:33:14,754 1441234ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-07-26 23:42:30,347 45899ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-07-26 23:42:30,457 46009ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-07-26 23:42:30,475 46027ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-07-27 20:22:12,878 845592ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-07-27 20:22:13,215 845929ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-07-27 20:22:13,258 845972ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-07-27 20:22:21,276 853990ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-07-27 20:22:21,310 854024ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-07-27 20:22:21,357 854071ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-07-27 20:44:54,167 2206881ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-07-27 20:44:54,275 2206989ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-07-27 20:44:54,307 2207021ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-07-27 20:45:29,852 2242566ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-07-27 20:45:29,887 2242601ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-07-27 20:45:29,947 2242661ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-07-28 00:36:18,169 667122ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-07-28 00:36:18,326 667279ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-07-28 00:36:18,347 667300ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-07-28 00:36:29,096 678048ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-07-28 00:36:29,145 678097ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-07-28 00:36:29,179 678131ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-07-29 23:26:13,392 54627ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-07-29 23:26:13,530 54765ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-07-29 23:26:13,560 54795ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-07-29 23:33:06,483 467719ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-07-29 23:33:06,540 467775ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-07-29 23:33:06,578 467813ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-07-29 23:33:09,869 471105ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-07-29 23:33:09,924 471159ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-07-29 23:33:09,998 471233ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-07-29 23:33:13,625 474860ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-07-29 23:33:13,674 474909ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-07-29 23:33:13,748 474983ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-07-29 23:46:27,978 1269214ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-07-29 23:46:28,051 1269286ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-07-29 23:46:28,100 1269335ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-07-29 23:49:56,614 1477849ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-07-29 23:49:56,682 1477917ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-07-29 23:49:56,704 1477939ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-07-29 23:49:59,597 1480832ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-07-29 23:49:59,622 1480857ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-07-29 23:49:59,664 1480899ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-07-29 23:50:01,167 1482402ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-07-29 23:50:01,191 1482426ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-07-29 23:50:01,214 1482449ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-07-29 23:50:54,567 1535803ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-07-29 23:50:54,645 1535880ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-07-29 23:50:54,678 1535913ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-07-29 23:50:59,579 1540814ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-07-29 23:50:59,605 1540840ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-07-29 23:50:59,643 1540878ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-07-29 23:51:30,638 1571873ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-07-29 23:51:30,675 1571910ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-07-29 23:51:30,708 1571943ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-07-29 23:52:24,451 1625687ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-07-29 23:52:24,610 1625845ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-07-29 23:52:24,726 1625961ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-07-29 23:53:21,442 1682677ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-07-29 23:53:21,482 1682717ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-07-29 23:53:21,539 1682774ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-07-29 23:53:38,486 1699721ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-07-29 23:53:38,518 1699753ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-07-29 23:53:38,549 1699784ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-07-29 23:57:34,654 1935889ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-07-29 23:57:34,690 1935925ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-07-29 23:57:34,716 1935951ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-07-30 00:00:53,478 2134713ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-07-30 00:00:53,582 2134817ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-07-30 00:00:53,613 2134848ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-07-30 00:06:13,275 2454510ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-07-30 00:06:13,307 2454542ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-07-30 00:06:13,340 2454575ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-07-30 00:09:47,805 2669040ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-07-30 00:09:47,841 2669076ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-07-30 00:09:47,875 2669110ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-07-30 00:11:01,076 2742311ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-07-30 00:11:01,130 2742365ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-07-30 00:11:01,206 2742441ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-07-30 00:11:38,415 2779651ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-07-30 00:11:38,449 2779685ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-07-30 00:11:38,492 2779727ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-07-30 00:11:48,459 2789694ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-07-30 00:11:48,489 2789724ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-07-30 00:11:48,533 2789768ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-07-30 00:12:13,709 2814944ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-07-30 00:12:13,748 2814983ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-07-30 00:12:13,783 2815019ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-07-30 00:16:29,825 3071060ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-07-30 00:16:29,861 3071096ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-07-30 00:16:29,893 3071128ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-07-30 00:17:34,889 3136124ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-07-30 00:17:34,975 3136210ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-07-30 00:17:35,038 3136273ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-07-30 00:17:39,990 3141225ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-07-30 00:17:40,138 3141373ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-07-30 00:17:40,197 3141432ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-07-31 15:47:28,627 462925ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-07-31 15:47:28,855 463153ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-07-31 15:47:28,877 463175ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-07-31 16:12:10,137 1944436ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-07-31 16:12:10,170 1944469ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-07-31 16:12:10,236 1944534ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-01 23:06:25,309 1524167ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-01 23:06:25,437 1524295ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-01 23:06:25,458 1524316ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-01 23:09:28,228 1707086ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-01 23:09:28,251 1707109ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-01 23:09:28,271 1707129ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-01 23:16:09,110 2107968ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-01 23:16:09,145 2108003ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-01 23:16:09,183 2108041ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-01 23:17:24,970 2183828ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-01 23:17:25,018 2183877ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-01 23:17:25,064 2183923ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-01 23:17:31,274 2190132ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-01 23:17:31,298 2190156ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-01 23:17:31,353 2190211ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-01 23:18:00,920 2219778ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-01 23:18:00,942 2219800ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-01 23:18:00,961 2219819ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-01 23:18:03,746 2222604ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-01 23:18:03,783 2222641ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-01 23:18:03,810 2222668ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-01 23:18:08,905 2227763ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-01 23:18:08,941 2227799ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-01 23:18:09,003 2227861ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-01 23:18:34,262 2253120ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-01 23:18:34,283 2253141ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-01 23:18:34,309 2253167ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-01 23:19:07,793 2286651ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-01 23:19:07,823 2286681ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-01 23:19:07,891 2286749ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-01 23:19:15,853 2294711ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-01 23:19:15,901 2294759ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-01 23:19:15,961 2294819ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-01 23:20:08,182 39636ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-01 23:20:08,243 39698ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-01 23:20:08,278 39732ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-01 23:20:38,347 69801ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-01 23:20:38,438 69893ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-01 23:20:38,523 69977ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-01 23:22:32,844 184298ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-01 23:22:32,950 184405ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-01 23:22:32,997 184452ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-01 23:22:50,321 201776ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-01 23:22:50,378 201833ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-01 23:22:50,439 201894ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-01 23:23:39,069 250524ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-01 23:23:39,104 250559ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-01 23:23:39,163 250618ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-01 23:24:04,504 275958ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-01 23:24:04,549 276003ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-01 23:24:04,577 276032ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-01 23:25:58,004 389459ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-01 23:25:58,037 389492ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-01 23:25:58,068 389523ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-01 23:28:55,288 566742ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-01 23:28:55,312 566766ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-01 23:28:55,332 566787ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-01 23:30:04,261 635715ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-01 23:30:04,309 635764ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-01 23:30:04,403 635857ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-02 00:16:40,070 3431525ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-02 00:16:40,148 3431603ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-02 00:16:40,236 3431691ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-02 22:37:04,832 1920150ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-02 22:37:05,002 1920320ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-02 22:37:05,029 1920348ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-10 23:33:47,825 830069ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-10 23:33:47,999 830243ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-10 23:33:48,030 830275ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-11 23:54:23,257 869194ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-11 23:54:23,864 869802ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-11 23:54:23,891 869828ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-12 01:24:42,282 20300ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-12 01:24:42,471 20488ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-12 01:24:42,492 20510ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-15 21:59:49,692 3238047ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-15 21:59:49,842 3238197ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-15 21:59:49,858 3238213ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-15 22:05:11,044 111445ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-15 22:05:11,126 111527ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-15 22:05:11,150 111551ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-15 23:04:49,901 133267ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-15 23:04:49,983 133348ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-15 23:04:50,003 133368ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-15 23:08:12,829 336195ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-15 23:08:12,852 336218ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-15 23:08:12,873 336239ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-15 23:08:39,673 363038ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-15 23:08:39,728 363093ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-15 23:08:39,752 363117ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-15 23:09:38,397 421762ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-15 23:09:38,418 421783ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-15 23:09:38,452 421817ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-15 23:09:44,417 427782ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-15 23:09:44,450 427815ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-15 23:09:44,469 427835ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-15 23:25:10,837 1354202ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-15 23:25:10,917 1354282ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-15 23:25:10,932 1354297ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-15 23:27:20,429 1483794ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-15 23:27:20,452 1483817ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-15 23:27:20,473 1483838ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-15 23:30:14,379 1657744ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-15 23:30:14,401 1657766ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-15 23:30:14,431 1657796ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-15 23:30:50,506 1693871ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-15 23:30:50,565 1693930ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-15 23:30:50,596 1693961ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-15 23:34:19,135 1902501ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-15 23:34:19,167 1902532ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-15 23:34:19,209 1902574ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-15 23:35:22,054 1965419ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-15 23:35:22,089 1965454ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-15 23:35:22,114 1965479ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-15 23:36:07,459 2010824ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-15 23:36:07,568 2010934ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-15 23:36:07,592 2010958ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-15 23:40:26,539 2269904ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-15 23:40:26,564 2269929ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-15 23:40:26,593 2269959ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-15 23:40:31,414 2274779ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-15 23:40:31,450 2274815ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-15 23:40:31,542 2274907ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-15 23:41:53,944 2357309ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-15 23:41:54,011 2357376ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-15 23:41:54,030 2357395ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-15 23:44:42,250 2525615ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-15 23:44:42,318 2525684ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-15 23:44:42,384 2525749ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-15 23:46:19,046 2622411ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-15 23:46:19,170 2622535ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-15 23:46:19,199 2622564ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-15 23:46:51,174 2654539ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-15 23:46:51,201 2654566ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-15 23:46:51,232 2654598ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-15 23:53:29,452 53926ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-15 23:53:29,532 54006ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-15 23:53:29,554 54028ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-15 23:54:44,693 129167ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-15 23:54:44,737 129211ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-15 23:54:44,772 129246ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-15 23:54:52,408 136882ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-15 23:54:52,439 136913ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-15 23:54:52,517 136991ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-15 23:56:41,043 245517ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-15 23:56:41,065 245539ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-15 23:56:41,102 245576ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-15 23:57:30,771 295245ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-15 23:57:30,808 295282ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-15 23:57:30,834 295308ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-15 23:58:12,474 336948ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-15 23:58:12,513 336987ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-15 23:58:12,571 337045ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-15 23:59:20,820 405294ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-15 23:59:20,873 405347ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-15 23:59:20,907 405381ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-15 23:59:28,858 413332ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-15 23:59:28,882 413356ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-15 23:59:29,001 413475ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-15 23:59:44,665 429139ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-15 23:59:44,696 429170ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-15 23:59:44,816 429290ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-16 00:01:17,004 521478ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-16 00:01:17,053 521527ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-16 00:01:17,094 521569ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-16 00:01:24,912 529386ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-16 00:01:24,939 529413ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-16 00:01:24,972 529446ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-16 00:02:44,666 609140ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-16 00:02:44,759 609233ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-16 00:02:44,876 609350ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-16 00:03:02,515 626989ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-16 00:03:02,537 627011ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-16 00:03:02,555 627029ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-16 00:06:37,085 841559ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-16 00:06:37,155 841629ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-16 00:06:37,184 841658ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-16 00:08:43,643 968118ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-16 00:08:43,677 968152ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-16 00:08:43,740 968214ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-16 00:09:36,156 1020630ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-16 00:09:36,238 1020712ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-16 00:09:36,335 1020809ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-16 00:11:08,785 83037ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-16 00:11:08,840 83092ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-16 00:11:08,880 83132ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-16 00:12:12,637 146889ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-16 00:12:12,664 146916ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-16 00:12:12,688 146940ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-16 00:13:31,354 225607ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-16 00:13:31,378 225631ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-16 00:13:31,401 225654ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-16 00:13:43,605 237857ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-16 00:13:43,666 237918ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-16 00:13:43,709 237962ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-16 00:18:10,899 505151ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-16 00:18:10,925 505178ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-16 00:18:10,946 505199ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-16 00:18:54,192 548444ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-16 00:18:54,255 548507ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-16 00:18:54,278 548530ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-16 00:20:03,406 617659ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-16 00:20:03,474 617727ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-16 00:20:03,527 617780ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-16 00:24:31,510 885762ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-16 00:24:31,550 885802ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-16 00:24:31,593 885845ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-16 00:26:02,349 976602ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-16 00:26:02,422 976674ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-16 00:26:02,458 976711ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-16 00:40:09,760 1824012ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-16 00:40:09,786 1824038ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-16 00:40:09,818 1824071ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-16 00:44:15,336 74026ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-16 00:44:15,400 74091ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-16 00:44:15,416 74106ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-16 00:44:41,139 99830ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-16 00:44:41,171 99862ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-16 00:44:41,201 99891ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-16 00:46:48,639 227329ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-16 00:46:48,662 227353ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-16 00:46:48,689 227380ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-16 00:50:37,180 14953ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-16 00:50:37,225 14998ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-16 00:50:37,242 15015ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-16 00:50:52,413 30186ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-16 00:50:52,454 30227ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-16 00:50:52,485 30258ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-16 22:06:51,995 4214662ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-16 22:06:52,295 4214962ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-16 22:06:52,313 4214980ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-16 22:30:57,318 5659985ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-16 22:30:57,377 5660044ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-16 22:30:57,412 5660079ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-16 22:45:10,505 6513171ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-16 22:45:10,529 6513196ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-16 22:45:10,550 6513217ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-16 22:51:16,885 6879552ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-16 22:51:16,957 6879624ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.
+ERROR 2016-08-16 22:51:17,004 6879671ms TrackingModel          etListDataTracking - Invalid object name 'DeviceDetail'.

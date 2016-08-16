@@ -1,0 +1,129 @@
+﻿@using ArduinoService.Resource
+@using ArduinoService.DataModels
+@model IEnumerable<GardenRawData>
+
+@{
+    ViewBag.Title = "Control Systems ioT";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<div class="col-sm-12">
+    <section class="content-header">
+        <ol class="breadcrumb">
+        </ol>
+    </section>
+</div>
+
+<div class="col-sm-12">
+    <div id="listgarden">
+        @{
+            if (Model.Count() != 0)
+            {
+                foreach (var item in Model)
+                {
+                    <div class="col-md-4 col-sm-4 col-xs-12">
+                        <div class="x_panel tile fixed_height_275" GARDEN_ID="@item.TOKEN_KEY">
+                            <div class="x_title">
+                                <h2>@item.GARDEN_NAME</h2>
+                                <ul class="nav navbar-right panel_toolbox">
+                                    <li>
+                                        <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                                    </li>
+                                    <li>
+                                        <a class="edit-garden"><i class="fa fa-pencil"></i></a>
+                                    </li>
+                                </ul>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="x_content">
+                                <div class="box-garden">
+                                    <a href="/Home/Garden/@item.TOKEN_KEY">
+                                        @if (item.IMAGE == null)
+                                        {
+                                            <img src="~/Content/Images/bg_no_image.gif" />
+                                        }
+                                        else
+                                        {
+                                            <img src="@item.IMAGE" />
+                                        }
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+        }
+    </div>
+
+    <div class="col-md-4 col-sm-4 col-xs-12" id="addnewgarden">
+        <div class="x_panel tile fixed_height_275">
+            <div class="x_title">
+                <h2>Add new garden</h2>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content" data-toggle="modal" data-target="#ModalAddGarden">
+                <i class="fa fa-plus-circle dashboard-div-icon"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="ModalEditGarden" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Edit garden</h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <input type="text" class="form-control" id="gardenid" style="display:none" />
+                    <input type="text" class="form-control" id="edittext-garden" maxlength="200">
+                </div>
+                <div class="form-group">
+                    <span class="btn btn-success fileinput-button">
+                        <i class="glyphicon glyphicon-plus"></i>
+                        <span>Add files...</span>
+                        <input id="fileuploadEdit" type="file" name="files[]">
+                    </span>
+                    <img src="" id="preview-edit-garden" />
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal"><span class="fa fa-ban"></span>Close</button>
+                <button type="button" id="editgarden" class="btn btn-primary"><span class="fa fa-check"></span>OK</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="ModalAddGarden" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Add garden</h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <input type="text" class="form-control" id="addtext-garden" maxlength="200">
+                </div>
+                <div class="form-group">
+                    <span class="btn btn-success fileinput-button">
+                        <i class="glyphicon glyphicon-plus"></i>
+                        <span>Add files...</span>
+                        <input id="fileuploadAdd" type="file" name="files[]">
+                    </span>
+                    <img src="" id="preview-add-garden" />
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal"><span class="fa fa-ban"></span>Close</button>
+                <button type="button" id="addgarden" class="btn btn-primary"><span class="fa fa-check"></span>OK</button>
+            </div>
+        </div>
+    </div>
+</div>

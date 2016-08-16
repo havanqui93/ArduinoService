@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<NodeControl>
+  <childnode control="LED" value="OFF">
+  </childnode>
+  <childnode control="WATER" value="OFF">
+  </childnode>
+  <childnode control="WIND" value="OFF">
+  </childnode>
+  <childnode control="MODULE4" value="OFF">
+  </childnode>
+</NodeControl>

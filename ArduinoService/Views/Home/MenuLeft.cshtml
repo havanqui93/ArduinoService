@@ -1,0 +1,47 @@
+﻿@using ArduinoService.DataModels
+@model IEnumerable<GardenRawData>
+
+<div class="col-md-3 left_col">
+    <div class="left_col scroll-view">
+        <div class="navbar nav_title" style="border: 0;">
+            <a href="/Home/MainMenu" class="site_title"><i class="fa fa-paw"></i> <span>ioT</span></a>
+        </div>
+        <div class="clearfix"></div>
+        <br />
+        <!-- sidebar menu -->
+        <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+            <div class="menu_section">
+                <ul class="nav side-menu" id="menu-left-garden">
+                    @*@{
+                            if (Model != null)
+                            {
+                                if (Model.Count() != 0)
+                                {
+                                    foreach (var item in Model)
+                                    {
+                                        <li attrgarden="@item.GARDEN_ID">
+                                            <a><i class="fa fa-wrench"></i> @item.GARDEN_NAME <span class="fa fa-chevron-down"></span></a>
+                                            <ul class="nav child_menu">
+                                                <li><a href="/Home/Control/@item.GARDEN_ID">Hệ thống điều khiển</a></li>
+                                                <li><a href="/Home/Tracking/@item.GARDEN_ID">Hệ thống theo dõi</a></li>
+                                            </ul>
+                                        </li>
+                                    }
+                                }
+                            }
+                        }*@
+                    <li>
+                        <a href="javascript:void(0)"><i class="fa fa-user"></i> Thông tin cá nhân </a>
+                    </li>
+                    <li>
+                        <a href="/Home/MainMenu"><i class="glyphicon glyphicon-th-large"></i> Danh sách khu vườn </a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)"><i class="fa fa-pagelines"></i> Thư viện cây trồng </a>
+                    </li>
+                    <li><a href="javascript:void(0)"><i class="fa fa-question-circle"></i> Tư vấn trực tuyến</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

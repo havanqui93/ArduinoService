@@ -1,0 +1,22 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - Systems Control ioT</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <link href="~/Content/Welcome.css" rel="stylesheet" />
+    <link href="~/Content/animation.css" rel="stylesheet" />
+    <link href="~/Content/awesome/css/font-awesome.min.css" rel="stylesheet" />
+</head>
+<body>
+    <script src="~/Scripts/jquery.min.js"></script>
+    @Html.Partial("~/Views/Shared/_HeaderWelcome.cshtml")
+    @RenderBody()
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+    <script src="~/Scripts/Welcome.js"></script>
+</body>
+</html>

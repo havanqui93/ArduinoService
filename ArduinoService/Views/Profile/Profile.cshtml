@@ -1,0 +1,105 @@
+﻿@{
+    Layout = null;
+}
+<script src="~/Scripts/jquery.min.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+
+
+<div id="top" class="container">
+
+    <div class="col-lg-4">
+        <div class="card-box p-0">
+            <div class="profile-widget text-center">
+                <div class="bg-custom bg-profile"></div>
+                <img src="assets/images/users/avatar-3.jpg" class="thumb-lg img-circle img-thumbnail" alt="img">
+                <h4>Jonathan Doe</h4>
+                <p class="text-muted"><i class="fa fa-map-marker"></i> London</p>
+                <a href="#" class="btn btn-sm btn-purple m-t-20">Follow</a>
+                <a href="#" class="btn btn-sm btn-pink m-t-20">Send message</a>
+                <p class="m-t-10 text-muted p-20">It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
+                <ul class="list-inline widget-list clearfix">
+                    <li class="col-md-4"><span>2.109</span>Followers</li>
+                    <li class="col-md-4"><span>596</span>Photos</li>
+                    <li class="col-md-4"><span>902</span>Like</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<style>
+    .card-box {
+        padding: 20px;
+        box-shadow: 0 0px 8px 0 rgba(0, 0, 0, 0.06), 0 1px 0px 0 rgba(0, 0, 0, 0.02);
+        -webkit-border-radius: 5px;
+        border-radius: 5px;
+        -moz-border-radius: 5px;
+        background-clip: padding-box;
+        margin-bottom: 20px;
+        background-color: #ffffff;
+    }
+
+    .bg-custom {
+        background-color: #7e57c2 !important;
+    }
+
+    .profile-widget .bg-profile {
+        height: 125px;
+    }
+
+    .profile-widget .img-thumbnail {
+        margin-top: -42px;
+        border: none;
+    }
+
+    .thumb-lg {
+        height: 88px;
+        width: 88px;
+    }
+
+    .img-circle {
+        border-radius: 50%;
+    }
+
+    .img-thumbnail {
+        display: inline-block;
+        max-width: 100%;
+        height: auto;
+        padding: 4px;
+        line-height: 1.42857143;
+        background-color: #fff;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        -webkit-transition: all .2s ease-in-out;
+        -o-transition: all .2s ease-in-out;
+        transition: all .2s ease-in-out;
+    }
+
+    .text-muted {
+        color: #98a6ad;
+    }
+
+    .m-t-10 {
+        margin-top: 10px !important;
+    }
+
+    .profile-widget .widget-list {
+        padding: 10px;
+        margin-top: 20px;
+        margin-left: 0px;
+        padding-bottom: 30px;
+    }
+
+        .profile-widget .widget-list span {
+            display: block;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+    .text-center {
+        text-align: center;
+    }
+
+</style>

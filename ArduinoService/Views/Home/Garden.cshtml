@@ -1,0 +1,59 @@
+﻿@using ArduinoService.Resource
+@using ArduinoService.DataModels
+@model IEnumerable<GardenRawData>
+
+@{
+    ViewBag.Title = "Control Systems ioT";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+
+<div class="col-sm-12">
+    <section class="content-header">
+        <ol class="breadcrumb"></ol>
+    </section>
+</div>
+
+@*<div class="col-sm-12 statis">
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="dashboard_graph">
+                <div class="row x_title">
+                    <div class="col-md-6">
+                        <h3>Thống kê</h3>
+                    </div>
+                    <div class="col-md-6">
+                            <div id="reportrange" class="pull-right" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc">
+                                <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
+                                <span>June 26, 2016 - July 25, 2016</span> <b class="caret"></b>
+                            </div>
+                        </div>
+                </div>
+
+                <div class="col-md-9 col-sm-9 col-xs-12">
+                </div>
+                <div class="col-md-3 col-sm-3 col-xs-12 bg-white">
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+</div>*@
+<div class="col-sm-12">
+    <div class="row">
+        <div class="col-md-3 col-sm-3 col-xs-6">
+            <div class="dashboard-div-wrapper" url="/Home/Control/@ViewBag.GardenId">
+                <i class="fa fa-wrench dashboard-div-icon"></i>
+                <h5>Hệ thống điều khiển</h5>
+            </div>
+        </div>
+        <div class="col-md-3 col-sm-3 col-xs-6">
+            <div class="dashboard-div-wrapper" url="/Home/Tracking/@ViewBag.GardenId">
+                <i class="fa fa-list-ol dashboard-div-icon"></i>
+                <h5>Hệ thống theo dõi</h5>
+            </div>
+        </div>
+
+    </div>
+</div>
+

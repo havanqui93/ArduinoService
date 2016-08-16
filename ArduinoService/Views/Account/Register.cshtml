@@ -1,0 +1,28 @@
+﻿@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_LayoutWelcome.cshtml";
+}
+<div id="form-login">
+    <form action="/Account/Register" method="post">
+        <legend>Register</legend>
+        <div class="form-group">
+            <input id="fulname" name="Fullname" placeholder="Full name" type="text" class="form-control">
+        </div>
+        <div class="form-group">
+            <input id="email" name="Email" placeholder="E-mail" type="text" class="form-control">
+        </div>
+        <div class="form-group">
+            <input id="phone" name="Phone" placeholder="Phone" type="text" class="form-control">
+        </div>
+        <div class="form-group">
+            <input id="password" name="Password" placeholder="Password" type="password" class="form-control">
+        </div>
+        <div class="form-group">
+            <input id="address" name="Address" placeholder="Address" type="text" class="form-control">
+        </div>
+
+        <div class="form-group text-center">
+            <input type="submit" class="btn btn-success btn-login-submit" value="Register">
+        </div>
+    </form>
+</div>

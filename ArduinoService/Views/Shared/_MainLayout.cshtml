@@ -1,0 +1,86 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Home - Systems Control ioT</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Bootstrap -->
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <!-- Font Awesome -->
+    <link href="~/Content/awesome/css/font-awesome.min.css" rel="stylesheet" />
+    <!-- iCheck -->
+    <link href="~/mainlayout/css/green.css" rel="stylesheet" />
+    <!-- bootstrap-progressbar -->
+    <link href="~/mainlayout/css/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet" />
+    <!-- jVectorMap -->
+    <link href="~/mainlayout/css/jquery-jvectormap-2.0.3.css" rel="stylesheet" />
+    <!-- Custom Theme Style -->
+    <link href="~/mainlayout/css/custom.min.css" rel="stylesheet" />
+    <link href="~/Content/awesome/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/Content/Site.css" rel="stylesheet" />
+    <link href="~/mainlayout/css/jquery.fileupload.css" rel="stylesheet" />
+</head>
+<body class="nav-md">
+    <div class="container body">
+        <div class="main_container">
+            @Html.Partial("MenuLeft")
+            @Html.Partial("Nav")
+            <div class="right_col" role="main">
+                <div class="row">
+                    @RenderBody()
+                </div>
+            </div>
+
+            <footer>
+                <div class="pull-right">
+                    Gentelella - Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a>
+                </div>
+                <div class="clearfix"></div>
+            </footer>
+        </div>
+    </div>
+    <!-- jQuery -->
+    <script src="~/Scripts/jquery.min.js"></script>
+    <script src="~/Scripts/jquery.ui.widget.js"></script>
+    <script src="~/Scripts/Common.js"></script>
+    <!-- Toast -->
+    <script src="~/mainlayout/toast/toastr.min.js"></script>
+    <link href="~/mainlayout/toast/toastr.min.css" rel="stylesheet" />
+    <!-- Bootstrap -->
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/mainlayout/js/jquery.fileupload.js"></script>
+    <!-- FastClick -->
+    <script src="~/mainlayout/js/fastclick.js"></script>
+    <!-- NProgress -->
+    <script src="~/mainlayout/js/nprogress.js"></script>
+    <!-- Chart.js -->
+    <script src="~/mainlayout/js/Chart.min.js"></script>
+    <!-- gauge.js -->
+    <script src="~/mainlayout/js/gauge.min.js"></script>
+    <!-- bootstrap-progressbar -->
+    <script src="~/mainlayout/js/bootstrap-progressbar.min.js"></script>
+    <!-- iCheck -->
+    <script src="~/mainlayout/js/icheck.min.js"></script>
+    <!-- Skycons -->
+    <script src="~/mainlayout/js/skycons.js"></script>
+    <!-- Flot -->
+    <script src="~/mainlayout/js/jquery.flot.js"></script>
+    <script src="~/mainlayout/js/jquery.flot.pie.js"></script>
+    <script src="~/mainlayout/js/jquery.flot.resize.js"></script>
+    <script src="~/mainlayout/js/jquery.flot.stack.js"></script>
+    <script src="~/mainlayout/js/jquery.flot.time.js"></script>
+    <!-- Flot plugins -->
+    <script src="~/mainlayout/js/curvedLines.js"></script>
+    <script src="~/mainlayout/js/jquery.flot.orderBars.js"></script>
+    <script src="~/mainlayout/js/jquery.flot.spline.js"></script>
+
+    <script src="~/mainlayout/js/custom.min.js"></script>
+    <script src="~/mainlayout/js/moment.min.js"></script>
+    <script src="~/Scripts/MainMenu.js"></script>
+    <script src="~/Scripts/main.js"></script>
+    @RenderSection("scripts", required: false)
+</body>
+</html>
