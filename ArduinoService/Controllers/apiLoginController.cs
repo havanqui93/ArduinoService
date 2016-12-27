@@ -25,16 +25,18 @@ namespace ArduinoService.Controllers
         }
 
         // POST: api/apiLogin
-        public bool Post([FromBody]AccountRowData model)
+        public ResultLoginRowData Post([FromBody]AccountRowData model)
         {
+            ResultLoginRowData result = new ResultLoginRowData();
             try
             {
-                return _accountmodel.Login(model);
+                result = _accountmodel.CheckLoginMobile(model);
             }
             catch (Exception ex)
             {
-                return false;
+                return result;
             }
+            return result;
         }
 
         // PUT: api/apiLogin/5

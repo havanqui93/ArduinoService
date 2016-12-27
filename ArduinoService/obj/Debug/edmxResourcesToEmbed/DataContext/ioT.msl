@@ -1,0 +1,216 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ioTModelStoreContainer" CdmEntityContainer="ioTEntities">
+    <EntitySetMapping Name="D_DEVICE_SENSOR_DETAIL">
+      <EntityTypeMapping TypeName="ioTModel.D_DEVICE_SENSOR_DETAIL">
+        <MappingFragment StoreEntitySet="D_DEVICE_SENSOR_DETAIL">
+          <ScalarProperty Name="TIME_UPDATE" ColumnName="TIME_UPDATE" />
+          <ScalarProperty Name="VALUE" ColumnName="VALUE" />
+          <ScalarProperty Name="DEVICE_ID" ColumnName="DEVICE_ID" />
+          <ScalarProperty Name="DEVICE_SENSOR_DETAIL_ID" ColumnName="DEVICE_SENSOR_DETAIL_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="D_DEVICE_SENSOR_HT">
+      <EntityTypeMapping TypeName="ioTModel.D_DEVICE_SENSOR_HT">
+        <MappingFragment StoreEntitySet="D_DEVICE_SENSOR_HT">
+          <ScalarProperty Name="TIME_UPDATE" ColumnName="TIME_UPDATE" />
+          <ScalarProperty Name="VALUE" ColumnName="VALUE" />
+          <ScalarProperty Name="DEVICE_ID" ColumnName="DEVICE_ID" />
+          <ScalarProperty Name="DEVICE_SENSOR_HUMIDITY_ID" ColumnName="DEVICE_SENSOR_HUMIDITY_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="D_DEVICE_SENSOR_LIGHT">
+      <EntityTypeMapping TypeName="ioTModel.D_DEVICE_SENSOR_LIGHT">
+        <MappingFragment StoreEntitySet="D_DEVICE_SENSOR_LIGHT">
+          <ScalarProperty Name="TIME_UPDATE" ColumnName="TIME_UPDATE" />
+          <ScalarProperty Name="VALUE" ColumnName="VALUE" />
+          <ScalarProperty Name="DEVICE_ID" ColumnName="DEVICE_ID" />
+          <ScalarProperty Name="DEVICE_SENSOR_LIGHT_" ColumnName="DEVICE_SENSOR_LIGHT_" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="D_DEVICE_SENSOR_MOISTURE">
+      <EntityTypeMapping TypeName="ioTModel.D_DEVICE_SENSOR_MOISTURE">
+        <MappingFragment StoreEntitySet="D_DEVICE_SENSOR_MOISTURE">
+          <ScalarProperty Name="TIME_UPDATE" ColumnName="TIME_UPDATE" />
+          <ScalarProperty Name="VALUE" ColumnName="VALUE" />
+          <ScalarProperty Name="DEVICE_ID" ColumnName="DEVICE_ID" />
+          <ScalarProperty Name="DEVICE_SENSOR_MOISTURE_ID" ColumnName="DEVICE_SENSOR_MOISTURE_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="D_GROUP_PERMISSION">
+      <EntityTypeMapping TypeName="ioTModel.D_GROUP_PERMISSION">
+        <MappingFragment StoreEntitySet="D_GROUP_PERMISSION">
+          <ScalarProperty Name="SETTING" ColumnName="SETTING" />
+          <ScalarProperty Name="DELETE" ColumnName="DELETE" />
+          <ScalarProperty Name="WRITE" ColumnName="WRITE" />
+          <ScalarProperty Name="READ" ColumnName="READ" />
+          <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
+          <ScalarProperty Name="PERMISSION_ID" ColumnName="PERMISSION_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="D_PACKED">
+      <EntityTypeMapping TypeName="ioTModel.D_PACKED">
+        <MappingFragment StoreEntitySet="D_PACKED">
+          <ScalarProperty Name="PRICE" ColumnName="PRICE" />
+          <ScalarProperty Name="PACKED_NAME_EN" ColumnName="PACKED_NAME_EN" />
+          <ScalarProperty Name="PACKED_NAME_VN" ColumnName="PACKED_NAME_VN" />
+          <ScalarProperty Name="PACKED_ID" ColumnName="PACKED_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="D_SETTING_CONTROL">
+      <EntityTypeMapping TypeName="ioTModel.D_SETTING_CONTROL">
+        <MappingFragment StoreEntitySet="D_SETTING_CONTROL">
+          <ScalarProperty Name="TIME_OFF" ColumnName="TIME_OFF" />
+          <ScalarProperty Name="TIME_ON" ColumnName="TIME_ON" />
+          <ScalarProperty Name="DEVICE_ID" ColumnName="DEVICE_ID" />
+          <ScalarProperty Name="SETTING_CONTROL_ID" ColumnName="SETTING_CONTROL_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="D_SETTING_SENSOR">
+      <EntityTypeMapping TypeName="ioTModel.D_SETTING_SENSOR">
+        <MappingFragment StoreEntitySet="D_SETTING_SENSOR">
+          <ScalarProperty Name="LIST_CONTROL_ID_OPEN" ColumnName="LIST_CONTROL_ID_OPEN" />
+          <ScalarProperty Name="LIMIT_HIGH" ColumnName="LIMIT_HIGH" />
+          <ScalarProperty Name="LIMIT_LOW" ColumnName="LIMIT_LOW" />
+          <ScalarProperty Name="DEVICE_SENSOR_ID" ColumnName="DEVICE_SENSOR_ID" />
+          <ScalarProperty Name="SETTING_SENSOR_ID" ColumnName="SETTING_SENSOR_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="S_ARDUINO_TYPE">
+      <EntityTypeMapping TypeName="ioTModel.S_ARDUINO_TYPE">
+        <MappingFragment StoreEntitySet="S_ARDUINO_TYPE">
+          <ScalarProperty Name="NOTE" ColumnName="NOTE" />
+          <ScalarProperty Name="ARDUINO_TYPE_NAME" ColumnName="ARDUINO_TYPE_NAME" />
+          <ScalarProperty Name="ARDUINO_TYPE_ID" ColumnName="ARDUINO_TYPE_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="S_ARDUINO_TYPE_DETAIL">
+      <EntityTypeMapping TypeName="ioTModel.S_ARDUINO_TYPE_DETAIL">
+        <MappingFragment StoreEntitySet="S_ARDUINO_TYPE_DETAIL">
+          <ScalarProperty Name="CATEGORY_ID" ColumnName="CATEGORY_ID" />
+          <ScalarProperty Name="PIN" ColumnName="PIN" />
+          <ScalarProperty Name="ARDUINO_TYPE_ID" ColumnName="ARDUINO_TYPE_ID" />
+          <ScalarProperty Name="ARDUINO_TYPE_DETAIL_ID" ColumnName="ARDUINO_TYPE_DETAIL_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="S_CODE">
+      <EntityTypeMapping TypeName="ioTModel.S_CODE">
+        <MappingFragment StoreEntitySet="S_CODE">
+          <ScalarProperty Name="STATUS" ColumnName="STATUS" />
+          <ScalarProperty Name="CODE_VALUE" ColumnName="CODE_VALUE" />
+          <ScalarProperty Name="CODE_ID" ColumnName="CODE_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="S_DEVICE">
+      <EntityTypeMapping TypeName="ioTModel.S_DEVICE">
+        <MappingFragment StoreEntitySet="S_DEVICE">
+          <ScalarProperty Name="PIN_ID" ColumnName="PIN_ID" />
+          <ScalarProperty Name="UNIT" ColumnName="UNIT" />
+          <ScalarProperty Name="STATUS" ColumnName="STATUS" />
+          <ScalarProperty Name="GROUP_SENSOR_ID" ColumnName="GROUP_SENSOR_ID" />
+          <ScalarProperty Name="DEVICE_CATEGORY" ColumnName="DEVICE_CATEGORY" />
+          <ScalarProperty Name="DEVICE_NAME_EN" ColumnName="DEVICE_NAME_EN" />
+          <ScalarProperty Name="DEVICE_NAME_VN" ColumnName="DEVICE_NAME_VN" />
+          <ScalarProperty Name="TOKEN_KEY" ColumnName="TOKEN_KEY" />
+          <ScalarProperty Name="DEVICE_ID" ColumnName="DEVICE_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="S_DEVICE_CATEGORY">
+      <EntityTypeMapping TypeName="ioTModel.S_DEVICE_CATEGORY">
+        <MappingFragment StoreEntitySet="S_DEVICE_CATEGORY">
+          <ScalarProperty Name="NOTE" ColumnName="NOTE" />
+          <ScalarProperty Name="CATEGORY_NAME" ColumnName="CATEGORY_NAME" />
+          <ScalarProperty Name="CATEGORY_ID" ColumnName="CATEGORY_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="S_DEVICE_CONTROL_DETAIL">
+      <EntityTypeMapping TypeName="ioTModel.S_DEVICE_CONTROL_DETAIL">
+        <MappingFragment StoreEntitySet="S_DEVICE_CONTROL_DETAIL">
+          <ScalarProperty Name="TIME_UPDATE" ColumnName="TIME_UPDATE" />
+          <ScalarProperty Name="VALUE" ColumnName="VALUE" />
+          <ScalarProperty Name="DEVICE_ID" ColumnName="DEVICE_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="S_GARDEN">
+      <EntityTypeMapping TypeName="ioTModel.S_GARDEN">
+        <MappingFragment StoreEntitySet="S_GARDEN">
+          <ScalarProperty Name="IS_AUTO" ColumnName="IS_AUTO" />
+          <ScalarProperty Name="IS_SHEDULE" ColumnName="IS_SHEDULE" />
+          <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+          <ScalarProperty Name="ACREAGE" ColumnName="ACREAGE" />
+          <ScalarProperty Name="ADDRESS" ColumnName="ADDRESS" />
+          <ScalarProperty Name="LONGITUDE" ColumnName="LONGITUDE" />
+          <ScalarProperty Name="LATITUDE" ColumnName="LATITUDE" />
+          <ScalarProperty Name="END" ColumnName="END" />
+          <ScalarProperty Name="START" ColumnName="START" />
+          <ScalarProperty Name="STATUS" ColumnName="STATUS" />
+          <ScalarProperty Name="UNO_TYPE" ColumnName="UNO_TYPE" />
+          <ScalarProperty Name="IMAGE" ColumnName="IMAGE" />
+          <ScalarProperty Name="ACTIVE" ColumnName="ACTIVE" />
+          <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
+          <ScalarProperty Name="GARDEN_NAME_EN" ColumnName="GARDEN_NAME_EN" />
+          <ScalarProperty Name="GARDEN_NAME_VN" ColumnName="GARDEN_NAME_VN" />
+          <ScalarProperty Name="TOKEN_KEY" ColumnName="TOKEN_KEY" />
+          <ScalarProperty Name="GARDEN_ID" ColumnName="GARDEN_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="S_GROUP_SENSOR">
+      <EntityTypeMapping TypeName="ioTModel.S_GROUP_SENSOR">
+        <MappingFragment StoreEntitySet="S_GROUP_SENSOR">
+          <ScalarProperty Name="NOTE" ColumnName="NOTE" />
+          <ScalarProperty Name="GROUP_SENSOR_NAME" ColumnName="GROUP_SENSOR_NAME" />
+          <ScalarProperty Name="GROUP_SENSOR_ID" ColumnName="GROUP_SENSOR_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="S_UNIT">
+      <EntityTypeMapping TypeName="ioTModel.S_UNIT">
+        <MappingFragment StoreEntitySet="S_UNIT">
+          <ScalarProperty Name="UNIT_NAME" ColumnName="UNIT_NAME" />
+          <ScalarProperty Name="UNIT_ID" ColumnName="UNIT_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="S_USER">
+      <EntityTypeMapping TypeName="ioTModel.S_USER">
+        <MappingFragment StoreEntitySet="S_USER">
+          <ScalarProperty Name="NOTE" ColumnName="NOTE" />
+          <ScalarProperty Name="USER_TYPE" ColumnName="USER_TYPE" />
+          <ScalarProperty Name="PACKED_ID" ColumnName="PACKED_ID" />
+          <ScalarProperty Name="ADDRESS" ColumnName="ADDRESS" />
+          <ScalarProperty Name="PASSWORD" ColumnName="PASSWORD" />
+          <ScalarProperty Name="PHONE" ColumnName="PHONE" />
+          <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+          <ScalarProperty Name="FULL_NAME" ColumnName="FULL_NAME" />
+          <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="ioTModel.sysdiagram">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="definition" ColumnName="definition" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

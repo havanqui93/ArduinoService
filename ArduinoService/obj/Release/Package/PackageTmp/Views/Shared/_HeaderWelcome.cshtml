@@ -1,0 +1,51 @@
+﻿@using ArduinoService.Resource
+@using ArduinoService.Models
+<div class="navbar navbar-dual navbar-fixed-top headroom animated slideDown ontop-now navbar-inverse">
+    <div class="container">
+        <div class="navbar-header">
+            <!-- Button for smallest screens -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"><span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
+            @{
+                if (Session[ConstantClass.SESSION_USERNAME] == null)
+                {
+                    <a class="navbar-brand" href="/Home/Welcome">
+                        ioT
+                    </a>
+                }
+                else
+                {
+                    <a class="navbar-brand" href="/Home/MainMenu">
+                        ioT
+                    </a>
+                }
+            }
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav pull-right">
+                @*<li><a href="/Home/ControlSystem">@Languages._0001</a></li>
+                    <li><a href="/Home/TrackingData">@Languages._0002</a></li>*@
+                @{
+                    if (Session[ConstantClass.SESSION_USERNAME] == null)
+                    {
+                        <li><a class="btn btn-rounded" href="/Account/Login">@Languages._0020</a></li>
+                    }
+                    else
+                    {
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                @Session[ConstantClass.SESSION_FULLNAME]
+                                <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">Trang cá nhân</a></li>
+                                <li><a href="#">Tin nhắn</a></li>
+                                <li><a href="/Account/Logout">Thoát</a></li>
+                            </ul>
+                        </li>
+                    }
+                }
+
+            </ul>
+        </div><!--/.nav-collapse -->
+    </div>
+</div>

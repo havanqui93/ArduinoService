@@ -1,0 +1,108 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ioTSystemModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="DEVICE">
+    <Key>
+      <PropertyRef Name="DEVICE_ID" />
+      <PropertyRef Name="TOKEN_KEY" />
+    </Key>
+    <Property Name="DEVICE_ID" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="TOKEN_KEY" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="DEVICE_NAME" Type="nvarchar" MaxLength="500" />
+    <Property Name="DEVICE_CATEGORY" Type="int" />
+    <Property Name="DESCRIPTION" Type="nvarchar" MaxLength="1000" />
+    <Property Name="GROUP_SENSOR_ID" Type="int" />
+  </EntityType>
+  <EntityType Name="DEVICE_CATEGORY">
+    <Key>
+      <PropertyRef Name="CATEGORY_ID" />
+    </Key>
+    <Property Name="CATEGORY_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CATEGORY_NAME" Type="nvarchar" MaxLength="100" />
+    <Property Name="NOTE" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="DEVICE_CONTROL_DETAIL">
+    <Key>
+      <PropertyRef Name="DEVICE_ID" />
+    </Key>
+    <Property Name="DEVICE_ID" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="VALUE" Type="varchar" MaxLength="50" />
+    <Property Name="TIME_UPDATE" Type="datetime" />
+  </EntityType>
+  <EntityType Name="DEVICE_SENSOR_DETAIL">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DEVICE_ID" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="VALUE" Type="varchar" MaxLength="50" />
+    <Property Name="TIME_UPDATE" Type="datetime" />
+    <Property Name="IS_MEDIUM" Type="int" />
+  </EntityType>
+  <EntityType Name="GARDEN">
+    <Key>
+      <PropertyRef Name="GARDEN_ID" />
+    </Key>
+    <Property Name="GARDEN_ID" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="GARDEN_NAME" Type="nvarchar" MaxLength="100" />
+    <Property Name="USER_ID" Type="varchar" MaxLength="50" />
+    <Property Name="ACTIVE" Type="int" />
+    <Property Name="TOKEN_KEY" Type="varchar" MaxLength="50" />
+    <Property Name="IMAGE" Type="varchar(max)" />
+  </EntityType>
+  <EntityType Name="GROUP_SENSOR">
+    <Key>
+      <PropertyRef Name="GROUP_SENSOR_ID" />
+    </Key>
+    <Property Name="GROUP_SENSOR_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="GROUP_SENSOR_NAME" Type="nvarchar" MaxLength="100" />
+    <Property Name="UNIT" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="M_CODE">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="CODE" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="STATUS" Type="bit" />
+  </EntityType>
+  <EntityType Name="PERMISSION">
+    <Key>
+      <PropertyRef Name="PERMISSION_ID" />
+    </Key>
+    <Property Name="PERMISSION_ID" Type="int" Nullable="false" />
+    <Property Name="PERMISSION_NAME" Type="nvarchar" MaxLength="100" />
+    <Property Name="NOTE" Type="varchar" MaxLength="500" />
+  </EntityType>
+  <EntityType Name="UNIT">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UNIT" Type="varchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="USERS">
+    <Key>
+      <PropertyRef Name="USER_ID" />
+    </Key>
+    <Property Name="USER_ID" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="FULL_NAME" Type="nvarchar" MaxLength="200" />
+    <Property Name="EMAIL" Type="varchar" MaxLength="100" />
+    <Property Name="PHONE" Type="varchar" MaxLength="20" />
+    <Property Name="PASSWORD" Type="varchar" MaxLength="200" />
+    <Property Name="ADDRESS" Type="nvarchar" MaxLength="500" />
+    <Property Name="PERMISSION_ID" Type="int" />
+    <Property Name="NOTE" Type="nvarchar" MaxLength="500" />
+  </EntityType>
+  <EntityContainer Name="ioTSystemModelStoreContainer">
+    <EntitySet Name="DEVICE" EntityType="Self.DEVICE" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DEVICE_CATEGORY" EntityType="Self.DEVICE_CATEGORY" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DEVICE_CONTROL_DETAIL" EntityType="Self.DEVICE_CONTROL_DETAIL" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DEVICE_SENSOR_DETAIL" EntityType="Self.DEVICE_SENSOR_DETAIL" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="GARDEN" EntityType="Self.GARDEN" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="GROUP_SENSOR" EntityType="Self.GROUP_SENSOR" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="M_CODE" EntityType="Self.M_CODE" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PERMISSION" EntityType="Self.PERMISSION" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UNIT" EntityType="Self.UNIT" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="USERS" EntityType="Self.USERS" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

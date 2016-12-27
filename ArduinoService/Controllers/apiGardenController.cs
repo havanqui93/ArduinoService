@@ -20,37 +20,43 @@ namespace ArduinoService.Controllers
         }
 
         // GET: api/apiGarden/5
-        public string Get(int id)
+        public List<GardenRawData> Get(string id)
         {
-            return "value";
+            return _homemodel.GetListGarden(id);
         }
 
         // POST: api/apiGarden
-        public GardenRawData Post([FromBody]GardenRawData model)
+        public bool Post([FromBody]GardenRawData model)
         {
+            bool result = false;
             try
             {
-                _homemodel.AddGarden(model);
+                var data = _homemodel.AddOrEditGarden(model);
+                if (data != null)
+                    result = true;
             }
             catch (Exception ex)
             {
-                model = null;
+                result = false;
             }
-            return model;
+            return result;
         }
 
         // PUT: api/apiGarden/5
-        public GardenRawData Put(int id, [FromBody]GardenRawData model)
+        public bool Put(int id, [FromBody]GardenRawData model)
         {
+            bool result = false;
             try
             {
-                _homemodel.EditGarden(model);
+                var data = _homemodel.AddOrEditGarden(model);
+                if (data != null)
+                    result = true;
             }
             catch (Exception ex)
             {
-                model = null;
+                result = false;
             }
-            return model;
+            return result;
         }
 
         // DELETE: api/apiGarden/5

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Quartz;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
@@ -23,6 +24,21 @@ namespace ArduinoService
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
             log4net.Config.XmlConfigurator.Configure(new FileInfo(Server.MapPath("~/Web.config")));
+
+            IScheduler scheduler = Quartz.Impl.StdSchedulerFactory.GetDefaultScheduler();
+            scheduler.Start();
+
+            IJobDetail job = JobBuilder.Create<ArduinoService.Models.Jobclass>().Build();
+
+            ITrigger trigger = TriggerBuilder.Create()
+            .WithIdentity("trigger1", "group1")
+            .StartNow()
+            .WithSimpleSchedule(x => x
+            .WithIntervalInSeconds(60)
+            .RepeatForever())
+            .Build();
+
+            scheduler.ScheduleJob(job, trigger);
         }
 
         protected void Application_AcquireRequestState(object sender, EventArgs e)

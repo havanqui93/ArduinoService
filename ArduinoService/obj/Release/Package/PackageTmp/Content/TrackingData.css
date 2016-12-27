@@ -1,0 +1,74 @@
+﻿table td, table th {
+    text-align: center;
+}
+
+.tracking-data {
+    margin-top: 30px;
+}
+
+.box-shadow {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    position: relative;
+    height: 100px;
+}
+
+.img-status {
+    text-align: center;
+    width: 50px;
+    height: 50px;
+    margin: 20px 0px 5px 0px;
+}
+
+#status-total {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.current-tracking {
+    height: 100px;
+    margin: 10px auto;
+    position: relative;
+}
+
+    .current-tracking span {
+        text-align: center;
+        line-height: 20px;
+        font-size: 30px;
+        color: gray;
+        margin-top: 35px;
+        width: 80%;
+        position: absolute;
+    }
+
+/* Landscape phones and portrait tablets */
+@media (max-width: 767px) {
+    .current-tracking span {
+        font-size: 20px;
+    }
+
+    #status-total {
+        text-align: left;
+    }
+}
+
+.title {
+    width: 100px;
+    height: 20px;
+    background-color: #66A039;
+    padding: 10px;
+    color: white;
+}
+
+.table-responsive {
+    margin-top: 20px;
+}
+
+#message-status {
+    position: absolute;
+    padding: 10px;
+    background: #79B03B;
+    border-radius: 10px;
+    max-width: 250px;
+    color: #FFFFFF;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(212, 212, 212, 0.19);
+}

@@ -1,0 +1,100 @@
+﻿@using ArduinoService.Resource
+@using ArduinoService.DataModels
+
+@{
+    ViewBag.Title = "Infomation garden";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<div class="col-sm-12">
+    <section class="content-header">
+        <ol class="breadcrumb"></ol>
+    </section>
+</div>
+
+<div class="col-sm-6 col-xs-12">
+    <div class="panel">
+        <div class="panel-heading panel-success">
+            Thông tin khu vườn
+        </div>
+        <div class="panel-body">
+            <table class="table ">
+                <tbody>
+                    <tr>
+                        <td style="border-top: 0px">Tên khu vườn</td>
+                        <td style="border-top: 0px">@ViewBag.modelgarden.GARDEN_NAME</td>
+                    </tr>
+                    <tr>
+                        <td>Diện tích</td>
+                        <td>@ViewBag.modelgarden.ACREAGE</td>
+                    </tr>
+                    <tr>
+                        <td>Loại arduino</td>
+                        <td>@ViewBag.modelgarden.UNO_TYPE_NAME</td>
+                    </tr>
+                    <tr>
+                        <td>Ngày trồng</td>
+                        <td>@ViewBag.modelgarden.START_GARDEN</td>
+                    </tr>
+                    <tr>
+                        <td>Ngày thu hoạch</td>
+                        <td>
+                            @{
+                                if (ViewBag.modelgarden.END_GARDEN == ViewBag.modelgarden.START_GARDEN)
+                                {
+                                    <text>Chưa biết</text>
+                                }
+                                else
+                                {
+                                    @ViewBag.modelgarden.END_GARDEN
+                                }
+                            }
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Địa chỉ</td>
+                        <td>@ViewBag.modelgarden.ADDRESS</td>
+                    </tr>
+                    <tr>
+                        <td>Ghi chú</td>
+                        <td>@ViewBag.modelgarden.DESCRIPTION</td>
+                    </tr>
+                    <tr>
+                        <td>Chế độ điều khiển tự động</td>
+                        <td><input type="button" class="btn" value="Bật" /></td>
+                    </tr>
+
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+</div>
+
+<div class="col-sm-6 col-xs-12">
+    <div class="panel">
+        <div class="panel-heading panel-success">
+            Cài đặt lịch
+            <input id="btnshedule" isshedule="@ViewBag.modelgarden.IS_SHEDULE" type="button" class="btn btn-info" value="@if (ViewBag.modelgarden.IS_SHEDULE == 1) {<text>Tắt</text>}else {<text>Bật</text>}" />
+        </div>
+        <div class="panel-body @if (ViewBag.modelgarden.IS_SHEDULE == 0) {<text>displaynone</text>} " id="settingshedule">
+            <div class="col-xs-12">
+                <button id="btnaddshedule" isshedule="@ViewBag.modelgarden.IS_SHEDULE" type="button" class="btn btn-default"><span class="glyphicon glyphicon-plus"></span> Thêm thời gian</button>
+                <button id="btnUpdateshedule" isshedule="@ViewBag.modelgarden.IS_SHEDULE" type="button" class="btn btn-default"><span class="glyphicon glyphicon-save"></span> Cập nhật</button>
+            </div>
+            <table class="table">
+                <tbody>
+                    <tr>
+                        <td><input class="form-control" type="text" /></td>
+                        <td>_</td>
+                        <td><input class="form-control" type="text" /></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+@section scripts {
+    <script src="~/Scripts/View/SettingGarden.js"></script>
+}

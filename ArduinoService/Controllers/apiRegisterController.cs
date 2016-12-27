@@ -31,12 +31,10 @@ namespace ArduinoService.Controllers
             try
             {
                 if (_accountmodel.checkUsernameIsexists(model))
-                    result = 0; // email da duoc dang ky
+                    result = 2; // email da duoc dang ky
                 else
-                {
                     if (_accountmodel.Register(model) == false)
                         result = -1; // loi he thong
-                }
             }
             catch (Exception ex)
             {

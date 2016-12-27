@@ -1,0 +1,126 @@
+﻿
+@{
+    ViewBag.Title = "Control Systems ioT";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>ManageCode</title>
+
+
+    <style type="text/css">
+        .tablecode {
+            max-width: 200px;
+        }
+
+        .divcode {
+            height: 455px;
+            overflow: auto;
+        }
+
+        .glyphicon-ok {
+            color: green;
+        }
+        .glyphicon-remove {
+            color: red;
+        }
+    </style>
+</head>
+<body style="margin:10px;">
+    <div class="col-sm-12">
+        <form class="form-inline">
+            <button type="button" id="getcode" class="btn btn-default">Get Code</button>
+            <div class="form-group">
+                <input type="text" class="form-control" id="txtcode" disabled>
+            </div>
+            <button type="button" id="addcode" class="btn btn-success">Add Code</button>
+            <button type="button" id="refcode" class="btn btn-success">Refresh Code</button>
+        </form>
+    </div>
+    <div class="col-sm-12 divcode">
+        <table class="table tablecode">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Code</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+
+
+</body>
+</html>
+
+<script src="~/Scripts/jquery.min.js"></script>
+<script type="text/javascript">
+    $('#getcode').on('click', function () {
+        GetCode();
+    });
+    $('#addcode').on('click', function () {
+        var code = $('#txtcode').val();
+        if (code == "") {
+            toastr.warning("Code is empty !");
+            return false;
+        }
+        AddCode(code);
+    });
+    RefreshCode();
+
+    $('#refcode').on('click', function () {
+        $('#txtcode').val('');
+    });
+
+    function GetCode() {
+        $.ajax({
+            url: '/AdminArea/GetCode',
+            type: 'GET',
+            dataType: 'json',
+            success: function (data) {
+                $('#txtcode').val(data);
+            }
+        });
+    }
+
+    function AddCode(code) {
+        $.ajax({
+            url: '/AdminArea/AddCode',
+            type: 'POST',
+            dataType: 'json',
+            data: { 'code': code },
+            success: function (data) {
+                if (data == 2)
+                    toastr.error("Token key is exists !");
+                else if (data == -1) {
+                    toastr.error("System error ! Please contact administrator.");
+                }
+                else
+                    toastr.info("Add token key success !");
+
+                RefreshCode();
+            }
+        });
+    }
+
+    function RefreshCode() {
+        $.ajax({
+            url: '/AdminArea/RefreshCode',
+            type: 'POST',
+            dataType: 'json',
+            success: function (data) {
+                var html = '';
+                $.each(data, function (index, value) {
+                    html += '<tr><td>' + value.ID + '</td><td>' + value.CODE + '</td>';
+                    html += (value.STATUS == 1 ? '<td><span class="glyphicon glyphicon-ok"></span></td>' : '<td><span class="glyphicon glyphicon-remove"></span></td>') + '</tr>';
+                });
+                $('.tablecode tbody').html(html);
+            }
+        });
+    }
+
+
+</script>
+

@@ -1,0 +1,56 @@
+﻿@{
+    ViewBag.Title = "Chart";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+<html>
+<head>
+    <title>Line chart</title>
+
+    <style type="text/css">
+        .chartbox {
+            width: 100%;
+            height: 500px;
+            border: 1px solid #c0c0c0;
+        }
+
+        .dhx_chart_legend_item.hidden {
+            display: block !important;
+            visibility: inherit !important;
+        }
+    </style>
+</head>
+<body>
+    <div id="filter" class="col-sm-12">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <div class="col-sm-2">
+                    Biểu đồ
+                    <select class="form-control" id="typechart">
+                        <option value="spline">Biểu đồ đường</option>
+                        <option value="bar">Biểu đồ cột</option>
+                    </select>
+                </div>
+                <div class="col-sm-2">
+                    Thống kê
+                    <select class="form-control" id="datechart">
+                        <option value="1">Hôm nay</option>
+                        <option value="2">Tuần hiện tại</option>
+                        <option value="3">Tháng hiện tại</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+    <div id="contentchart">
+    </div>
+</body>
+</html>
+@section scripts {
+    <!-- dhtmlx chart -->
+    <link href="~/mainlayout/dhtmlx/dhtmlx.css" rel="stylesheet" />
+    <link href="~/mainlayout/dhtmlx/fonts/font_roboto/roboto.css" rel="stylesheet" />
+    <script src="~/mainlayout/dhtmlx/dhtmlx.js"></script>
+    <script src="~/Scripts/View/Chart.js"></script>
+}

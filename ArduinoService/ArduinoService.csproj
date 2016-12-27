@@ -44,6 +44,22 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Common.Logging, Version=3.3.1.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
+      <HintPath>..\packages\Common.Logging.3.3.1\lib\net40\Common.Logging.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Common.Logging.Core, Version=3.3.1.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
+      <HintPath>..\packages\Common.Logging.Core.3.3.1\lib\net40\Common.Logging.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="log4net, Version=1.2.15.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
       <HintPath>..\packages\log4net.2.0.5\lib\net45-full\log4net.dll</HintPath>
       <Private>True</Private>
@@ -76,6 +92,10 @@
       <HintPath>..\packages\Microsoft.ApplicationInsights.1.2.3\lib\net45\Microsoft.ApplicationInsights.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.1.0.0\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.AspNet.SignalR.Core, Version=2.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.SignalR.Core.2.2.0\lib\net45\Microsoft.AspNet.SignalR.Core.dll</HintPath>
       <Private>True</Private>
@@ -93,6 +113,10 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Quartz, Version=2.4.1.0, Culture=neutral, PublicKeyToken=f6b8c98a402cc8a4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Quartz.2.4.1\lib\net40\Quartz.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -104,6 +128,10 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Optimization, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.2\lib\net40\System.Web.Optimization.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions" />
@@ -128,9 +156,6 @@
     <Reference Include="System.Web.Mvc, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Web.Optimization">
-      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
     </Reference>
     <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <Private>True</Private>
@@ -170,20 +195,11 @@
     <Reference Include="System.Web.Http.WebHost">
       <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.3\lib\net45\System.Web.Http.WebHost.dll</HintPath>
     </Reference>
-    <Reference Include="EntityFramework">
-      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
-    </Reference>
-    <Reference Include="EntityFramework.SqlServer">
-      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.AspNet.Identity.Core">
       <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.AspNet.Identity.Owin">
       <HintPath>..\packages\Microsoft.AspNet.Identity.Owin.2.2.1\lib\net45\Microsoft.AspNet.Identity.Owin.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.AspNet.Identity.EntityFramework">
-      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.1\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="Owin">
       <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
@@ -223,55 +239,100 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\apiAddGardenController.cs" />
+    <Compile Include="Controllers\AdminAreaController.cs" />
+    <Compile Include="Controllers\apiActiveCodeController.cs" />
+    <Compile Include="Controllers\apiArduinoTypeController.cs" />
     <Compile Include="Controllers\apiControlController.cs" />
     <Compile Include="Controllers\apiGardenController.cs" />
     <Compile Include="Controllers\apiLoginController.cs" />
     <Compile Include="Controllers\apiRegisterController.cs" />
+    <Compile Include="Controllers\apiTrackingController.cs" />
     <Compile Include="Controllers\apiUnoControlController.cs" />
+    <Compile Include="Controllers\apiUnoTrackingController.cs" />
+    <Compile Include="Controllers\DatabaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProfileController.cs" />
-    <Compile Include="Controllers\TrackingController.cs" />
-    <Compile Include="DataContext\DEVICE.cs">
-      <DependentUpon>ioTSystem.tt</DependentUpon>
+    <Compile Include="DataContext\D_DEVICE_SENSOR_DETAIL.cs">
+      <DependentUpon>ioT.tt</DependentUpon>
     </Compile>
-    <Compile Include="DataContext\DEVICE_CATEGORY.cs">
-      <DependentUpon>ioTSystem.tt</DependentUpon>
+    <Compile Include="DataContext\D_DEVICE_SENSOR_HT.cs">
+      <DependentUpon>ioT.tt</DependentUpon>
     </Compile>
-    <Compile Include="DataContext\DEVICE_CONTROL_DETAIL.cs">
-      <DependentUpon>ioTSystem.tt</DependentUpon>
+    <Compile Include="DataContext\D_DEVICE_SENSOR_LIGHT.cs">
+      <DependentUpon>ioT.tt</DependentUpon>
     </Compile>
-    <Compile Include="DataContext\DEVICE_SENSOR_DETAIL.cs">
-      <DependentUpon>ioTSystem.tt</DependentUpon>
+    <Compile Include="DataContext\D_DEVICE_SENSOR_MOISTURE.cs">
+      <DependentUpon>ioT.tt</DependentUpon>
     </Compile>
-    <Compile Include="DataContext\GARDEN.cs">
-      <DependentUpon>ioTSystem.tt</DependentUpon>
+    <Compile Include="DataContext\D_GROUP_PERMISSION.cs">
+      <DependentUpon>ioT.tt</DependentUpon>
     </Compile>
-    <Compile Include="DataContext\ioTSystem.Context.cs">
+    <Compile Include="DataContext\D_PACKED.cs">
+      <DependentUpon>ioT.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\D_SETTING_CONTROL.cs">
+      <DependentUpon>ioT.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\D_SETTING_SENSOR.cs">
+      <DependentUpon>ioT.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\ioT.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ioTSystem.Context.tt</DependentUpon>
+      <DependentUpon>ioT.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="DataContext\ioTSystem.cs">
+    <Compile Include="DataContext\ioT.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ioTSystem.tt</DependentUpon>
+      <DependentUpon>ioT.tt</DependentUpon>
     </Compile>
-    <Compile Include="DataContext\ioTSystem.Designer.cs">
+    <Compile Include="DataContext\ioT.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ioTSystem.edmx</DependentUpon>
+      <DependentUpon>ioT.edmx</DependentUpon>
     </Compile>
-    <Compile Include="DataContext\PERMISSION.cs">
-      <DependentUpon>ioTSystem.tt</DependentUpon>
+    <Compile Include="DataContext\sysdiagram.cs">
+      <DependentUpon>ioT.tt</DependentUpon>
     </Compile>
-    <Compile Include="DataContext\USER.cs">
-      <DependentUpon>ioTSystem.tt</DependentUpon>
+    <Compile Include="DataContext\S_ARDUINO_TYPE.cs">
+      <DependentUpon>ioT.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\S_ARDUINO_TYPE_DETAIL.cs">
+      <DependentUpon>ioT.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\S_CODE.cs">
+      <DependentUpon>ioT.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\S_DEVICE.cs">
+      <DependentUpon>ioT.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\S_DEVICE_CATEGORY.cs">
+      <DependentUpon>ioT.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\S_DEVICE_CONTROL_DETAIL.cs">
+      <DependentUpon>ioT.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\S_GARDEN.cs">
+      <DependentUpon>ioT.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\S_GROUP_SENSOR.cs">
+      <DependentUpon>ioT.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\S_UNIT.cs">
+      <DependentUpon>ioT.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\S_USER.cs">
+      <DependentUpon>ioT.tt</DependentUpon>
     </Compile>
     <Compile Include="DataModels\AccountModel.cs" />
+    <Compile Include="DataModels\ChartRowData.cs" />
+    <Compile Include="DataModels\CodeDataModel.cs" />
+    <Compile Include="DataModels\CommonInfoRowData.cs" />
     <Compile Include="DataModels\ControlRawData.cs" />
     <Compile Include="DataModels\GardenRawData.cs" />
+    <Compile Include="DataModels\SettingControlRawData.cs" />
     <Compile Include="DataModels\TrackingRawData.cs" />
+    <Compile Include="DataModels\UnitRawData.cs" />
     <Compile Include="DataModels\UploadFilesResult.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -279,11 +340,14 @@
     <Compile Include="Hubs\ControlHub.cs" />
     <Compile Include="Hubs\LedHub.cs" />
     <Compile Include="Hubs\TrackingHub.cs" />
+    <Compile Include="Models\CommonAPI.cs" />
+    <Compile Include="Models\CommonFunction.cs" />
     <Compile Include="Models\CommonModel.cs" />
     <Compile Include="Models\ConstantClass.cs" />
     <Compile Include="Models\HomeModels.cs" />
+    <Compile Include="Models\Jobclass.cs" />
+    <Compile Include="Models\JobModels.cs" />
     <Compile Include="Models\LedModel.cs" />
-    <Compile Include="Models\TrackingModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resource\Languages.en.Designer.cs">
       <DependentUpon>Languages.en.resx</DependentUpon>
@@ -303,25 +367,59 @@
     <Content Include="Content\awesome\css\font-awesome.css" />
     <Content Include="Content\awesome\css\font-awesome.min.css" />
     <Content Include="Content\awesome\fonts\fontawesome-webfont.svg" />
+    <Content Include="Content\bootstrap-datetimepicker.css" />
+    <Content Include="Content\bootstrap-datetimepicker.min.css" />
+    <Content Include="Content\bootstrap-theme.css" />
+    <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Content\Images\background.jpg" />
     <Content Include="Content\Images\bg_no_image.gif" />
     <Content Include="Content\Images\IconStatus\Emoticons_smile.png" />
     <Content Include="Content\Images\IconStatus\Emoticons_smyle.png" />
     <Content Include="Content\Imggif\b0220.gif" />
+    <Content Include="Content\Imggif\loading.gif" />
+    <Content Include="Content\jquery.jqGrid\ui.jqgrid.css" />
     <Content Include="Content\Profile.css" />
+    <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="Content\themes\base\images\ui-icons_222222_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_454545_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_888888_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Content\themes\base\jquery.ui.accordion.css" />
+    <Content Include="Content\themes\base\jquery.ui.all.css" />
+    <Content Include="Content\themes\base\jquery.ui.autocomplete.css" />
+    <Content Include="Content\themes\base\jquery.ui.base.css" />
+    <Content Include="Content\themes\base\jquery.ui.button.css" />
+    <Content Include="Content\themes\base\jquery.ui.core.css" />
+    <Content Include="Content\themes\base\jquery.ui.datepicker.css" />
+    <Content Include="Content\themes\base\jquery.ui.dialog.css" />
+    <Content Include="Content\themes\base\jquery.ui.progressbar.css" />
+    <Content Include="Content\themes\base\jquery.ui.resizable.css" />
+    <Content Include="Content\themes\base\jquery.ui.selectable.css" />
+    <Content Include="Content\themes\base\jquery.ui.slider.css" />
+    <Content Include="Content\themes\base\jquery.ui.tabs.css" />
+    <Content Include="Content\themes\base\jquery.ui.theme.css" />
     <Content Include="Content\TrackingData.css" />
     <Content Include="Content\Welcome.css" />
-    <Content Include="DataContext\ioTSystem.Context.tt">
+    <Content Include="DataContext\ioT.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ioTSystem.edmx</DependentUpon>
-      <LastGenOutput>ioTSystem.Context.cs</LastGenOutput>
+      <DependentUpon>ioT.edmx</DependentUpon>
+      <LastGenOutput>ioT.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="DataContext\ioTSystem.tt">
+    <Content Include="DataContext\ioT.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ioTSystem.edmx</DependentUpon>
-      <LastGenOutput>ioTSystem.cs</LastGenOutput>
+      <DependentUpon>ioT.edmx</DependentUpon>
+      <LastGenOutput>ioT.cs</LastGenOutput>
     </Content>
     <Content Include="Data\Database.xml" />
     <Content Include="favicon.ico" />
@@ -333,6 +431,87 @@
     <Content Include="mainlayout\css\green.css" />
     <Content Include="mainlayout\css\jquery-jvectormap-2.0.3.css" />
     <Content Include="mainlayout\css\jquery.fileupload.css" />
+    <Content Include="mainlayout\dhtmlx\css\bootstrap-progressbar-3.3.4.min.css" />
+    <Content Include="mainlayout\dhtmlx\css\custom.min.css" />
+    <Content Include="mainlayout\dhtmlx\css\green.css" />
+    <Content Include="mainlayout\dhtmlx\css\jquery-jvectormap-2.0.3.css" />
+    <Content Include="mainlayout\dhtmlx\css\jquery.fileupload.css" />
+    <Content Include="mainlayout\dhtmlx\dhtmlx.css" />
+    <Content Include="mainlayout\dhtmlx\dhtmlx.js" />
+    <Content Include="mainlayout\dhtmlx\fonts\font_awesome\css\font-awesome.css" />
+    <Content Include="mainlayout\dhtmlx\fonts\font_awesome\css\font-awesome.min.css" />
+    <Content Include="mainlayout\dhtmlx\fonts\font_awesome\font-awesome-license.txt" />
+    <Content Include="mainlayout\dhtmlx\fonts\font_awesome\fonts\fontawesome-webfont.svg" />
+    <Content Include="mainlayout\dhtmlx\fonts\font_roboto\LICENSE-2.0.txt" />
+    <Content Include="mainlayout\dhtmlx\fonts\font_roboto\roboto.css" />
+    <Content Include="mainlayout\dhtmlx\imgs\dhxcalendar_material\dhxcalendar_arrow_left.png" />
+    <Content Include="mainlayout\dhtmlx\imgs\dhxcalendar_material\dhxcalendar_arrow_right.png" />
+    <Content Include="mainlayout\dhtmlx\imgs\dhxcalendar_material\dhxcalendar_clock.png" />
+    <Content Include="mainlayout\dhtmlx\imgs\dhxcalendar_material\dhxcalendar_marker.gif" />
+    <Content Include="mainlayout\dhtmlx\imgs\dhxcalendar_material\dhxcalendar_selector_bottom.gif" />
+    <Content Include="mainlayout\dhtmlx\imgs\dhxcalendar_material\dhxcalendar_selector_top.gif" />
+    <Content Include="mainlayout\dhtmlx\imgs\dhxcombo_material\dhxcombo_arrow_down.gif" />
+    <Content Include="mainlayout\dhtmlx\imgs\dhxcombo_material\dhxcombo_arrow_down_dis.gif" />
+    <Content Include="mainlayout\dhtmlx\imgs\dhxcombo_material\dhxcombo_chbx.gif" />
+    <Content Include="mainlayout\dhtmlx\imgs\dhxgrid_material\ar_left.gif" />
+    <Content Include="mainlayout\dhtmlx\imgs\dhxgrid_material\ar_left_abs.gif" />
+    <Content Include="mainlayout\dhtmlx\imgs\dhxgrid_material\ar_left_abs_dis.gif" />
+    <Content Include="mainlayout\dhtmlx\imgs\dhxgrid_material\ar_left_dis.gif" />
+    <Content Include="mainlayout\dhtmlx\imgs\dhxgrid_material\ar_right.gif" />
+    <Content Include="mainlayout\dhtmlx\imgs\dhxgrid_material\ar_right_abs.gif" />
+    <Content Include="mainlayout\dhtmlx\imgs\dhxgrid_material\ar_right_abs_dis.gif" />
+    <Content Include="mainlayout\dhtmlx\imgs\dhxgrid_material\ar_right_dis.gif" />
+    <Content Include="mainlayout\dhtmlx\imgs\dhxgrid_material\blank.gif" />
+    <Content Include="mainlayout\dhtmlx\imgs\dhxgrid_material\combo_select_dhx_web.gif" />
+    <Content Include="mainlayout\dhtmlx\imgs\dhxgrid_material\dyn_.gif" />
+    <Content Include="mainlayout\dhtmlx\imgs\dhxgrid_material\dyn_down.gif" />
+    <Content Include="mainlayout\dhtmlx\imgs\dhxgrid_material\dyn_up.gif" />
+    <Content Include="mainlayout\dhtmlx\imgs\dhxgrid_material\imageloaderror.gif" />
+    <Content Include="mainlayout\dhtmlx\imgs\dhxgrid_material\item_chk0.gif" />
+    <Content Include="mainlayout\dhtmlx\imgs\dhxgrid_material\item_chk0_dis.gif" />
+    <Content Include="mainlayout\dhtmlx\imgs\dhxgrid_material\item_chk1.gif" />
+    <Content Include="mainlayout\dhtmlx\imgs\dhxgrid_material\item_chk1_dis.gif" />
+    <Content Include="mainlayout\dhtmlx\imgs\dhxgrid_material\minus.gif" />
+    <Content Include="mainlayout\dhtmlx\imgs\dhxgrid_material\paging_page.gif" />
+    <Content Include="mainlayout\dhtmlx\imgs\dhxgrid_material\paging_pages.gif" />
+    <Content Include="mainlayout\dhtmlx\imgs\dhxgrid_material\paging_rows.gif" />
+    <Content Include="mainlayout\dhtmlx\imgs\dhxgrid_material\plus.gif" />
+    <Content Include="mainlayout\dhtmlx\imgs\dhxgrid_material\radio_chk0.gif" />
+    <Content Include="mainlayout\dhtmlx\imgs\dhxgrid_material\radio_chk0_dis.gif" />
+    <Content Include="mainlayout\dhtmlx\imgs\dhxgrid_material\radio_chk1.gif" />
+    <Content Include="mainlayout\dhtmlx\imgs\dhxgrid_material\radio_chk1_dis.gif" />
+    <Content Include="mainlayout\dhtmlx\imgs\dhxgrid_material\separator.png" />
+    <Content Include="mainlayout\dhtmlx\imgs\dhxgrid_material\sort_asc.gif" />
+    <Content Include="mainlayout\dhtmlx\imgs\dhxgrid_material\sort_desc.gif" />
+    <Content Include="mainlayout\dhtmlx\imgs\dhxgrid_material\tree\blank.gif" />
+    <Content Include="mainlayout\dhtmlx\imgs\dhxgrid_material\tree\folder.gif" />
+    <Content Include="mainlayout\dhtmlx\imgs\dhxgrid_material\tree\leaf.gif" />
+    <Content Include="mainlayout\dhtmlx\imgs\dhxgrid_material\tree\line.gif" />
+    <Content Include="mainlayout\dhtmlx\imgs\dhxgrid_material\tree\line1.gif" />
+    <Content Include="mainlayout\dhtmlx\imgs\dhxgrid_material\tree\line2.gif" />
+    <Content Include="mainlayout\dhtmlx\imgs\dhxgrid_material\tree\line3.gif" />
+    <Content Include="mainlayout\dhtmlx\imgs\dhxgrid_material\tree\line4.gif" />
+    <Content Include="mainlayout\dhtmlx\imgs\dhxgrid_material\tree\minus.gif" />
+    <Content Include="mainlayout\dhtmlx\imgs\dhxgrid_material\tree\minus1.gif" />
+    <Content Include="mainlayout\dhtmlx\imgs\dhxgrid_material\tree\minus2.gif" />
+    <Content Include="mainlayout\dhtmlx\imgs\dhxgrid_material\tree\minus3.gif" />
+    <Content Include="mainlayout\dhtmlx\imgs\dhxgrid_material\tree\minus4.gif" />
+    <Content Include="mainlayout\dhtmlx\imgs\dhxgrid_material\tree\minus5.gif" />
+    <Content Include="mainlayout\dhtmlx\imgs\dhxgrid_material\tree\plus.gif" />
+    <Content Include="mainlayout\dhtmlx\imgs\dhxgrid_material\tree\plus1.gif" />
+    <Content Include="mainlayout\dhtmlx\imgs\dhxgrid_material\tree\plus2.gif" />
+    <Content Include="mainlayout\dhtmlx\imgs\dhxgrid_material\tree\plus3.gif" />
+    <Content Include="mainlayout\dhtmlx\imgs\dhxgrid_material\tree\plus4.gif" />
+    <Content Include="mainlayout\dhtmlx\imgs\dhxgrid_material\tree\plus5.gif" />
+    <Content Include="mainlayout\dhtmlx\imgs\dhxmenu_material\dhxmenu_arrow_down.png" />
+    <Content Include="mainlayout\dhtmlx\imgs\dhxmenu_material\dhxmenu_arrow_down_dis.png" />
+    <Content Include="mainlayout\dhtmlx\imgs\dhxmenu_material\dhxmenu_arrow_up.png" />
+    <Content Include="mainlayout\dhtmlx\imgs\dhxmenu_material\dhxmenu_arrow_up_dis.png" />
+    <Content Include="mainlayout\dhtmlx\imgs\dhxmenu_material\dhxmenu_chrd.png" />
+    <Content Include="mainlayout\dhtmlx\imgs\dhxmenu_material\dhxmenu_loader.gif" />
+    <Content Include="mainlayout\dhtmlx\imgs\dhxmenu_material\dhxmenu_subar.png" />
+    <Content Include="mainlayout\dhtmlx\imgs\dhxtoolbar_material\dhxtoolbar_arrow.gif" />
+    <Content Include="mainlayout\dhtmlx\imgs\dhxtoolbar_material\dhxtoolbar_arrow_dis.gif" />
     <Content Include="mainlayout\js\bootstrap-progressbar.min.js" />
     <Content Include="mainlayout\js\Chart.min.js" />
     <Content Include="mainlayout\js\curvedLines.js" />
@@ -343,6 +522,7 @@
     <Content Include="mainlayout\js\gauge.min.js" />
     <Content Include="mainlayout\js\icheck.min.js" />
     <Content Include="mainlayout\js\jquery-jvectormap-2.0.3.min.js" />
+    <Content Include="mainlayout\js\jquery.canvasjs.min.js" />
     <Content Include="mainlayout\js\jquery.fileupload.js" />
     <Content Include="mainlayout\js\jquery.flot.js" />
     <Content Include="mainlayout\js\jquery.flot.orderBars.js" />
@@ -355,10 +535,13 @@
     <Content Include="mainlayout\js\moment.min.js" />
     <Content Include="mainlayout\js\nprogress.js" />
     <Content Include="mainlayout\js\skycons.js" />
+    <Content Include="mainlayout\js\toastr.js" />
     <Content Include="mainlayout\toast\toastr.min.css" />
     <Content Include="mainlayout\toast\toastr.min.js" />
     <Content Include="Scripts\ai.0.15.0-build58334.js" />
     <Content Include="Scripts\ai.0.15.0-build58334.min.js" />
+    <Content Include="Scripts\bootstrap-datetimepicker.js" />
+    <Content Include="Scripts\bootstrap-datetimepicker.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
@@ -369,15 +552,191 @@
     <Content Include="Content\awesome\fonts\fontawesome-webfont.woff" />
     <Content Include="Content\awesome\fonts\fontawesome-webfont.woff2" />
     <Content Include="Content\awesome\fonts\FontAwesome.otf" />
-    <EntityDeploy Include="DataContext\ioTSystem.edmx">
+    <Content Include="mainlayout\dhtmlx\fonts\font_awesome\fonts\fontawesome-webfont.eot" />
+    <Content Include="mainlayout\dhtmlx\fonts\font_awesome\fonts\fontawesome-webfont.ttf" />
+    <Content Include="mainlayout\dhtmlx\fonts\font_awesome\fonts\fontawesome-webfont.woff" />
+    <Content Include="mainlayout\dhtmlx\fonts\font_awesome\fonts\fontawesome-webfont.woff2" />
+    <Content Include="mainlayout\dhtmlx\fonts\font_awesome\fonts\FontAwesome.otf" />
+    <Content Include="mainlayout\dhtmlx\fonts\font_awesome\less\animated.less" />
+    <Content Include="mainlayout\dhtmlx\fonts\font_awesome\less\bordered-pulled.less" />
+    <Content Include="mainlayout\dhtmlx\fonts\font_awesome\less\core.less" />
+    <Content Include="mainlayout\dhtmlx\fonts\font_awesome\less\fixed-width.less" />
+    <Content Include="mainlayout\dhtmlx\fonts\font_awesome\less\font-awesome.less" />
+    <Content Include="mainlayout\dhtmlx\fonts\font_awesome\less\icons.less" />
+    <Content Include="mainlayout\dhtmlx\fonts\font_awesome\less\larger.less" />
+    <Content Include="mainlayout\dhtmlx\fonts\font_awesome\less\list.less" />
+    <Content Include="mainlayout\dhtmlx\fonts\font_awesome\less\mixins.less" />
+    <Content Include="mainlayout\dhtmlx\fonts\font_awesome\less\path.less" />
+    <Content Include="mainlayout\dhtmlx\fonts\font_awesome\less\rotated-flipped.less" />
+    <Content Include="mainlayout\dhtmlx\fonts\font_awesome\less\stacked.less" />
+    <Content Include="mainlayout\dhtmlx\fonts\font_awesome\less\variables.less" />
+    <Content Include="mainlayout\dhtmlx\fonts\font_awesome\scss\font-awesome.scss" />
+    <Content Include="mainlayout\dhtmlx\fonts\font_awesome\scss\_animated.scss" />
+    <Content Include="mainlayout\dhtmlx\fonts\font_awesome\scss\_bordered-pulled.scss" />
+    <Content Include="mainlayout\dhtmlx\fonts\font_awesome\scss\_core.scss" />
+    <Content Include="mainlayout\dhtmlx\fonts\font_awesome\scss\_fixed-width.scss" />
+    <Content Include="mainlayout\dhtmlx\fonts\font_awesome\scss\_icons.scss" />
+    <Content Include="mainlayout\dhtmlx\fonts\font_awesome\scss\_larger.scss" />
+    <Content Include="mainlayout\dhtmlx\fonts\font_awesome\scss\_list.scss" />
+    <Content Include="mainlayout\dhtmlx\fonts\font_awesome\scss\_mixins.scss" />
+    <Content Include="mainlayout\dhtmlx\fonts\font_awesome\scss\_path.scss" />
+    <Content Include="mainlayout\dhtmlx\fonts\font_awesome\scss\_rotated-flipped.scss" />
+    <Content Include="mainlayout\dhtmlx\fonts\font_awesome\scss\_stacked.scss" />
+    <Content Include="mainlayout\dhtmlx\fonts\font_awesome\scss\_variables.scss" />
+    <Content Include="mainlayout\dhtmlx\fonts\font_roboto\-2n2p-_Y08sg57CNWQfKNvesZW2xOQ-xsNqO47m55DA.woff2" />
+    <Content Include="mainlayout\dhtmlx\fonts\font_roboto\CWB0XYA8bzo0kSThX0UTuA.woff2" />
+    <Content Include="mainlayout\dhtmlx\fonts\font_roboto\d-6IYplOFocCacKzxwXSOFtXRa8TVwTICgirnJhmVJw.woff2" />
+    <Content Include="mainlayout\dhtmlx\fonts\font_roboto\ek4gzZ-GeXAPcSbHtCeQI_esZW2xOQ-xsNqO47m55DA.woff2" />
+    <Content Include="mainlayout\dhtmlx\fonts\font_roboto\Fcx7Wwv8OzT71A3E1XOAjvesZW2xOQ-xsNqO47m55DA.woff2" />
+    <Content Include="mainlayout\dhtmlx\fonts\font_roboto\mErvLBYg_cXG3rLvUsKT_fesZW2xOQ-xsNqO47m55DA.woff2" />
+    <Content Include="mainlayout\dhtmlx\fonts\font_roboto\NdF9MtnOpLzo-noMoG0miPesZW2xOQ-xsNqO47m55DA.woff2" />
+    <Content Include="mainlayout\dhtmlx\fonts\font_roboto\RxZJdnzeo3R5zSexge8UUVtXRa8TVwTICgirnJhmVJw.woff2" />
+    <Content Include="mainlayout\dhtmlx\fonts\font_roboto\u0TOpm082MNkS5K0Q4rhqvesZW2xOQ-xsNqO47m55DA.woff2" />
+    <EntityDeploy Include="DataContext\ioT.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>ioTSystem.Designer.cs</LastGenOutput>
+      <LastGenOutput>ioT.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="DataContext\ioTSystem.edmx.diagram">
-      <DependentUpon>ioTSystem.edmx</DependentUpon>
+    <Content Include="DataContext\ioT.edmx.diagram">
+      <DependentUpon>ioT.edmx</DependentUpon>
     </Content>
+    <Content Include="Content\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\bootstrap\wells.less" />
+    <Content Include="Content\bootstrap\variables.less" />
+    <Content Include="Content\bootstrap\utilities.less" />
+    <Content Include="Content\bootstrap\type.less" />
+    <Content Include="Content\bootstrap\tooltip.less" />
+    <Content Include="Content\bootstrap\thumbnails.less" />
+    <Content Include="Content\bootstrap\theme.less" />
+    <Content Include="Content\bootstrap\tables.less" />
+    <Content Include="Content\bootstrap\scaffolding.less" />
+    <Content Include="Content\bootstrap\responsive-utilities.less" />
+    <Content Include="Content\bootstrap\responsive-embed.less" />
+    <Content Include="Content\bootstrap\progress-bars.less" />
+    <Content Include="Content\bootstrap\print.less" />
+    <Content Include="Content\bootstrap\popovers.less" />
+    <Content Include="Content\bootstrap\panels.less" />
+    <Content Include="Content\bootstrap\pagination.less" />
+    <Content Include="Content\bootstrap\pager.less" />
+    <Content Include="Content\bootstrap\normalize.less" />
+    <Content Include="Content\bootstrap\navs.less" />
+    <Content Include="Content\bootstrap\navbar.less" />
+    <Content Include="Content\bootstrap\modals.less" />
+    <Content Include="Content\bootstrap\mixins\vendor-prefixes.less" />
+    <Content Include="Content\bootstrap\mixins\text-overflow.less" />
+    <Content Include="Content\bootstrap\mixins\text-emphasis.less" />
+    <Content Include="Content\bootstrap\mixins\table-row.less" />
+    <Content Include="Content\bootstrap\mixins\tab-focus.less" />
+    <Content Include="Content\bootstrap\mixins\size.less" />
+    <Content Include="Content\bootstrap\mixins\responsive-visibility.less" />
+    <Content Include="Content\bootstrap\mixins\resize.less" />
+    <Content Include="Content\bootstrap\mixins\reset-text.less" />
+    <Content Include="Content\bootstrap\mixins\reset-filter.less" />
+    <Content Include="Content\bootstrap\mixins\progress-bar.less" />
+    <Content Include="Content\bootstrap\mixins\panels.less" />
+    <Content Include="Content\bootstrap\mixins\pagination.less" />
+    <Content Include="Content\bootstrap\mixins\opacity.less" />
+    <Content Include="Content\bootstrap\mixins\nav-vertical-align.less" />
+    <Content Include="Content\bootstrap\mixins\nav-divider.less" />
+    <Content Include="Content\bootstrap\mixins\list-group.less" />
+    <Content Include="Content\bootstrap\mixins\labels.less" />
+    <Content Include="Content\bootstrap\mixins\image.less" />
+    <Content Include="Content\bootstrap\mixins\hide-text.less" />
+    <Content Include="Content\bootstrap\mixins\grid.less" />
+    <Content Include="Content\bootstrap\mixins\grid-framework.less" />
+    <Content Include="Content\bootstrap\mixins\gradients.less" />
+    <Content Include="Content\bootstrap\mixins\forms.less" />
+    <Content Include="Content\bootstrap\mixins\clearfix.less" />
+    <Content Include="Content\bootstrap\mixins\center-block.less" />
+    <Content Include="Content\bootstrap\mixins\buttons.less" />
+    <Content Include="Content\bootstrap\mixins\border-radius.less" />
+    <Content Include="Content\bootstrap\mixins\background-variant.less" />
+    <Content Include="Content\bootstrap\mixins\alerts.less" />
+    <Content Include="Content\bootstrap\mixins.less" />
+    <Content Include="Content\bootstrap\media.less" />
+    <Content Include="Content\bootstrap\list-group.less" />
+    <Content Include="Content\bootstrap\labels.less" />
+    <Content Include="Content\bootstrap\jumbotron.less" />
+    <Content Include="Content\bootstrap\input-groups.less" />
+    <Content Include="Content\bootstrap\grid.less" />
+    <Content Include="Content\bootstrap\glyphicons.less" />
+    <Content Include="Content\bootstrap\forms.less" />
+    <Content Include="Content\bootstrap\dropdowns.less" />
+    <Content Include="Content\bootstrap\component-animations.less" />
+    <Content Include="Content\bootstrap\code.less" />
+    <Content Include="Content\bootstrap\close.less" />
+    <Content Include="Content\bootstrap\carousel.less" />
+    <Content Include="Content\bootstrap\buttons.less" />
+    <Content Include="Content\bootstrap\button-groups.less" />
+    <Content Include="Content\bootstrap\breadcrumbs.less" />
+    <Content Include="Content\bootstrap\bootstrap.less" />
+    <Content Include="Content\bootstrap\badges.less" />
+    <Content Include="Content\bootstrap\alerts.less" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Content\bootstrap-theme.css.map" />
+    <None Include="job_scheduling_data_2_0.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Properties\PublishProfiles\iot.pubxml" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\i18n\grid.locale-ar.js" />
+    <Content Include="Scripts\i18n\grid.locale-bg.js" />
+    <Content Include="Scripts\i18n\grid.locale-bg1251.js" />
+    <Content Include="Scripts\i18n\grid.locale-cat.js" />
+    <Content Include="Scripts\i18n\grid.locale-cn.js" />
+    <Content Include="Scripts\i18n\grid.locale-cs.js" />
+    <Content Include="Scripts\i18n\grid.locale-da.js" />
+    <Content Include="Scripts\i18n\grid.locale-de.js" />
+    <Content Include="Scripts\i18n\grid.locale-dk.js" />
+    <Content Include="Scripts\i18n\grid.locale-el.js" />
+    <Content Include="Scripts\i18n\grid.locale-en.js" />
+    <Content Include="Scripts\i18n\grid.locale-es.js" />
+    <Content Include="Scripts\i18n\grid.locale-fa.js" />
+    <Content Include="Scripts\i18n\grid.locale-fi.js" />
+    <Content Include="Scripts\i18n\grid.locale-fr.js" />
+    <Content Include="Scripts\i18n\grid.locale-gl.js" />
+    <Content Include="Scripts\i18n\grid.locale-he.js" />
+    <Content Include="Scripts\i18n\grid.locale-hr.js" />
+    <Content Include="Scripts\i18n\grid.locale-hr1250.js" />
+    <Content Include="Scripts\i18n\grid.locale-hu.js" />
+    <Content Include="Scripts\i18n\grid.locale-id.js" />
+    <Content Include="Scripts\i18n\grid.locale-is.js" />
+    <Content Include="Scripts\i18n\grid.locale-it.js" />
+    <Content Include="Scripts\i18n\grid.locale-ja.js" />
+    <Content Include="Scripts\i18n\grid.locale-kr.js" />
+    <Content Include="Scripts\i18n\grid.locale-lt.js" />
+    <Content Include="Scripts\i18n\grid.locale-mne.js" />
+    <Content Include="Scripts\i18n\grid.locale-nl.js" />
+    <Content Include="Scripts\i18n\grid.locale-no.js" />
+    <Content Include="Scripts\i18n\grid.locale-pl.js" />
+    <Content Include="Scripts\i18n\grid.locale-pt-br.js" />
+    <Content Include="Scripts\i18n\grid.locale-pt.js" />
+    <Content Include="Scripts\i18n\grid.locale-ro.js" />
+    <Content Include="Scripts\i18n\grid.locale-ru.js" />
+    <Content Include="Scripts\i18n\grid.locale-sk.js" />
+    <Content Include="Scripts\i18n\grid.locale-sr-latin.js" />
+    <Content Include="Scripts\i18n\grid.locale-sr.js" />
+    <Content Include="Scripts\i18n\grid.locale-sv.js" />
+    <Content Include="Scripts\i18n\grid.locale-th.js" />
+    <Content Include="Scripts\i18n\grid.locale-tr.js" />
+    <Content Include="Scripts\i18n\grid.locale-tw.js" />
+    <Content Include="Scripts\i18n\grid.locale-ua.js" />
+    <Content Include="Scripts\i18n\grid.locale-vi.js" />
+    <Content Include="Scripts\jquery-ui-1.8.11.js" />
+    <Content Include="Scripts\jquery-ui-1.8.11.min.js" />
+    <Content Include="Scripts\jquery.jqGrid.min.js" />
+    <Content Include="Scripts\jquery.jqGrid.src.js" />
+    <Content Include="Scripts\moment-with-locales.js" />
+    <Content Include="Scripts\moment-with-locales.min.js" />
+    <Content Include="Scripts\moment.js" />
+    <Content Include="Scripts\moment.min.js" />
+    <Content Include="Scripts\npm.js" />
+    <Content Include="Scripts\View\Chart.js" />
     <Content Include="Scripts\Common.js" />
     <Content Include="Scripts\jquery.min.js" />
     <Content Include="Scripts\jquery.signalR-2.2.0.js" />
@@ -392,6 +751,11 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\View\Control.js" />
+    <Content Include="Scripts\View\Garden.js" />
+    <Content Include="Scripts\View\MainMenu.js" />
+    <Content Include="Scripts\View\SettingGarden.js" />
+    <Content Include="Scripts\View\Tracking.js" />
     <Content Include="Scripts\Welcome.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config">
@@ -423,7 +787,6 @@
     <Content Include="Views\Manage\SetPassword.cshtml" />
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Home\TrackingData.cshtml" />
-    <Content Include="Views\Home\ControlSystem.cshtml" />
     <Content Include="Views\Shared\_Menu.cshtml" />
     <Content Include="Views\Shared\_HeaderWelcome.cshtml" />
     <Content Include="Views\Home\Welcome.cshtml" />
@@ -437,15 +800,21 @@
     <Content Include="Views\Home\Garden.cshtml" />
     <Content Include="Views\Home\Control.cshtml" />
     <Content Include="Views\Home\Tracking.cshtml" />
+    <Content Include="Views\Home\Chart.cshtml" />
+    <Content Include="Views\AdminArea\ManageCode.cshtml" />
+    <Content Include="Views\Shared\_LayoutAdmin.cshtml" />
+    <Content Include="Views\Database\CheckDatabase.cshtml" />
+    <Content Include="Views\AdminArea\AdminArea.cshtml" />
+    <Content Include="Views\AdminArea\ManageUnoType.cshtml" />
+    <Content Include="Views\Home\Infogarden.cshtml" />
+    <Content Include="Views\Shared\_LayoutJqGrid.cshtml" />
+    <Content Include="Views\Home\SettingGarden.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\Images\Upload\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />

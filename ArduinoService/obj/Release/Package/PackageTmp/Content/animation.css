@@ -1,0 +1,48 @@
+﻿/*************************************************************************
+                             Site Welcome
+**************************************************************************/
+/* Button Setting */
+/*.glyphicon-cog {
+    -animation: spin .7s infinite linear;
+    -webkit-animation: spin2 10s infinite linear;
+}
+
+@-webkit-keyframes spin2 {
+    from { -webkit-transform: rotate(0deg);}
+    to { -webkit-transform: rotate(360deg);}
+}
+
+@keyframes spin {
+    from { transform: scale(1) rotate(0deg);}
+    to { transform: scale(1) rotate(360deg);}
+}*/
+
+#title {
+    position: relative;
+    -webkit-animation-name: example; /* Chrome, Safari, Opera */
+    -webkit-animation-duration: 2s; /* Chrome, Safari, Opera */
+    animation-name: example;
+    animation-fill-mode: forwards; 
+}
+
+/* Chrome, Safari, Opera */
+@-webkit-keyframes example {
+    from {
+        margin-top: -289px;
+    }
+
+    to {
+        margin-top: 0px;
+    }
+}
+
+/* Standard syntax */
+@keyframes example {
+    from {
+        margin-top: -289px;
+    }
+
+    to {
+        margin-top: 0px;
+    }
+}

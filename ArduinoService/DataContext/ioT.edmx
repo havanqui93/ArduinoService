@@ -1,0 +1,680 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="ioTModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="D_DEVICE_SENSOR_DETAIL">
+          <Key>
+            <PropertyRef Name="DEVICE_SENSOR_DETAIL_ID" />
+          </Key>
+          <Property Name="DEVICE_SENSOR_DETAIL_ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DEVICE_ID" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="VALUE" Type="varchar" MaxLength="10" />
+          <Property Name="TIME_UPDATE" Type="datetime" />
+        </EntityType>
+        <EntityType Name="D_DEVICE_SENSOR_HT">
+          <Key>
+            <PropertyRef Name="DEVICE_SENSOR_HUMIDITY_ID" />
+          </Key>
+          <Property Name="DEVICE_SENSOR_HUMIDITY_ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DEVICE_ID" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="VALUE" Type="varchar" MaxLength="10" />
+          <Property Name="TIME_UPDATE" Type="datetime" />
+        </EntityType>
+        <EntityType Name="D_DEVICE_SENSOR_LIGHT">
+          <Key>
+            <PropertyRef Name="DEVICE_SENSOR_LIGHT_" />
+          </Key>
+          <Property Name="DEVICE_SENSOR_LIGHT_" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DEVICE_ID" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="VALUE" Type="varchar" MaxLength="10" />
+          <Property Name="TIME_UPDATE" Type="datetime" />
+        </EntityType>
+        <EntityType Name="D_DEVICE_SENSOR_MOISTURE">
+          <Key>
+            <PropertyRef Name="DEVICE_SENSOR_MOISTURE_ID" />
+          </Key>
+          <Property Name="DEVICE_SENSOR_MOISTURE_ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DEVICE_ID" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="VALUE" Type="varchar" MaxLength="10" />
+          <Property Name="TIME_UPDATE" Type="datetime" />
+        </EntityType>
+        <EntityType Name="D_GROUP_PERMISSION">
+          <Key>
+            <PropertyRef Name="PERMISSION_ID" />
+          </Key>
+          <Property Name="PERMISSION_ID" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="USER_ID" Type="varchar" MaxLength="20" />
+          <Property Name="READ" Type="bit" />
+          <Property Name="WRITE" Type="bit" />
+          <Property Name="DELETE" Type="bit" />
+          <Property Name="SETTING" Type="bit" />
+        </EntityType>
+        <EntityType Name="D_PACKED">
+          <Key>
+            <PropertyRef Name="PACKED_ID" />
+          </Key>
+          <Property Name="PACKED_ID" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="PACKED_NAME_VN" Type="nvarchar" MaxLength="100" />
+          <Property Name="PACKED_NAME_EN" Type="nvarchar" MaxLength="100" />
+          <Property Name="PRICE" Type="decimal" Precision="18" Scale="0" />
+        </EntityType>
+        <EntityType Name="D_SETTING_CONTROL">
+          <Key>
+            <PropertyRef Name="SETTING_CONTROL_ID" />
+          </Key>
+          <Property Name="SETTING_CONTROL_ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DEVICE_ID" Type="varchar" MaxLength="50" />
+          <Property Name="TIME_ON" Type="time" Precision="7" />
+          <Property Name="TIME_OFF" Type="time" Precision="7" />
+        </EntityType>
+        <EntityType Name="D_SETTING_SENSOR">
+          <Key>
+            <PropertyRef Name="SETTING_SENSOR_ID" />
+          </Key>
+          <Property Name="SETTING_SENSOR_ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DEVICE_SENSOR_ID" Type="nchar" MaxLength="10" />
+          <Property Name="LIMIT_LOW" Type="varchar" MaxLength="10" />
+          <Property Name="LIMIT_HIGH" Type="varchar" MaxLength="10" />
+          <Property Name="LIST_CONTROL_ID_OPEN" Type="varchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="S_ARDUINO_TYPE">
+          <Key>
+            <PropertyRef Name="ARDUINO_TYPE_ID" />
+          </Key>
+          <Property Name="ARDUINO_TYPE_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ARDUINO_TYPE_NAME" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="NOTE" Type="nvarchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="S_ARDUINO_TYPE_DETAIL">
+          <Key>
+            <PropertyRef Name="ARDUINO_TYPE_DETAIL_ID" />
+          </Key>
+          <Property Name="ARDUINO_TYPE_DETAIL_ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ARDUINO_TYPE_ID" Type="int" Nullable="false" />
+          <Property Name="PIN" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="CATEGORY_ID" Type="int" />
+        </EntityType>
+        <EntityType Name="S_CODE">
+          <Key>
+            <PropertyRef Name="CODE_ID" />
+          </Key>
+          <Property Name="CODE_ID" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="CODE_VALUE" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="STATUS" Type="bit" />
+        </EntityType>
+        <EntityType Name="S_DEVICE">
+          <Key>
+            <PropertyRef Name="DEVICE_ID" />
+            <PropertyRef Name="TOKEN_KEY" />
+          </Key>
+          <Property Name="DEVICE_ID" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="TOKEN_KEY" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="DEVICE_NAME_VN" Type="nvarchar" MaxLength="500" />
+          <Property Name="DEVICE_NAME_EN" Type="nvarchar" MaxLength="500" />
+          <Property Name="DEVICE_CATEGORY" Type="int" />
+          <Property Name="GROUP_SENSOR_ID" Type="int" />
+          <Property Name="STATUS" Type="int" />
+          <Property Name="UNIT" Type="int" />
+          <Property Name="PIN_ID" Type="varchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="S_DEVICE_CATEGORY">
+          <Key>
+            <PropertyRef Name="CATEGORY_ID" />
+          </Key>
+          <Property Name="CATEGORY_ID" Type="int" Nullable="false" />
+          <Property Name="CATEGORY_NAME" Type="nvarchar" MaxLength="100" />
+          <Property Name="NOTE" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="S_DEVICE_CONTROL_DETAIL">
+          <Key>
+            <PropertyRef Name="DEVICE_ID" />
+          </Key>
+          <Property Name="DEVICE_ID" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="VALUE" Type="varchar" MaxLength="10" />
+          <Property Name="TIME_UPDATE" Type="datetime" />
+        </EntityType>
+        <EntityType Name="S_GARDEN">
+          <Key>
+            <PropertyRef Name="GARDEN_ID" />
+          </Key>
+          <Property Name="GARDEN_ID" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="TOKEN_KEY" Type="varchar" MaxLength="50" />
+          <Property Name="GARDEN_NAME_VN" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="GARDEN_NAME_EN" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="USER_ID" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ACTIVE" Type="int" Nullable="false" />
+          <Property Name="IMAGE" Type="varchar(max)" />
+          <Property Name="UNO_TYPE" Type="int" Nullable="false" />
+          <Property Name="STATUS" Type="int" Nullable="false" />
+          <Property Name="START" Type="datetime" Nullable="false" />
+          <Property Name="END" Type="datetime" />
+          <Property Name="LATITUDE" Type="decimal" Precision="18" Scale="10" />
+          <Property Name="LONGITUDE" Type="decimal" Precision="18" Scale="10" />
+          <Property Name="ADDRESS" Type="nvarchar" MaxLength="500" />
+          <Property Name="ACREAGE" Type="int" />
+          <Property Name="DESCRIPTION" Type="nvarchar" MaxLength="1000" />
+          <Property Name="IS_SHEDULE" Type="bit" />
+          <Property Name="IS_AUTO" Type="bit" />
+        </EntityType>
+        <EntityType Name="S_GROUP_SENSOR">
+          <Key>
+            <PropertyRef Name="GROUP_SENSOR_ID" />
+          </Key>
+          <Property Name="GROUP_SENSOR_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GROUP_SENSOR_NAME" Type="nvarchar" MaxLength="100" />
+          <Property Name="NOTE" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="S_UNIT">
+          <Key>
+            <PropertyRef Name="UNIT_ID" />
+          </Key>
+          <Property Name="UNIT_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UNIT_NAME" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="S_USER">
+          <Key>
+            <PropertyRef Name="USER_ID" />
+          </Key>
+          <Property Name="USER_ID" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="FULL_NAME" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="EMAIL" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="PHONE" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="PASSWORD" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="ADDRESS" Type="nvarchar" MaxLength="500" />
+          <Property Name="PACKED_ID" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="USER_TYPE" Type="int" Nullable="false" />
+          <Property Name="NOTE" Type="nvarchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityContainer Name="ioTModelStoreContainer">
+          <EntitySet Name="D_DEVICE_SENSOR_DETAIL" EntityType="Self.D_DEVICE_SENSOR_DETAIL" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="D_DEVICE_SENSOR_HT" EntityType="Self.D_DEVICE_SENSOR_HT" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="D_DEVICE_SENSOR_LIGHT" EntityType="Self.D_DEVICE_SENSOR_LIGHT" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="D_DEVICE_SENSOR_MOISTURE" EntityType="Self.D_DEVICE_SENSOR_MOISTURE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="D_GROUP_PERMISSION" EntityType="Self.D_GROUP_PERMISSION" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="D_PACKED" EntityType="Self.D_PACKED" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="D_SETTING_CONTROL" EntityType="Self.D_SETTING_CONTROL" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="D_SETTING_SENSOR" EntityType="Self.D_SETTING_SENSOR" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="S_ARDUINO_TYPE" EntityType="Self.S_ARDUINO_TYPE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="S_ARDUINO_TYPE_DETAIL" EntityType="Self.S_ARDUINO_TYPE_DETAIL" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="S_CODE" EntityType="Self.S_CODE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="S_DEVICE" EntityType="Self.S_DEVICE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="S_DEVICE_CATEGORY" EntityType="Self.S_DEVICE_CATEGORY" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="S_DEVICE_CONTROL_DETAIL" EntityType="Self.S_DEVICE_CONTROL_DETAIL" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="S_GARDEN" EntityType="Self.S_GARDEN" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="S_GROUP_SENSOR" EntityType="Self.S_GROUP_SENSOR" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="S_UNIT" EntityType="Self.S_UNIT" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="S_USER" EntityType="Self.S_USER" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ioTModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="ioTEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="D_DEVICE_SENSOR_DETAIL" EntityType="ioTModel.D_DEVICE_SENSOR_DETAIL" />
+          <EntitySet Name="D_DEVICE_SENSOR_HT" EntityType="ioTModel.D_DEVICE_SENSOR_HT" />
+          <EntitySet Name="D_DEVICE_SENSOR_LIGHT" EntityType="ioTModel.D_DEVICE_SENSOR_LIGHT" />
+          <EntitySet Name="D_DEVICE_SENSOR_MOISTURE" EntityType="ioTModel.D_DEVICE_SENSOR_MOISTURE" />
+          <EntitySet Name="D_GROUP_PERMISSION" EntityType="ioTModel.D_GROUP_PERMISSION" />
+          <EntitySet Name="D_PACKED" EntityType="ioTModel.D_PACKED" />
+          <EntitySet Name="D_SETTING_CONTROL" EntityType="ioTModel.D_SETTING_CONTROL" />
+          <EntitySet Name="D_SETTING_SENSOR" EntityType="ioTModel.D_SETTING_SENSOR" />
+          <EntitySet Name="S_ARDUINO_TYPE" EntityType="ioTModel.S_ARDUINO_TYPE" />
+          <EntitySet Name="S_ARDUINO_TYPE_DETAIL" EntityType="ioTModel.S_ARDUINO_TYPE_DETAIL" />
+          <EntitySet Name="S_CODE" EntityType="ioTModel.S_CODE" />
+          <EntitySet Name="S_DEVICE" EntityType="ioTModel.S_DEVICE" />
+          <EntitySet Name="S_DEVICE_CATEGORY" EntityType="ioTModel.S_DEVICE_CATEGORY" />
+          <EntitySet Name="S_DEVICE_CONTROL_DETAIL" EntityType="ioTModel.S_DEVICE_CONTROL_DETAIL" />
+          <EntitySet Name="S_GARDEN" EntityType="ioTModel.S_GARDEN" />
+          <EntitySet Name="S_GROUP_SENSOR" EntityType="ioTModel.S_GROUP_SENSOR" />
+          <EntitySet Name="S_UNIT" EntityType="ioTModel.S_UNIT" />
+          <EntitySet Name="S_USER" EntityType="ioTModel.S_USER" />
+          <EntitySet Name="sysdiagrams" EntityType="ioTModel.sysdiagram" />
+        </EntityContainer>
+        <EntityType Name="D_DEVICE_SENSOR_DETAIL">
+          <Key>
+            <PropertyRef Name="DEVICE_SENSOR_DETAIL_ID" />
+          </Key>
+          <Property Name="DEVICE_SENSOR_DETAIL_ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DEVICE_ID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="VALUE" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="TIME_UPDATE" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="D_DEVICE_SENSOR_HT">
+          <Key>
+            <PropertyRef Name="DEVICE_SENSOR_HUMIDITY_ID" />
+          </Key>
+          <Property Name="DEVICE_SENSOR_HUMIDITY_ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DEVICE_ID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="VALUE" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="TIME_UPDATE" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="D_DEVICE_SENSOR_LIGHT">
+          <Key>
+            <PropertyRef Name="DEVICE_SENSOR_LIGHT_" />
+          </Key>
+          <Property Name="DEVICE_SENSOR_LIGHT_" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DEVICE_ID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="VALUE" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="TIME_UPDATE" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="D_DEVICE_SENSOR_MOISTURE">
+          <Key>
+            <PropertyRef Name="DEVICE_SENSOR_MOISTURE_ID" />
+          </Key>
+          <Property Name="DEVICE_SENSOR_MOISTURE_ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DEVICE_ID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="VALUE" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="TIME_UPDATE" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="D_GROUP_PERMISSION">
+          <Key>
+            <PropertyRef Name="PERMISSION_ID" />
+          </Key>
+          <Property Name="PERMISSION_ID" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="USER_ID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="READ" Type="Boolean" />
+          <Property Name="WRITE" Type="Boolean" />
+          <Property Name="DELETE" Type="Boolean" />
+          <Property Name="SETTING" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="D_PACKED">
+          <Key>
+            <PropertyRef Name="PACKED_ID" />
+          </Key>
+          <Property Name="PACKED_ID" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="PACKED_NAME_VN" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="PACKED_NAME_EN" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="PRICE" Type="Decimal" Precision="18" Scale="0" />
+        </EntityType>
+        <EntityType Name="D_SETTING_CONTROL">
+          <Key>
+            <PropertyRef Name="SETTING_CONTROL_ID" />
+          </Key>
+          <Property Name="SETTING_CONTROL_ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DEVICE_ID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TIME_ON" Type="Time" Precision="7" />
+          <Property Name="TIME_OFF" Type="Time" Precision="7" />
+        </EntityType>
+        <EntityType Name="D_SETTING_SENSOR">
+          <Key>
+            <PropertyRef Name="SETTING_SENSOR_ID" />
+          </Key>
+          <Property Name="SETTING_SENSOR_ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DEVICE_SENSOR_ID" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="LIMIT_LOW" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="LIMIT_HIGH" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="LIST_CONTROL_ID_OPEN" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="S_ARDUINO_TYPE">
+          <Key>
+            <PropertyRef Name="ARDUINO_TYPE_ID" />
+          </Key>
+          <Property Name="ARDUINO_TYPE_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ARDUINO_TYPE_NAME" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="NOTE" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="S_ARDUINO_TYPE_DETAIL">
+          <Key>
+            <PropertyRef Name="ARDUINO_TYPE_DETAIL_ID" />
+          </Key>
+          <Property Name="ARDUINO_TYPE_DETAIL_ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ARDUINO_TYPE_ID" Type="Int32" Nullable="false" />
+          <Property Name="PIN" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="CATEGORY_ID" Type="Int32" />
+        </EntityType>
+        <EntityType Name="S_CODE">
+          <Key>
+            <PropertyRef Name="CODE_ID" />
+          </Key>
+          <Property Name="CODE_ID" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="CODE_VALUE" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="STATUS" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="S_DEVICE">
+          <Key>
+            <PropertyRef Name="DEVICE_ID" />
+            <PropertyRef Name="TOKEN_KEY" />
+          </Key>
+          <Property Name="DEVICE_ID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TOKEN_KEY" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DEVICE_NAME_VN" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="DEVICE_NAME_EN" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="DEVICE_CATEGORY" Type="Int32" />
+          <Property Name="GROUP_SENSOR_ID" Type="Int32" />
+          <Property Name="STATUS" Type="Int32" />
+          <Property Name="UNIT" Type="Int32" />
+          <Property Name="PIN_ID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="S_DEVICE_CATEGORY">
+          <Key>
+            <PropertyRef Name="CATEGORY_ID" />
+          </Key>
+          <Property Name="CATEGORY_ID" Type="Int32" Nullable="false" />
+          <Property Name="CATEGORY_NAME" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="NOTE" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="S_DEVICE_CONTROL_DETAIL">
+          <Key>
+            <PropertyRef Name="DEVICE_ID" />
+          </Key>
+          <Property Name="DEVICE_ID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="VALUE" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="TIME_UPDATE" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="S_GARDEN">
+          <Key>
+            <PropertyRef Name="GARDEN_ID" />
+          </Key>
+          <Property Name="GARDEN_ID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TOKEN_KEY" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="GARDEN_NAME_VN" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="GARDEN_NAME_EN" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="USER_ID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ACTIVE" Type="Int32" Nullable="false" />
+          <Property Name="IMAGE" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="UNO_TYPE" Type="Int32" Nullable="false" />
+          <Property Name="STATUS" Type="Int32" Nullable="false" />
+          <Property Name="START" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="END" Type="DateTime" Precision="3" />
+          <Property Name="LATITUDE" Type="Decimal" Precision="18" Scale="10" />
+          <Property Name="LONGITUDE" Type="Decimal" Precision="18" Scale="10" />
+          <Property Name="ADDRESS" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="ACREAGE" Type="Int32" />
+          <Property Name="DESCRIPTION" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="IS_SHEDULE" Type="Boolean" />
+          <Property Name="IS_AUTO" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="S_GROUP_SENSOR">
+          <Key>
+            <PropertyRef Name="GROUP_SENSOR_ID" />
+          </Key>
+          <Property Name="GROUP_SENSOR_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GROUP_SENSOR_NAME" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="NOTE" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="S_UNIT">
+          <Key>
+            <PropertyRef Name="UNIT_ID" />
+          </Key>
+          <Property Name="UNIT_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UNIT_NAME" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="S_USER">
+          <Key>
+            <PropertyRef Name="USER_ID" />
+          </Key>
+          <Property Name="USER_ID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FULL_NAME" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="EMAIL" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="PHONE" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="PASSWORD" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="ADDRESS" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="PACKED_ID" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="USER_TYPE" Type="Int32" Nullable="false" />
+          <Property Name="NOTE" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ioTModelStoreContainer" CdmEntityContainer="ioTEntities">
+          <EntitySetMapping Name="D_DEVICE_SENSOR_DETAIL">
+            <EntityTypeMapping TypeName="ioTModel.D_DEVICE_SENSOR_DETAIL">
+              <MappingFragment StoreEntitySet="D_DEVICE_SENSOR_DETAIL">
+                <ScalarProperty Name="TIME_UPDATE" ColumnName="TIME_UPDATE" />
+                <ScalarProperty Name="VALUE" ColumnName="VALUE" />
+                <ScalarProperty Name="DEVICE_ID" ColumnName="DEVICE_ID" />
+                <ScalarProperty Name="DEVICE_SENSOR_DETAIL_ID" ColumnName="DEVICE_SENSOR_DETAIL_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="D_DEVICE_SENSOR_HT">
+            <EntityTypeMapping TypeName="ioTModel.D_DEVICE_SENSOR_HT">
+              <MappingFragment StoreEntitySet="D_DEVICE_SENSOR_HT">
+                <ScalarProperty Name="TIME_UPDATE" ColumnName="TIME_UPDATE" />
+                <ScalarProperty Name="VALUE" ColumnName="VALUE" />
+                <ScalarProperty Name="DEVICE_ID" ColumnName="DEVICE_ID" />
+                <ScalarProperty Name="DEVICE_SENSOR_HUMIDITY_ID" ColumnName="DEVICE_SENSOR_HUMIDITY_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="D_DEVICE_SENSOR_LIGHT">
+            <EntityTypeMapping TypeName="ioTModel.D_DEVICE_SENSOR_LIGHT">
+              <MappingFragment StoreEntitySet="D_DEVICE_SENSOR_LIGHT">
+                <ScalarProperty Name="TIME_UPDATE" ColumnName="TIME_UPDATE" />
+                <ScalarProperty Name="VALUE" ColumnName="VALUE" />
+                <ScalarProperty Name="DEVICE_ID" ColumnName="DEVICE_ID" />
+                <ScalarProperty Name="DEVICE_SENSOR_LIGHT_" ColumnName="DEVICE_SENSOR_LIGHT_" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="D_DEVICE_SENSOR_MOISTURE">
+            <EntityTypeMapping TypeName="ioTModel.D_DEVICE_SENSOR_MOISTURE">
+              <MappingFragment StoreEntitySet="D_DEVICE_SENSOR_MOISTURE">
+                <ScalarProperty Name="TIME_UPDATE" ColumnName="TIME_UPDATE" />
+                <ScalarProperty Name="VALUE" ColumnName="VALUE" />
+                <ScalarProperty Name="DEVICE_ID" ColumnName="DEVICE_ID" />
+                <ScalarProperty Name="DEVICE_SENSOR_MOISTURE_ID" ColumnName="DEVICE_SENSOR_MOISTURE_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="D_GROUP_PERMISSION">
+            <EntityTypeMapping TypeName="ioTModel.D_GROUP_PERMISSION">
+              <MappingFragment StoreEntitySet="D_GROUP_PERMISSION">
+                <ScalarProperty Name="SETTING" ColumnName="SETTING" />
+                <ScalarProperty Name="DELETE" ColumnName="DELETE" />
+                <ScalarProperty Name="WRITE" ColumnName="WRITE" />
+                <ScalarProperty Name="READ" ColumnName="READ" />
+                <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
+                <ScalarProperty Name="PERMISSION_ID" ColumnName="PERMISSION_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="D_PACKED">
+            <EntityTypeMapping TypeName="ioTModel.D_PACKED">
+              <MappingFragment StoreEntitySet="D_PACKED">
+                <ScalarProperty Name="PRICE" ColumnName="PRICE" />
+                <ScalarProperty Name="PACKED_NAME_EN" ColumnName="PACKED_NAME_EN" />
+                <ScalarProperty Name="PACKED_NAME_VN" ColumnName="PACKED_NAME_VN" />
+                <ScalarProperty Name="PACKED_ID" ColumnName="PACKED_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="D_SETTING_CONTROL">
+            <EntityTypeMapping TypeName="ioTModel.D_SETTING_CONTROL">
+              <MappingFragment StoreEntitySet="D_SETTING_CONTROL">
+                <ScalarProperty Name="TIME_OFF" ColumnName="TIME_OFF" />
+                <ScalarProperty Name="TIME_ON" ColumnName="TIME_ON" />
+                <ScalarProperty Name="DEVICE_ID" ColumnName="DEVICE_ID" />
+                <ScalarProperty Name="SETTING_CONTROL_ID" ColumnName="SETTING_CONTROL_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="D_SETTING_SENSOR">
+            <EntityTypeMapping TypeName="ioTModel.D_SETTING_SENSOR">
+              <MappingFragment StoreEntitySet="D_SETTING_SENSOR">
+                <ScalarProperty Name="LIST_CONTROL_ID_OPEN" ColumnName="LIST_CONTROL_ID_OPEN" />
+                <ScalarProperty Name="LIMIT_HIGH" ColumnName="LIMIT_HIGH" />
+                <ScalarProperty Name="LIMIT_LOW" ColumnName="LIMIT_LOW" />
+                <ScalarProperty Name="DEVICE_SENSOR_ID" ColumnName="DEVICE_SENSOR_ID" />
+                <ScalarProperty Name="SETTING_SENSOR_ID" ColumnName="SETTING_SENSOR_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="S_ARDUINO_TYPE">
+            <EntityTypeMapping TypeName="ioTModel.S_ARDUINO_TYPE">
+              <MappingFragment StoreEntitySet="S_ARDUINO_TYPE">
+                <ScalarProperty Name="NOTE" ColumnName="NOTE" />
+                <ScalarProperty Name="ARDUINO_TYPE_NAME" ColumnName="ARDUINO_TYPE_NAME" />
+                <ScalarProperty Name="ARDUINO_TYPE_ID" ColumnName="ARDUINO_TYPE_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="S_ARDUINO_TYPE_DETAIL">
+            <EntityTypeMapping TypeName="ioTModel.S_ARDUINO_TYPE_DETAIL">
+              <MappingFragment StoreEntitySet="S_ARDUINO_TYPE_DETAIL">
+                <ScalarProperty Name="CATEGORY_ID" ColumnName="CATEGORY_ID" />
+                <ScalarProperty Name="PIN" ColumnName="PIN" />
+                <ScalarProperty Name="ARDUINO_TYPE_ID" ColumnName="ARDUINO_TYPE_ID" />
+                <ScalarProperty Name="ARDUINO_TYPE_DETAIL_ID" ColumnName="ARDUINO_TYPE_DETAIL_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="S_CODE">
+            <EntityTypeMapping TypeName="ioTModel.S_CODE">
+              <MappingFragment StoreEntitySet="S_CODE">
+                <ScalarProperty Name="STATUS" ColumnName="STATUS" />
+                <ScalarProperty Name="CODE_VALUE" ColumnName="CODE_VALUE" />
+                <ScalarProperty Name="CODE_ID" ColumnName="CODE_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="S_DEVICE">
+            <EntityTypeMapping TypeName="ioTModel.S_DEVICE">
+              <MappingFragment StoreEntitySet="S_DEVICE">
+                <ScalarProperty Name="PIN_ID" ColumnName="PIN_ID" />
+                <ScalarProperty Name="UNIT" ColumnName="UNIT" />
+                <ScalarProperty Name="STATUS" ColumnName="STATUS" />
+                <ScalarProperty Name="GROUP_SENSOR_ID" ColumnName="GROUP_SENSOR_ID" />
+                <ScalarProperty Name="DEVICE_CATEGORY" ColumnName="DEVICE_CATEGORY" />
+                <ScalarProperty Name="DEVICE_NAME_EN" ColumnName="DEVICE_NAME_EN" />
+                <ScalarProperty Name="DEVICE_NAME_VN" ColumnName="DEVICE_NAME_VN" />
+                <ScalarProperty Name="TOKEN_KEY" ColumnName="TOKEN_KEY" />
+                <ScalarProperty Name="DEVICE_ID" ColumnName="DEVICE_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="S_DEVICE_CATEGORY">
+            <EntityTypeMapping TypeName="ioTModel.S_DEVICE_CATEGORY">
+              <MappingFragment StoreEntitySet="S_DEVICE_CATEGORY">
+                <ScalarProperty Name="NOTE" ColumnName="NOTE" />
+                <ScalarProperty Name="CATEGORY_NAME" ColumnName="CATEGORY_NAME" />
+                <ScalarProperty Name="CATEGORY_ID" ColumnName="CATEGORY_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="S_DEVICE_CONTROL_DETAIL">
+            <EntityTypeMapping TypeName="ioTModel.S_DEVICE_CONTROL_DETAIL">
+              <MappingFragment StoreEntitySet="S_DEVICE_CONTROL_DETAIL">
+                <ScalarProperty Name="TIME_UPDATE" ColumnName="TIME_UPDATE" />
+                <ScalarProperty Name="VALUE" ColumnName="VALUE" />
+                <ScalarProperty Name="DEVICE_ID" ColumnName="DEVICE_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="S_GARDEN">
+            <EntityTypeMapping TypeName="ioTModel.S_GARDEN">
+              <MappingFragment StoreEntitySet="S_GARDEN">
+                <ScalarProperty Name="IS_AUTO" ColumnName="IS_AUTO" />
+                <ScalarProperty Name="IS_SHEDULE" ColumnName="IS_SHEDULE" />
+                <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+                <ScalarProperty Name="ACREAGE" ColumnName="ACREAGE" />
+                <ScalarProperty Name="ADDRESS" ColumnName="ADDRESS" />
+                <ScalarProperty Name="LONGITUDE" ColumnName="LONGITUDE" />
+                <ScalarProperty Name="LATITUDE" ColumnName="LATITUDE" />
+                <ScalarProperty Name="END" ColumnName="END" />
+                <ScalarProperty Name="START" ColumnName="START" />
+                <ScalarProperty Name="STATUS" ColumnName="STATUS" />
+                <ScalarProperty Name="UNO_TYPE" ColumnName="UNO_TYPE" />
+                <ScalarProperty Name="IMAGE" ColumnName="IMAGE" />
+                <ScalarProperty Name="ACTIVE" ColumnName="ACTIVE" />
+                <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
+                <ScalarProperty Name="GARDEN_NAME_EN" ColumnName="GARDEN_NAME_EN" />
+                <ScalarProperty Name="GARDEN_NAME_VN" ColumnName="GARDEN_NAME_VN" />
+                <ScalarProperty Name="TOKEN_KEY" ColumnName="TOKEN_KEY" />
+                <ScalarProperty Name="GARDEN_ID" ColumnName="GARDEN_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="S_GROUP_SENSOR">
+            <EntityTypeMapping TypeName="ioTModel.S_GROUP_SENSOR">
+              <MappingFragment StoreEntitySet="S_GROUP_SENSOR">
+                <ScalarProperty Name="NOTE" ColumnName="NOTE" />
+                <ScalarProperty Name="GROUP_SENSOR_NAME" ColumnName="GROUP_SENSOR_NAME" />
+                <ScalarProperty Name="GROUP_SENSOR_ID" ColumnName="GROUP_SENSOR_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="S_UNIT">
+            <EntityTypeMapping TypeName="ioTModel.S_UNIT">
+              <MappingFragment StoreEntitySet="S_UNIT">
+                <ScalarProperty Name="UNIT_NAME" ColumnName="UNIT_NAME" />
+                <ScalarProperty Name="UNIT_ID" ColumnName="UNIT_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="S_USER">
+            <EntityTypeMapping TypeName="ioTModel.S_USER">
+              <MappingFragment StoreEntitySet="S_USER">
+                <ScalarProperty Name="NOTE" ColumnName="NOTE" />
+                <ScalarProperty Name="USER_TYPE" ColumnName="USER_TYPE" />
+                <ScalarProperty Name="PACKED_ID" ColumnName="PACKED_ID" />
+                <ScalarProperty Name="ADDRESS" ColumnName="ADDRESS" />
+                <ScalarProperty Name="PASSWORD" ColumnName="PASSWORD" />
+                <ScalarProperty Name="PHONE" ColumnName="PHONE" />
+                <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+                <ScalarProperty Name="FULL_NAME" ColumnName="FULL_NAME" />
+                <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="ioTModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

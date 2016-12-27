@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ArduinoService.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -17,6 +18,16 @@ namespace ArduinoService.Controllers
         public ActionResult Message()
         {
             return View();
+        }
+
+        public ActionResult ChangeUnoType()
+        {
+            if (Session[ConstantClass.USER_TYPE].ToString() == "1")
+                Session[ConstantClass.USER_TYPE] = "2";
+            else
+                Session[ConstantClass.USER_TYPE] = "1";
+
+            return RedirectToAction("MainMenu", "Home");
         }
 
     }

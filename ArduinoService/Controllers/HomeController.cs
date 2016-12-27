@@ -10,12 +10,12 @@ using System.Threading;
 using System.Timers;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Script.Serialization;
 
 namespace ArduinoService.Controllers
 {
     public class HomeController : Controller
     {
-        TrackingModel _trackingModel = new TrackingModel();
         private CommonModel commonModel = new CommonModel();
         readonly log4net.ILog logger = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
         HomeModels _model = new HomeModels();
@@ -27,10 +27,14 @@ namespace ArduinoService.Controllers
 
         public ActionResult MainMenu()
         {
+            System.Configuration.Configuration conf = System.Web.Configuration.WebConfigurationManager.OpenWebConfiguration(System.Web.Hosting.HostingEnvironment.ApplicationVirtualPath);
+            System.Web.Configuration.SessionStateSection section = (System.Web.Configuration.SessionStateSection)conf.GetSection("system.web/sessionState");
+            int timeout = (int)section.Timeout.TotalMinutes;
+
             // check permission
             if (Session[ConstantClass.SESSION_USERNAME] == null)
                 return Redirect("/Account/Login");
-            var listGarden = _model.GetListGarden(Session[ConstantClass.SESSION_USERNAME].ToString());
+            var listGarden = _model.GetListGarden(Session[ConstantClass.SESSION_USERID].ToString());
             return View(listGarden);
         }
 
@@ -47,6 +51,19 @@ namespace ArduinoService.Controllers
             return PartialView();
         }
 
+        /// <summary>
+        /// Lay danh sach ma pin
+        /// </summary>
+        /// <param name="strSelected"></param>
+        /// <param name="tokenkey"></param>
+        /// <param name="device_category"></param>
+        /// <returns></returns>
+        public JsonResult GetListPin(string strSelected, string tokenkey, string device_category)
+        {
+            return Json(_model.GetListPin(strSelected, tokenkey, device_category), JsonRequestBehavior.AllowGet);
+        }
+
+        #region Screen Garden
         public ActionResult Garden(string id)
         {
             // check permission
@@ -54,33 +71,18 @@ namespace ArduinoService.Controllers
                 return Redirect("/Account/Login");
 
             ViewBag.GardenId = id;
+            ViewBag.IsActive = _model.GetIsActiveGarden(id);
             return View();
-        }
-
-        public ActionResult Control(string id)
-        {
-            // check permission
-            if (Session[ConstantClass.SESSION_USERNAME] == null)
-                return Redirect("/Account/Login");
-
-            ViewBag.ListControl = _model.GetListControl(id);
-            return View();
-
         }
 
         /// <summary>
-        /// 
+        /// Lay danh sach loai Arduino
         /// </summary>
-        /// <param name="id"> id uno</param>
-        /// <returns></returns>
-        public ActionResult Tracking(string id)
+        /// <param name="strSelected"></param>
+        /// <returns>combobox danh sach</returns>
+        public JsonResult GetListUnoType(string strSelected)
         {
-            // check permission
-            if (Session[ConstantClass.SESSION_USERNAME] == null)
-                return Redirect("/Account/Login");
-
-            //ViewBag.ListControl = _model.GetListTracking(id);
-            return View();
+            return Json(_model.GetListUnoType(strSelected), JsonRequestBehavior.AllowGet);
         }
 
         /// <summary>
@@ -89,27 +91,40 @@ namespace ArduinoService.Controllers
         /// <param name="gardenname"></param>
         /// <param name="image"></param>
         /// <returns></returns>
-        public JsonResult AddGarden(string gardenname, string image)
+        public JsonResult AddGarden(string gardenname, string image, int unotype,
+            int acreage, string address, decimal lat, decimal lon, string description,
+            string tokenkey
+            )
         {
+            // check session
             GardenRawData _rowdata = new GardenRawData();
             _rowdata.GARDEN_NAME = gardenname;
-            _rowdata.IMAGE = image;
+            if (!String.IsNullOrEmpty(image))
+                _rowdata.IMAGE = image.Substring(1, image.Length - 1);
             _rowdata.ACTIVE = 1;
-            _rowdata.USER_ID = commonModel.getIdByUserName(Session[ConstantClass.SESSION_USERNAME].ToString());
-            _rowdata = _model.AddGarden(_rowdata);
+            _rowdata.USER_ID = Session[ConstantClass.SESSION_USERID].ToString();
+            _rowdata.UNO_TYPE = unotype;
+            _rowdata.ACREAGE = acreage;
+            _rowdata.LATITUDE = lat;
+            _rowdata.LONGITUDE = lon;
+            _rowdata.ADDRESS = address;
+            _rowdata.START = DateTime.Now;
+            _rowdata.DESCRIPTION = description;
+            _rowdata.TOKEN_KEY = tokenkey;
+
+            _rowdata = _model.AddOrEditGarden(_rowdata);
             return Json(_rowdata, JsonRequestBehavior.AllowGet);
         }
 
-        public JsonResult EditGarden(string gardenname, string image, string gardenid)
+        public JsonResult DeleteGarden(string tokenkey)
         {
-            GardenRawData _rowdata = new GardenRawData();
-            _rowdata.GARDEN_ID = gardenid;
-            _rowdata.GARDEN_NAME = gardenname;
-            _rowdata.IMAGE = image;
-            _rowdata.ACTIVE = 1;
-            _rowdata.USER_ID = commonModel.getIdByUserName(Session[ConstantClass.SESSION_USERNAME].ToString());
-            _rowdata = _model.EditGarden(_rowdata);
-            return Json(_rowdata, JsonRequestBehavior.AllowGet);
+            bool result = _model.DeleteGarden(tokenkey);
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult GetGardenById(string tokenkey)
+        {
+            return Json(_model.GetGardenById(tokenkey), JsonRequestBehavior.AllowGet);
         }
 
         public FilePathResult Image()
@@ -140,35 +155,198 @@ namespace ArduinoService.Controllers
                 string datetimeNow = DateTime.Now.ToString("yyyyMMddhhmmss") + Path.GetFileName(hpf.FileName);
                 urlImg = Server.MapPath("~/Content/Images/Upload/") + datetimeNow;
                 hpf.SaveAs(urlImg);
-                urlImg = "/Content/Images/Upload/" + datetimeNow;
+                urlImg = "Content/Images/Upload/" + datetimeNow;
             }
 
             return Json(urlImg, JsonRequestBehavior.AllowGet);
         }
 
-        public JsonResult GetListGardenMenuLeft()
+        #endregion
+
+        #region Screen Control
+        public ActionResult Control(string id)
         {
-            return Json(_model.GetListGarden(Session[ConstantClass.SESSION_USERNAME].ToString()), JsonRequestBehavior.AllowGet);
+            // check permission
+            if (Session[ConstantClass.SESSION_USERNAME] == null)
+                return Redirect("/Account/Login");
+
+            ViewBag.ListControl = _model.GetListControl(id);
+            ViewBag.FullControl = _model.IsFullControl(id, ConstantClass.CONTROL);
+            return View();
         }
 
-        public JsonResult AddNewControl(string namecontrol, string gardenid,string deviceid)
+        public JsonResult AddOrEditControl(string namecontrol, string tokenkey, string deviceid, string pinid)
         {
             // check permission
             if (Session[ConstantClass.SESSION_USERNAME] == null)
                 return Json(false, JsonRequestBehavior.AllowGet);
 
-            return Json(_model.AddNewControl(namecontrol, gardenid, 1, deviceid), JsonRequestBehavior.AllowGet);
+            return Json(_model.AddOrEditControl(namecontrol, tokenkey, deviceid, pinid), JsonRequestBehavior.AllowGet);
+
         }
 
-        public JsonResult AddNewControlTracking(string namecontrol, string gardenid, string deviceid)
+        #endregion
+
+        #region Screen Tracking
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"> id uno</param>
+        /// <returns></returns>
+        public ActionResult Tracking(string id)
+        {
+            // check permission
+            if (Session[ConstantClass.SESSION_USERNAME] == null)
+                return Redirect("/Account/Login");
+
+            ViewBag.lstUnit = _model.GetListUnit();
+            ViewBag.FullControl = _model.IsFullControl(id, ConstantClass.SENSOR);
+
+            return View();
+        }
+
+        /// <summary>
+        /// Lay danh sach data sensor dua len table
+        /// </summary>
+        /// <param name="tokenkey"></param>
+        /// <param name="index"></param>
+        /// <param name="filterDate"></param>
+        /// <returns></returns>
+        public JsonResult GetDeviceDetails(string tokenkey, int index, string filterDate)
+        {
+            var result = new
+            {
+                listDevice = _model.GetListDevice(tokenkey),
+                listItem = _model.GetListDataDetails(tokenkey)
+            };
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
+
+        /// <summary>
+        /// Them thiet bi (sensor)
+        /// </summary>
+        /// <param name="namecontrol">Ten thiet bi</param>
+        /// <param name="namecontrol2">Ten thiet bi 2(dung cho group HT)</param>
+        /// <param name="tokenkey"></param>
+        /// <param name="deviceid">ma  thiet bi</param>
+        /// <param name="groupsensor">nhom thiet bi</param>
+        /// <param name="unit">don vi thiet bi thong ke</param>
+        /// <param name="pinid">ma pin cam vao uno</param>
+        /// <param name="unit2">don vi thiet bi 2(dung cho group HT)</param>
+        /// <returns>true : thanh cong, false : that bai</returns>
+        public JsonResult AddNewControlTracking(string device_id, string namecontrol, string namecontrol2, string tokenkey, int groupsensor, int unit, string pinid, int unit2)
         {
             // check permission
             if (Session[ConstantClass.SESSION_USERNAME] == null)
                 return Json(false, JsonRequestBehavior.AllowGet);
 
-            return Json(_model.AddNewControl(namecontrol, gardenid, 2, deviceid), JsonRequestBehavior.AllowGet);
+            // check device_id
+            string device_id1 = string.Empty;
+            string device_id2 = string.Empty;
 
+            if (string.IsNullOrEmpty(device_id) == false && groupsensor == ConstantClass.SENSOR_HT)
+            {
+                device_id1 = _model.GetGroupDeviceID(device_id)[0];
+                device_id2 = _model.GetGroupDeviceID(device_id)[1];
+            }
+            else
+            {
+                device_id1 = device_id;
+            }
+
+            bool result = _model.AddNewControlTracking(device_id1, namecontrol, tokenkey, 2, groupsensor, unit, pinid);
+            if (result == true && groupsensor == ConstantClass.SENSOR_HT)
+                result = _model.AddNewControlTracking(device_id2, namecontrol2, tokenkey, 2, groupsensor, unit2, pinid);
+            return Json(result, JsonRequestBehavior.AllowGet);
         }
+
+        /// <summary>
+        /// Kiem tra ten thiet bi co ton tai trong danh sach thiet bi ko ?
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns>true : co, false : ko</returns>
+        public JsonResult CheckExistsNameTracking(string name, string deviceid)
+        {
+            return Json(_model.CheckExistsNameTracking(name, deviceid), JsonRequestBehavior.AllowGet);
+        }
+
+        /// <summary>
+        /// Hien thi thong tin thiet bi( dung trong Screen tracking).
+        /// </summary>
+        /// <param name="deviceid"></param>
+        /// <returns>List object hoac 1 object</returns>
+        public JsonResult LoadInfoDevice(string deviceid)
+        {
+            return Json(_model.LoadInfoDevice(deviceid), JsonRequestBehavior.AllowGet);
+        }
+
+        #endregion
+
+        #region Screen Chart
+        public ActionResult Chart(string tokenkey)
+        {
+            // check permission
+            if (Session[ConstantClass.SESSION_USERNAME] == null)
+                return Redirect("/Account/Login");
+
+            return View();
+        }
+
+        /// <summary>
+        /// Lay danh sach data dung de ve bieu do
+        /// </summary>
+        /// <param name="tokenkey"></param>
+        /// <param name="datechart"></param>
+        /// <returns></returns>
+        public JsonResult GetDataChart(string tokenkey, int datechart)
+        {
+            return Json(_model.GetListDataChartDetails(tokenkey, datechart), JsonRequestBehavior.AllowGet);
+        }
+
+        #endregion
+
+        #region Common Screen
+
+        /// <summary>
+        /// Lay danh sach tu table UNIT
+        /// </summary>
+        /// <param name="selected"></param>
+        /// <returns>Danh sach combobox unit</returns>
+        public JsonResult GetListUnitAjax(string selected)
+        {
+            return Json(_model.GetListUnitAjax(selected), JsonRequestBehavior.AllowGet);
+        }
+
+        /// <summary>
+        /// Xoa thiet bi
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>true : xoa thanh cong, false : xoa that bai</returns>
+        public JsonResult DeleteDevice(string id)
+        {
+            return Json(_model.DeleteDevice(id), JsonRequestBehavior.AllowGet);
+        }
+
+        #endregion
+
+        #region Screen Setting Garden
+        public ActionResult SettingGarden(string id)
+        {
+            // check permission
+            if (Session[ConstantClass.SESSION_USERNAME] == null)
+                return Redirect("/Account/Login");
+            ViewBag.modelgarden = _model.GetGardenById(id);
+            ViewBag.datasettingcontrol = "";
+
+            return View();
+        }
+
+        public JsonResult UpdateShedule(string tokenkey)
+        {
+            return Json(_model.UpdateShedule(tokenkey), JsonRequestBehavior.AllowGet);
+        }
+
+        #endregion
 
 
 
@@ -192,33 +370,6 @@ namespace ArduinoService.Controllers
         public ActionResult Index()
         {
             return View();
-        }
-
-
-
-        public ActionResult ControlSystem()
-        {
-            return View();
-        }
-
-        public ActionResult TrackingData()
-        {
-            return View();
-        }
-
-        [HttpPost]
-        public JsonResult GetListTrackingHistory()
-        {
-            List<LTrackingRowData> result = new List<LTrackingRowData>();
-            try
-            {
-                result = _trackingModel.GetListTrackingHistory(5);
-            }
-            catch (Exception ex)
-            {
-                logger.Error(ex.Message);
-            }
-            return Json(result, JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult ChangeCulture(string lang, string returnUrl)

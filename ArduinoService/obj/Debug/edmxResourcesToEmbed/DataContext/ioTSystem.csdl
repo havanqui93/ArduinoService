@@ -1,0 +1,108 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ioTSystemModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="ioTSystemEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="DEVICEs" EntityType="ioTSystemModel.DEVICE" />
+    <EntitySet Name="DEVICE_CATEGORY" EntityType="ioTSystemModel.DEVICE_CATEGORY" />
+    <EntitySet Name="DEVICE_CONTROL_DETAIL" EntityType="ioTSystemModel.DEVICE_CONTROL_DETAIL" />
+    <EntitySet Name="DEVICE_SENSOR_DETAIL" EntityType="ioTSystemModel.DEVICE_SENSOR_DETAIL" />
+    <EntitySet Name="GARDENs" EntityType="ioTSystemModel.GARDEN" />
+    <EntitySet Name="GROUP_SENSOR" EntityType="ioTSystemModel.GROUP_SENSOR" />
+    <EntitySet Name="M_CODE" EntityType="ioTSystemModel.M_CODE" />
+    <EntitySet Name="PERMISSIONs" EntityType="ioTSystemModel.PERMISSION" />
+    <EntitySet Name="UNITs" EntityType="ioTSystemModel.UNIT" />
+    <EntitySet Name="USERS" EntityType="ioTSystemModel.USER" />
+  </EntityContainer>
+  <EntityType Name="DEVICE">
+    <Key>
+      <PropertyRef Name="DEVICE_ID" />
+      <PropertyRef Name="TOKEN_KEY" />
+    </Key>
+    <Property Name="DEVICE_ID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="TOKEN_KEY" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="DEVICE_NAME" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="DEVICE_CATEGORY" Type="Int32" />
+    <Property Name="DESCRIPTION" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="GROUP_SENSOR_ID" Type="Int32" />
+  </EntityType>
+  <EntityType Name="DEVICE_CATEGORY">
+    <Key>
+      <PropertyRef Name="CATEGORY_ID" />
+    </Key>
+    <Property Name="CATEGORY_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CATEGORY_NAME" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="NOTE" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="DEVICE_CONTROL_DETAIL">
+    <Key>
+      <PropertyRef Name="DEVICE_ID" />
+    </Key>
+    <Property Name="DEVICE_ID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="VALUE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="TIME_UPDATE" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="DEVICE_SENSOR_DETAIL">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DEVICE_ID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="VALUE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="TIME_UPDATE" Type="DateTime" Precision="3" />
+    <Property Name="IS_MEDIUM" Type="Int32" />
+  </EntityType>
+  <EntityType Name="GARDEN">
+    <Key>
+      <PropertyRef Name="GARDEN_ID" />
+    </Key>
+    <Property Name="GARDEN_ID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="GARDEN_NAME" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="USER_ID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ACTIVE" Type="Int32" />
+    <Property Name="TOKEN_KEY" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="IMAGE" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="GROUP_SENSOR">
+    <Key>
+      <PropertyRef Name="GROUP_SENSOR_ID" />
+    </Key>
+    <Property Name="GROUP_SENSOR_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="GROUP_SENSOR_NAME" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="UNIT" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="M_CODE">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="CODE" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="STATUS" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="PERMISSION">
+    <Key>
+      <PropertyRef Name="PERMISSION_ID" />
+    </Key>
+    <Property Name="PERMISSION_ID" Type="Int32" Nullable="false" />
+    <Property Name="PERMISSION_NAME" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="NOTE" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="UNIT">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UNIT1" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="USER">
+    <Key>
+      <PropertyRef Name="USER_ID" />
+    </Key>
+    <Property Name="USER_ID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="FULL_NAME" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="EMAIL" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="PHONE" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="PASSWORD" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="ADDRESS" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="PERMISSION_ID" Type="Int32" />
+    <Property Name="NOTE" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+  </EntityType>
+</Schema>

@@ -1,0 +1,217 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ioTModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="D_DEVICE_SENSOR_DETAIL">
+    <Key>
+      <PropertyRef Name="DEVICE_SENSOR_DETAIL_ID" />
+    </Key>
+    <Property Name="DEVICE_SENSOR_DETAIL_ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DEVICE_ID" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="VALUE" Type="varchar" MaxLength="10" />
+    <Property Name="TIME_UPDATE" Type="datetime" />
+  </EntityType>
+  <EntityType Name="D_DEVICE_SENSOR_HT">
+    <Key>
+      <PropertyRef Name="DEVICE_SENSOR_HUMIDITY_ID" />
+    </Key>
+    <Property Name="DEVICE_SENSOR_HUMIDITY_ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DEVICE_ID" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="VALUE" Type="varchar" MaxLength="10" />
+    <Property Name="TIME_UPDATE" Type="datetime" />
+  </EntityType>
+  <EntityType Name="D_DEVICE_SENSOR_LIGHT">
+    <Key>
+      <PropertyRef Name="DEVICE_SENSOR_LIGHT_" />
+    </Key>
+    <Property Name="DEVICE_SENSOR_LIGHT_" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DEVICE_ID" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="VALUE" Type="varchar" MaxLength="10" />
+    <Property Name="TIME_UPDATE" Type="datetime" />
+  </EntityType>
+  <EntityType Name="D_DEVICE_SENSOR_MOISTURE">
+    <Key>
+      <PropertyRef Name="DEVICE_SENSOR_MOISTURE_ID" />
+    </Key>
+    <Property Name="DEVICE_SENSOR_MOISTURE_ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DEVICE_ID" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="VALUE" Type="varchar" MaxLength="10" />
+    <Property Name="TIME_UPDATE" Type="datetime" />
+  </EntityType>
+  <EntityType Name="D_GROUP_PERMISSION">
+    <Key>
+      <PropertyRef Name="PERMISSION_ID" />
+    </Key>
+    <Property Name="PERMISSION_ID" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="USER_ID" Type="varchar" MaxLength="20" />
+    <Property Name="READ" Type="bit" />
+    <Property Name="WRITE" Type="bit" />
+    <Property Name="DELETE" Type="bit" />
+    <Property Name="SETTING" Type="bit" />
+  </EntityType>
+  <EntityType Name="D_PACKED">
+    <Key>
+      <PropertyRef Name="PACKED_ID" />
+    </Key>
+    <Property Name="PACKED_ID" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="PACKED_NAME_VN" Type="nvarchar" MaxLength="100" />
+    <Property Name="PACKED_NAME_EN" Type="nvarchar" MaxLength="100" />
+    <Property Name="PRICE" Type="decimal" Precision="18" Scale="0" />
+  </EntityType>
+  <EntityType Name="D_SETTING_CONTROL">
+    <Key>
+      <PropertyRef Name="SETTING_CONTROL_ID" />
+    </Key>
+    <Property Name="SETTING_CONTROL_ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DEVICE_ID" Type="varchar" MaxLength="50" />
+    <Property Name="TIME_ON" Type="time" Precision="7" />
+    <Property Name="TIME_OFF" Type="time" Precision="7" />
+  </EntityType>
+  <EntityType Name="D_SETTING_SENSOR">
+    <Key>
+      <PropertyRef Name="SETTING_SENSOR_ID" />
+    </Key>
+    <Property Name="SETTING_SENSOR_ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DEVICE_SENSOR_ID" Type="nchar" MaxLength="10" />
+    <Property Name="LIMIT_LOW" Type="varchar" MaxLength="10" />
+    <Property Name="LIMIT_HIGH" Type="varchar" MaxLength="10" />
+    <Property Name="LIST_CONTROL_ID_OPEN" Type="varchar" MaxLength="500" />
+  </EntityType>
+  <EntityType Name="S_ARDUINO_TYPE">
+    <Key>
+      <PropertyRef Name="ARDUINO_TYPE_ID" />
+    </Key>
+    <Property Name="ARDUINO_TYPE_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ARDUINO_TYPE_NAME" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="NOTE" Type="nvarchar" MaxLength="500" />
+  </EntityType>
+  <EntityType Name="S_ARDUINO_TYPE_DETAIL">
+    <Key>
+      <PropertyRef Name="ARDUINO_TYPE_DETAIL_ID" />
+    </Key>
+    <Property Name="ARDUINO_TYPE_DETAIL_ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ARDUINO_TYPE_ID" Type="int" Nullable="false" />
+    <Property Name="PIN" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="CATEGORY_ID" Type="int" />
+  </EntityType>
+  <EntityType Name="S_CODE">
+    <Key>
+      <PropertyRef Name="CODE_ID" />
+    </Key>
+    <Property Name="CODE_ID" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="CODE_VALUE" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="STATUS" Type="bit" />
+  </EntityType>
+  <EntityType Name="S_DEVICE">
+    <Key>
+      <PropertyRef Name="DEVICE_ID" />
+      <PropertyRef Name="TOKEN_KEY" />
+    </Key>
+    <Property Name="DEVICE_ID" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="TOKEN_KEY" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="DEVICE_NAME_VN" Type="nvarchar" MaxLength="500" />
+    <Property Name="DEVICE_NAME_EN" Type="nvarchar" MaxLength="500" />
+    <Property Name="DEVICE_CATEGORY" Type="int" />
+    <Property Name="GROUP_SENSOR_ID" Type="int" />
+    <Property Name="STATUS" Type="int" />
+    <Property Name="UNIT" Type="int" />
+    <Property Name="PIN_ID" Type="varchar" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="S_DEVICE_CATEGORY">
+    <Key>
+      <PropertyRef Name="CATEGORY_ID" />
+    </Key>
+    <Property Name="CATEGORY_ID" Type="int" Nullable="false" />
+    <Property Name="CATEGORY_NAME" Type="nvarchar" MaxLength="100" />
+    <Property Name="NOTE" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="S_DEVICE_CONTROL_DETAIL">
+    <Key>
+      <PropertyRef Name="DEVICE_ID" />
+    </Key>
+    <Property Name="DEVICE_ID" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="VALUE" Type="varchar" MaxLength="10" />
+    <Property Name="TIME_UPDATE" Type="datetime" />
+  </EntityType>
+  <EntityType Name="S_GARDEN">
+    <Key>
+      <PropertyRef Name="GARDEN_ID" />
+    </Key>
+    <Property Name="GARDEN_ID" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="TOKEN_KEY" Type="varchar" MaxLength="50" />
+    <Property Name="GARDEN_NAME_VN" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="GARDEN_NAME_EN" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="USER_ID" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="ACTIVE" Type="int" Nullable="false" />
+    <Property Name="IMAGE" Type="varchar(max)" />
+    <Property Name="UNO_TYPE" Type="int" Nullable="false" />
+    <Property Name="STATUS" Type="int" Nullable="false" />
+    <Property Name="START" Type="datetime" Nullable="false" />
+    <Property Name="END" Type="datetime" />
+    <Property Name="LATITUDE" Type="decimal" Precision="18" Scale="10" />
+    <Property Name="LONGITUDE" Type="decimal" Precision="18" Scale="10" />
+    <Property Name="ADDRESS" Type="nvarchar" MaxLength="500" />
+    <Property Name="ACREAGE" Type="int" />
+    <Property Name="DESCRIPTION" Type="nvarchar" MaxLength="1000" />
+    <Property Name="IS_SHEDULE" Type="bit" />
+    <Property Name="IS_AUTO" Type="bit" />
+  </EntityType>
+  <EntityType Name="S_GROUP_SENSOR">
+    <Key>
+      <PropertyRef Name="GROUP_SENSOR_ID" />
+    </Key>
+    <Property Name="GROUP_SENSOR_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="GROUP_SENSOR_NAME" Type="nvarchar" MaxLength="100" />
+    <Property Name="NOTE" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="S_UNIT">
+    <Key>
+      <PropertyRef Name="UNIT_ID" />
+    </Key>
+    <Property Name="UNIT_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UNIT_NAME" Type="varchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="S_USER">
+    <Key>
+      <PropertyRef Name="USER_ID" />
+    </Key>
+    <Property Name="USER_ID" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="FULL_NAME" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="EMAIL" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="PHONE" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="PASSWORD" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="ADDRESS" Type="nvarchar" MaxLength="500" />
+    <Property Name="PACKED_ID" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="USER_TYPE" Type="int" Nullable="false" />
+    <Property Name="NOTE" Type="nvarchar" MaxLength="500" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityContainer Name="ioTModelStoreContainer">
+    <EntitySet Name="D_DEVICE_SENSOR_DETAIL" EntityType="Self.D_DEVICE_SENSOR_DETAIL" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="D_DEVICE_SENSOR_HT" EntityType="Self.D_DEVICE_SENSOR_HT" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="D_DEVICE_SENSOR_LIGHT" EntityType="Self.D_DEVICE_SENSOR_LIGHT" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="D_DEVICE_SENSOR_MOISTURE" EntityType="Self.D_DEVICE_SENSOR_MOISTURE" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="D_GROUP_PERMISSION" EntityType="Self.D_GROUP_PERMISSION" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="D_PACKED" EntityType="Self.D_PACKED" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="D_SETTING_CONTROL" EntityType="Self.D_SETTING_CONTROL" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="D_SETTING_SENSOR" EntityType="Self.D_SETTING_SENSOR" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="S_ARDUINO_TYPE" EntityType="Self.S_ARDUINO_TYPE" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="S_ARDUINO_TYPE_DETAIL" EntityType="Self.S_ARDUINO_TYPE_DETAIL" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="S_CODE" EntityType="Self.S_CODE" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="S_DEVICE" EntityType="Self.S_DEVICE" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="S_DEVICE_CATEGORY" EntityType="Self.S_DEVICE_CATEGORY" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="S_DEVICE_CONTROL_DETAIL" EntityType="Self.S_DEVICE_CONTROL_DETAIL" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="S_GARDEN" EntityType="Self.S_GARDEN" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="S_GROUP_SENSOR" EntityType="Self.S_GROUP_SENSOR" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="S_UNIT" EntityType="Self.S_UNIT" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="S_USER" EntityType="Self.S_USER" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

@@ -21,7 +21,7 @@ namespace ArduinoService.Controllers
         // GET: api/apiUnoControl/5
         public string Get(string id)
         {
-            return _homemodel.GetListDataConttrolUno(id);
+            return _homemodel.GetListDataControlUno(id);
         }
 
         // POST: api/apiUnoControl

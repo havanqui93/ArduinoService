@@ -13,7 +13,8 @@ namespace ArduinoService.Models
     public class CommonModel
     {
         static string root = AppDomain.CurrentDomain.BaseDirectory + @"Data/Database.xml";
-        private ioTSystemEntities _dbContext = new ioTSystemEntities();
+        private ioTEntities _dbContext = new ioTEntities();
+        readonly log4net.ILog logger = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
         public string MD5Hash(string text)
         {
@@ -61,7 +62,7 @@ namespace ArduinoService.Models
         {
             string result = String.Empty;
 
-            while(CheckTokenKey(result))
+            while (CheckTokenKey(result))
             {
                 char[] buffer = new char[size];
 
@@ -82,7 +83,7 @@ namespace ArduinoService.Models
         /// <returns>true : co ton tai, false : ko ton tai</returns>
         private bool CheckTokenKey(string key)
         {
-            var record = _dbContext.GARDENs.FirstOrDefault(x => x.TOKEN_KEY == key);
+            var record = _dbContext.S_GARDEN.FirstOrDefault(x => x.TOKEN_KEY == key);
             if (record != null || key == "")
                 return true;
             return false;
@@ -98,7 +99,7 @@ namespace ArduinoService.Models
             string result = string.Empty;
             try
             {
-                result = _dbContext.USERS.FirstOrDefault(x => x.EMAIL == email).USER_ID;
+                result = _dbContext.S_USER.FirstOrDefault(x => x.EMAIL == email).USER_ID;
             }
             catch (Exception ex)
             {
@@ -107,6 +108,24 @@ namespace ArduinoService.Models
             return result;
         }
 
+        #region Service Quartz
+
+        public void UpdateRecordSensor()
+        {
+            try
+            {
+                string sqlupdate = "INSERT";
+                _dbContext.Database.ExecuteSqlCommand(sqlupdate);
+            }
+            catch (Exception ex)
+            {
+                logger.Error("Update record 12h - " + ex);
+            }
+        }
+
+        //public void 
+
+        #endregion
 
 
     }

@@ -1,0 +1,35 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<!-- Bootstrap -->
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<!-- Font Awesome -->
+<link href="~/Content/awesome/css/font-awesome.min.css" rel="stylesheet" />
+<script src="~/Scripts/jquery.min.js"></script>
+<script src="~/Scripts/bootstrap.js"></script>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>CheckDatabase</title>
+</head>
+<body>
+    <div>
+        <button class="btn btn-primary btn-checkdatabase">Check Connect Database</button>
+    </div>
+</body>
+</html>
+
+<script>
+    $('.btn-checkdatabase').on('click', function () {
+        $.ajax({
+            method: "POST",
+            url: "/Database/CheckConnectDatabase",
+            dataType: "JSON",
+            async: false,
+        }).success(function (msg) {
+            alert(msg);
+        });
+    });
+
+</script>
