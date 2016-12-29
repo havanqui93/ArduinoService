@@ -108,7 +108,6 @@ namespace ArduinoService.Controllers
             _rowdata.LATITUDE = lat;
             _rowdata.LONGITUDE = lon;
             _rowdata.ADDRESS = address;
-            _rowdata.START = DateTime.Now;
             _rowdata.DESCRIPTION = description;
             _rowdata.TOKEN_KEY = tokenkey;
 

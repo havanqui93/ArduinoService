@@ -60,8 +60,9 @@ namespace ArduinoService.Controllers
         }
 
         // DELETE: api/apiGarden/5
-        public void Delete(int id)
+        public bool Delete(string id)
         {
+            return _homemodel.DeleteGarden(id);
         }
     }
 }

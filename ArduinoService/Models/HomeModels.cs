@@ -33,6 +33,7 @@ namespace ArduinoService.Models
                     IMAGE,ACTIVE,UNO_TYPE,[END],
                     TOKEN_KEY = CASE WHEN TOKEN_KEY IS NULL OR RTRIM(LTRIM(TOKEN_KEY)) = '' THEN GARDEN_ID ELSE TOKEN_KEY END 
                     FROM S_GARDEN WHERE USER_ID = '" + userId + @"'
+                    ORDER BY START ASC
                     ";
                 result = _dbContext.Database.SqlQuery<GardenRawData>(sql).ToList();
             }
@@ -54,7 +55,7 @@ namespace ArduinoService.Models
                     _data.GARDEN_ID = commonModel.GetAutoId("GARDEN_ID", "S_GARDEN");
                     _data.USER_ID = data.USER_ID;
                     _data.ACTIVE = 0; // 0 : chua kich hoat , 1 : da kich hoat.
-                    _data.START = data.START;
+                    _data.START = DateTime.Now;
                     _data.IS_SHEDULE = false;
                     _data.IS_AUTO = false;
                     _data.UNO_TYPE = data.UNO_TYPE;
@@ -1173,7 +1174,7 @@ namespace ArduinoService.Models
             return result;
         }
 
-        
+
         #endregion
 
     }
