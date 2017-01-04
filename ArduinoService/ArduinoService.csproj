@@ -245,6 +245,7 @@
     <Compile Include="Controllers\apiControlController.cs" />
     <Compile Include="Controllers\apiGardenController.cs" />
     <Compile Include="Controllers\apiLoginController.cs" />
+    <Compile Include="Controllers\apiPinController.cs" />
     <Compile Include="Controllers\apiRegisterController.cs" />
     <Compile Include="Controllers\apiTrackingController.cs" />
     <Compile Include="Controllers\apiUnoControlController.cs" />

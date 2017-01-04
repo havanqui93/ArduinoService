@@ -130,6 +130,7 @@
     <Property Name="DEVICE_ID" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="VALUE" Type="varchar" MaxLength="10" />
     <Property Name="TIME_UPDATE" Type="datetime" />
+    <Property Name="PRIORITY" Type="bit" />
   </EntityType>
   <EntityType Name="S_GARDEN">
     <Key>

@@ -65,7 +65,7 @@ namespace ArduinoService.Controllers
                 else
                 {
                     S_CODE rowdata = new S_CODE();
-                    string sql = "SELECT CAST(MAX(CAST(ID AS INT) + 1) AS VARCHAR(20)) FROM S_CODE";
+                    string sql = "SELECT CAST(MAX(CAST(CODE_ID AS INT) + 1) AS VARCHAR(20)) FROM S_CODE";
                     string id = _dbContext.Database.SqlQuery<string>(sql).FirstOrDefault();
 
                     rowdata.CODE_ID = String.IsNullOrEmpty(id) ? "1" : id;
@@ -88,7 +88,7 @@ namespace ArduinoService.Controllers
             List<CodeDataModel> _lst = new List<CodeDataModel>();
             try
             {
-                string sql = "SELECT ID,CODE,CAST([STATUS] AS INT) AS [STATUS] FROM S_CODE";
+                string sql = "SELECT CODE_ID ID,CODE_VALUE CODE,CAST([STATUS] AS INT) AS [STATUS] FROM S_CODE";
                 _lst = _dbContext.Database.SqlQuery<CodeDataModel>(sql).ToList();
             }
             catch (Exception ex)

@@ -327,21 +327,27 @@
         }
     }
     function getLatitudeLongitude(callback, address) {
-        // If adress is not supplied, use default value 'Ferrol, Galicia, Spain'
-        address = address || 'Hồ Chí Minh';
-        // Initialize the Geocoder
-        geocoder = new google.maps.Geocoder();
-        if (geocoder) {
-            geocoder.geocode({
-                'address': address
-            }, function (results, status) {
-                if (status == google.maps.GeocoderStatus.OK) {
-                    callback(results[0]);
-                }
-                else if (status == google.maps.GeocoderStatus.ZERO_RESULTS) {
-                    callback(results[0]);
-                }
-            });
+        try {
+            // If adress is not supplied, use default value 'Ferrol, Galicia, Spain'
+            address = address || 'Hồ Chí Minh';
+            // Initialize the Geocoder
+            geocoder = new google.maps.Geocoder();
+            if (geocoder) {
+                geocoder.geocode({
+                    'address': address
+                }, function (results, status) {
+                    if (status == google.maps.GeocoderStatus.OK) {
+                        callback(results[0]);
+                    }
+                    else if (status == google.maps.GeocoderStatus.ZERO_RESULTS) {
+                        callback(results[0]);
+                    }
+                });
+            }
+        } catch (e) {
+            $('#latite').val(-34.397);
+            $('#longitude').val(150.644);
+            //$('#address-garden').val('Hồ Chí');
         }
     }
 

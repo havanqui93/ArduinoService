@@ -5,6 +5,7 @@
     ViewBag.Title = "Infomation garden";
     Layout = "~/Views/Shared/_MainLayout.cshtml";
 }
+<link href="~/Content/bootstrap-datetimepicker.css" rel="stylesheet" />
 
 <div class="col-sm-12">
     <section class="content-header">
@@ -42,7 +43,7 @@
                             @{
                                 if (ViewBag.modelgarden.END_GARDEN == ViewBag.modelgarden.START_GARDEN)
                                 {
-                                    <text>Chưa biết</text>
+                                    <text>Chưa xác định</text>
                                 }
                                 else
                                 {
@@ -85,9 +86,9 @@
             <table class="table">
                 <tbody>
                     <tr>
-                        <td><input class="form-control" type="text" /></td>
+                        <td><input class="form-control timeshedule" type="text" /></td>
                         <td>_</td>
-                        <td><input class="form-control" type="text" /></td>
+                        <td><input class="form-control timeshedule" type="text" /></td>
                     </tr>
                 </tbody>
             </table>
@@ -96,5 +97,7 @@
 </div>
 
 @section scripts {
+
+    <script src="~/Scripts/bootstrap-datetimepicker.js"></script>
     <script src="~/Scripts/View/SettingGarden.js"></script>
 }

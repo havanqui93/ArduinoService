@@ -35,8 +35,8 @@ namespace ArduinoService.Controllers
             try
             {
                 // add new control
-                //if (_homemodel.AddNewControl(model.DEVICE_ID,model.DEVICE_NAME, model.GARDEN_ID, 1,model.UNIT_ID,model.PIN_ID))
-                //    result = true;
+                if (_homemodel.AddOrEditControl(model.DEVICE_NAME, model.TOKEN_KEY, model.DEVICE_ID, model.PIN_ID))
+                    result = true;
             }
             catch (Exception ex)
             {

@@ -9,8 +9,10 @@ namespace ArduinoService.DataModels
     {
     }
 
-    public class ArduinoTypeRowData {
+    public class ArduinoTypeRowData
+    {
         public int ARDUINO_TYPE_ID { get; set; }
         public string ARDUINO_TYPE_NAME { get; set; }
     }
+
 }

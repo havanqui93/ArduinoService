@@ -12,21 +12,28 @@
             url: "/Home/UpdateShedule",
             data: { 'tokenkey': GetTokenKey() }
         }).success(function (data) {
-            if (data != -1) {
-                if (data == '1') {
-                    $('#btnshedule').val('Bật');
-                    $('#settingshedule').hide();
-                    $('#btnshedule').attr('isshedule', 0);
-                }
-                else {
-                    $('#settingshedule').show();
-                    $('#btnshedule').val('Tắt');
-                    $('#btnshedule').attr('isshedule', 1);
-                }
+            if (data == 2) {
+                toastr.error('Bạn chưa đăng ký gói đặt lịch. Vui lòng nâng cấp để được sử dụng gói đặt lịch.');
+                $('#btnshedule').prop('disabled', false);
+                return false;
             }
-            else
-                toastr.error('Error system. Please contact administrator');
-            $('#btnshedule').prop('disabled', false);
+            else {
+                if (data != -1) {
+                    if (data == '1') {
+                        $('#btnshedule').val('Bật');
+                        $('#settingshedule').hide();
+                        $('#btnshedule').attr('isshedule', 0);
+                    }
+                    else {
+                        $('#settingshedule').show();
+                        $('#btnshedule').val('Tắt');
+                        $('#btnshedule').attr('isshedule', 1);
+                    }
+                }
+                else
+                    toastr.error('Error system. Please contact administrator');
+                $('#btnshedule').prop('disabled', false);
+            }
         });
 
     });
@@ -57,7 +64,12 @@
         });
     });
 
-
+    RegisterTimepicker();
+    function RegisterTimepicker() {
+        $('.timeshedule').datetimepicker({
+            format: "H:m"
+        });
+    }
 
 
 });

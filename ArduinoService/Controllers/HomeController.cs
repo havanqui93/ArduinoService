@@ -27,9 +27,15 @@ namespace ArduinoService.Controllers
 
         public ActionResult MainMenu()
         {
-            System.Configuration.Configuration conf = System.Web.Configuration.WebConfigurationManager.OpenWebConfiguration(System.Web.Hosting.HostingEnvironment.ApplicationVirtualPath);
-            System.Web.Configuration.SessionStateSection section = (System.Web.Configuration.SessionStateSection)conf.GetSection("system.web/sessionState");
-            int timeout = (int)section.Timeout.TotalMinutes;
+            if (Request.Cookies["UserSettings"] != null)
+            {
+                if (Request.Cookies["UserSettings"][ConstantClass.SESSION_USERNAME] != null)
+                {
+                    Session[ConstantClass.SESSION_USERNAME] = Request.Cookies["UserSettings"][ConstantClass.SESSION_USERNAME];
+                    Session[ConstantClass.SESSION_USERID] = Request.Cookies["UserSettings"][ConstantClass.SESSION_USERID];
+                    Session[ConstantClass.USER_TYPE] = Request.Cookies["UserSettings"][ConstantClass.USER_TYPE];
+                }
+            }
 
             // check permission
             if (Session[ConstantClass.SESSION_USERNAME] == null)
@@ -40,11 +46,23 @@ namespace ArduinoService.Controllers
 
         public PartialViewResult Nav()
         {
+            if (Request.Cookies["UserSettings"] != null)
+            {
+                if (Request.Cookies["UserSettings"][ConstantClass.SESSION_USERNAME] != null)
+                {
+                    Session[ConstantClass.SESSION_USERNAME] = Request.Cookies["UserSettings"][ConstantClass.SESSION_USERNAME];
+                    Session[ConstantClass.SESSION_USERID] = Request.Cookies["UserSettings"][ConstantClass.SESSION_USERID];
+                    Session[ConstantClass.USER_TYPE] = Request.Cookies["UserSettings"][ConstantClass.USER_TYPE];
+                    Session[ConstantClass.SESSION_FULLNAME] = Request.Cookies["UserSettings"][ConstantClass.SESSION_FULLNAME];
+                    Session[ConstantClass.SESSION_ROLE] = Request.Cookies["UserSettings"][ConstantClass.SESSION_ROLE];
+                }
+            }
             return PartialView();
         }
 
         public PartialViewResult MenuLeft()
         {
+
             // check permission
             if (Session[ConstantClass.SESSION_USERNAME] == null)
                 return PartialView();
@@ -66,6 +84,14 @@ namespace ArduinoService.Controllers
         #region Screen Garden
         public ActionResult Garden(string id)
         {
+            if (Request.Cookies["UserSettings"] != null)
+            {
+                if (Request.Cookies["UserSettings"][ConstantClass.SESSION_USERNAME] != null)
+                {
+                    Session[ConstantClass.SESSION_USERNAME] = Request.Cookies["UserSettings"][ConstantClass.SESSION_USERNAME];
+                    Session[ConstantClass.SESSION_USERID] = Request.Cookies["UserSettings"][ConstantClass.SESSION_USERID];
+                }
+            }
             // check permission
             if (Session[ConstantClass.SESSION_USERNAME] == null)
                 return Redirect("/Account/Login");
@@ -165,6 +191,14 @@ namespace ArduinoService.Controllers
         #region Screen Control
         public ActionResult Control(string id)
         {
+            if (Request.Cookies["UserSettings"] != null)
+            {
+                if (Request.Cookies["UserSettings"][ConstantClass.SESSION_USERNAME] != null)
+                {
+                    Session[ConstantClass.SESSION_USERNAME] = Request.Cookies["UserSettings"][ConstantClass.SESSION_USERNAME];
+                    Session[ConstantClass.SESSION_USERID] = Request.Cookies["UserSettings"][ConstantClass.SESSION_USERID];
+                }
+            }
             // check permission
             if (Session[ConstantClass.SESSION_USERNAME] == null)
                 return Redirect("/Account/Login");
@@ -194,6 +228,14 @@ namespace ArduinoService.Controllers
         /// <returns></returns>
         public ActionResult Tracking(string id)
         {
+            if (Request.Cookies["UserSettings"] != null)
+            {
+                if (Request.Cookies["UserSettings"][ConstantClass.SESSION_USERNAME] != null)
+                {
+                    Session[ConstantClass.SESSION_USERNAME] = Request.Cookies["UserSettings"][ConstantClass.SESSION_USERNAME];
+                    Session[ConstantClass.SESSION_USERID] = Request.Cookies["UserSettings"][ConstantClass.SESSION_USERID];
+                }
+            }
             // check permission
             if (Session[ConstantClass.SESSION_USERNAME] == null)
                 return Redirect("/Account/Login");
@@ -235,6 +277,14 @@ namespace ArduinoService.Controllers
         /// <returns>true : thanh cong, false : that bai</returns>
         public JsonResult AddNewControlTracking(string device_id, string namecontrol, string namecontrol2, string tokenkey, int groupsensor, int unit, string pinid, int unit2)
         {
+            if (Request.Cookies["UserSettings"] != null)
+            {
+                if (Request.Cookies["UserSettings"][ConstantClass.SESSION_USERNAME] != null)
+                {
+                    Session[ConstantClass.SESSION_USERNAME] = Request.Cookies["UserSettings"][ConstantClass.SESSION_USERNAME];
+                    Session[ConstantClass.SESSION_USERID] = Request.Cookies["UserSettings"][ConstantClass.SESSION_USERID];
+                }
+            }
             // check permission
             if (Session[ConstantClass.SESSION_USERNAME] == null)
                 return Json(false, JsonRequestBehavior.AllowGet);
@@ -284,6 +334,14 @@ namespace ArduinoService.Controllers
         #region Screen Chart
         public ActionResult Chart(string tokenkey)
         {
+            if (Request.Cookies["UserSettings"] != null)
+            {
+                if (Request.Cookies["UserSettings"][ConstantClass.SESSION_USERNAME] != null)
+                {
+                    Session[ConstantClass.SESSION_USERNAME] = Request.Cookies["UserSettings"][ConstantClass.SESSION_USERNAME];
+                    Session[ConstantClass.SESSION_USERID] = Request.Cookies["UserSettings"][ConstantClass.SESSION_USERID];
+                }
+            }
             // check permission
             if (Session[ConstantClass.SESSION_USERNAME] == null)
                 return Redirect("/Account/Login");
@@ -331,6 +389,14 @@ namespace ArduinoService.Controllers
         #region Screen Setting Garden
         public ActionResult SettingGarden(string id)
         {
+            if (Request.Cookies["UserSettings"] != null)
+            {
+                if (Request.Cookies["UserSettings"][ConstantClass.SESSION_USERNAME] != null)
+                {
+                    Session[ConstantClass.SESSION_USERNAME] = Request.Cookies["UserSettings"][ConstantClass.SESSION_USERNAME];
+                    Session[ConstantClass.SESSION_USERID] = Request.Cookies["UserSettings"][ConstantClass.SESSION_USERID];
+                }
+            }
             // check permission
             if (Session[ConstantClass.SESSION_USERNAME] == null)
                 return Redirect("/Account/Login");

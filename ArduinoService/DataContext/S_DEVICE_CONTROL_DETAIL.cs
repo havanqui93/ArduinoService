@@ -17,5 +17,6 @@ namespace ArduinoService.DataContext
         public string DEVICE_ID { get; set; }
         public string VALUE { get; set; }
         public Nullable<System.DateTime> TIME_UPDATE { get; set; }
+        public Nullable<bool> PRIORITY { get; set; }
     }
 }

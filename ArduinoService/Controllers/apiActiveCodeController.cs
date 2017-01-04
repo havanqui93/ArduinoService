@@ -14,9 +14,9 @@ namespace ArduinoService.Controllers
         HomeModels _homemodel = new HomeModels();
 
         // GET: api/apiActiveCode
-        public IEnumerable<string> Get()
+        public string Get()
         {
-            return new string[] { "value1", "value2" };
+            return "true";
         }
 
         // GET: api/apiActiveCode/5
@@ -26,18 +26,18 @@ namespace ArduinoService.Controllers
         }
 
         // POST: api/apiActiveCode
-        public void Post([FromBody]string value)
+        public bool Post([FromBody]string value)
         {
-
+            return true;
         }
 
         // PUT: api/apiActiveCode/5
-        public bool Put(string id, GardenRawData rowdata)
+        public bool Put(string id, string tokenkey)
         {
-            bool result = false;
+            bool result = true;
             try
             {
-                result = _homemodel.ActiveGarden(id, rowdata);
+                result = _homemodel.ActiveGarden(id, tokenkey);
             }
             catch (Exception ex)
             {

@@ -21,16 +21,15 @@ namespace ArduinoService.DataModels
         public string DEVICE_NAME { get; set; }
         public string VALUE { get; set; }
         public string PIN_ID { get; set; }
+        public bool IS_FULL { get; set; }
     }
 
     // Class add new control for mobile
     public class ControlAddRawData
     {
-        public string GARDEN_ID { get; set; }
+        public string TOKEN_KEY { get; set; }
         public string DEVICE_NAME { get; set; }
-        public int CATEGORY_ID { get; set; }
         public string DEVICE_ID { get; set; }
-        public int UNIT_ID { get; set; }
         public string PIN_ID { get; set; }
     }
 
@@ -38,8 +37,7 @@ namespace ArduinoService.DataModels
     {
         public string DEVICE_ID { get; set; }
         public string DEVICE_NAME { get; set; }
-        public string UNIT { get; set; }
-        public List<ListValueTracking> LIST_TRACKING { get; set; }
+        public string PIN_ID { get; set; }
     }
 
     public class ListValueTracking

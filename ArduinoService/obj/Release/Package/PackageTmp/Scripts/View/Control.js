@@ -173,8 +173,9 @@
     }
 
     $('.delete-control').on('click', function () {
-        ShowModalConfirm("", "Bạn có chắc chắn muốn xóa thiết bị này ?",
-            function (id) {
+        var id = $(this).attr('idcontrol');
+        ShowModalConfirm("Xóa thiết bị", "Bạn có chắc chắn muốn xóa thiết bị này ?",
+            function () {
                 $.ajax({
                     method: "POST",
                     url: "/Home/DeleteDevice",
@@ -185,7 +186,7 @@
                     else
                         toastr.error("Delete error !");
                 });
-            }, $(this).attr('idcontrol'));
+            });
     });
 
     function GetTokenKey() {

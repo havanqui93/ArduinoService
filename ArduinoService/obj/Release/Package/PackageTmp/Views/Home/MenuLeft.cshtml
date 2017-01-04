@@ -28,7 +28,7 @@
 
                     @if (Session[ConstantClass.SESSION_USERNAME] != null)
                     {
-                        if (Session[ConstantClass.SESSION_ROLE].ToString() == "1")
+                        if (Session[ConstantClass.SESSION_ROLE] != null && Session[ConstantClass.SESSION_ROLE].ToString() == "1")
                         {
                             <li>
                                 <a><i class="fa fa-wrench"></i> Admin Tools <span class="fa fa-chevron-down"></span></a>

@@ -15,7 +15,7 @@
     </section>
 </div>
 
-@if (Session[ConstantClass.USER_TYPE].ToString() == "1")
+@if (Session[ConstantClass.USER_TYPE] != null && Session[ConstantClass.USER_TYPE].ToString() == "1")
 {
     <div class="col-sm-12">
         <div id="listgarden">

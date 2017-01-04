@@ -8,6 +8,7 @@ function GetTokenKey() {
     return currentLocation.split('/')[3];
 }
 
+
 doOnLoad();
 
 $('#typechart').on('change', function () {

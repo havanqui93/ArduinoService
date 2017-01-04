@@ -39,12 +39,12 @@
         var description = $('#note-garden').val();
 
         //get latitude and longitude by address
-        //var pos = GetPositionByAddress(address);
+        $.ajaxSetup({ async: false });
+        GetPositionByAddress(address);
+        $.ajaxSetup({ async: true });
 
-        var lat = 0;
-        var lon = 0;
-        //var lat = $('#latite').val();
-        //var lon = $('#longitude').val();
+        var lat = $('#latite').val();
+        var lon = $('#longitude').val();
         $('#addtext-garden').focus();
 
         // validate
@@ -52,7 +52,7 @@
             'TOKEN_KEY': tokenkey,
             'ACREAGE': acreage,
             'ADDRESS': address,
-            'GARDEN_NAME' : gardenname
+            'GARDEN_NAME': gardenname
         };
 
         var resValidate = ValidateGarden(rowData);
@@ -60,6 +60,7 @@
             toastr.warning(resValidate);
             return false;
         }
+        ResetModal();
         AddGarden(gardenname, img, unotype, acreage, address, lat, lon, description, tokenkey);
     });
 
@@ -137,6 +138,14 @@
         });
     }
 
+    function ResetModal() {
+        $('#addtext-garden').val('');
+        $('#acreage-garden').val('1');
+        $('#address-garden').val('');
+        $('#note-garden').val('');
+        $('#preview-add-garden').attr('src', '');
+    }
+
     function LoadInfoGarden(tokenkey) {
         $.ajax({
             method: "POST",
@@ -151,6 +160,8 @@
             $('#address-garden').val(msg.ADDRESS);
             $('#note-garden').val(msg.DESCRIPTION);
             $('#garden-id').val(msg.TOKEN_KEY);
+            $('#latite').val(msg.LATITUDE);
+            $('#longitude').val(msg.LONGITUDE);
         });
     }
 
@@ -230,38 +241,116 @@
     }
 
     $('#ModalGarden').on('show.bs.modal', function (e) {
+        ResetModal();
         GetListUnoType('');
     });
 
     // get current location
     $('#getLocation').on('click', function () {
-
         // token key : AIzaSyDYwEnWeO39XsxmVB3hydF4r6hlgNQ6wqM
         // set lat,lon
-
+        GetMyPosition();
+        // Set address
+        $.ajaxSetup({ async: false });
+        GetAddress();
+        $.ajaxSetup({ async: true });
     });
 
-    // Get latitude/longitude in google map API by address.
-    var GetPositionByAddress = function (address) {
-        var latitude, longitude;
-        initMap();
+    function GetAddress() {
+        var lat = $('#latite').val();
+        var lng = $('#longitude').val();
+        var latlng = new google.maps.LatLng(lat, lng);
         var geocoder = new google.maps.Geocoder();
-        geocoder.geocode({ 'address': address }, function (results, status) {
+        geocoder.geocode({ 'latLng': latlng }, function (results, status) {
             if (status == google.maps.GeocoderStatus.OK) {
-                var latitude = results[0].geometry.location.lat();
-                var longitude = results[0].geometry.location.lng();
+                if (results[1]) {
+                    // Set location to textbox address
+                    //alert("Location: " + results[1].formatted_address);
+                    $('#address-garden').val(results[1].formatted_address);
+                }
             }
         });
+    }
 
-        return [latitude, longitude];
+
+    // Get latitude/longitude my position currrent.
+    function GetMyPosition() {
+        var map = new google.maps.Map(document.getElementById('map'), {
+            center: { lat: -34.397, lng: 150.644 },
+            zoom: 6
+        });
+        var infoWindow = new google.maps.InfoWindow({ map: map });
+
+        // Try HTML5 geolocation.
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(function (position) {
+                var pos = {
+                    lat: position.coords.latitude,
+                    lng: position.coords.longitude
+                };
+
+                //infoWindow.setPosition(pos);
+                //infoWindow.setContent('Location found.');
+                //map.setCenter(pos);
+                $('#latite').val(pos.lat);
+                $('#longitude').val(pos.lng);
+            }, function () {
+                handleLocationError(true, infoWindow, map.getCenter());
+            });
+        } else {
+            // Browser doesn't support Geolocation
+            handleLocationError(false, infoWindow, map.getCenter());
+        }
+    }
+
+    function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+        //infoWindow.setPosition(pos);
+        toastr.error(browserHasGeolocation ?
+                              'Error: The Geolocation service failed.' :
+                              'Error: Your browser doesn\'t support geolocation.');
+    }
+
+
+    // Get latitude/longitude in google map API by address.
+    function GetPositionByAddress(address) {
+        getLatitudeLongitude(showResult, address);
     };
 
-    function initMap() {
-        var map = new google.maps.Map(document.getElementById('map'), {
-            zoom: 8,
-            center: { lat: -34.397, lng: 150.644 }
-        });
+    /* This showResult function is used as the callback function*/
+    function showResult(result) {
+        if (IsNullOrEmpty(result) == false) {
+            $('#latite').val(result.geometry.location.lat());
+            $('#longitude').val(result.geometry.location.lng());
+        }
+        else {
+            GetPositionByAddress('Hồ Chí Minh');
+        }
     }
+    function getLatitudeLongitude(callback, address) {
+        try {
+            // If adress is not supplied, use default value 'Ferrol, Galicia, Spain'
+            address = address || 'Hồ Chí Minh';
+            // Initialize the Geocoder
+            geocoder = new google.maps.Geocoder();
+            if (geocoder) {
+                geocoder.geocode({
+                    'address': address
+                }, function (results, status) {
+                    if (status == google.maps.GeocoderStatus.OK) {
+                        callback(results[0]);
+                    }
+                    else if (status == google.maps.GeocoderStatus.ZERO_RESULTS) {
+                        callback(results[0]);
+                    }
+                });
+            }
+        } catch (e) {
+            $('#latite').val(-34.397);
+            $('#longitude').val(150.644);
+            //$('#address-garden').val('Hồ Chí');
+        }
+    }
+
 
     function ValidateGarden(rowdata) {
         if (IsNullOrEmpty(rowdata.GARDEN_NAME)) {

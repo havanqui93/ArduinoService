@@ -15,7 +15,7 @@
     </section>
 </div>
 
-@if (Session[ConstantClass.USER_TYPE].ToString() == "1")
+@if (Session[ConstantClass.USER_TYPE] != null && Session[ConstantClass.USER_TYPE].ToString() == "1")
 {
     <div class="col-sm-12">
         <div id="listgarden">
@@ -183,7 +183,9 @@
                                             }
 <div id="map"></div>
 @section scripts {
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDYwEnWeO39XsxmVB3hydF4r6hlgNQ6wqM"
-            type="text/javascript"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDYwEnWeO39XsxmVB3hydF4r6hlgNQ6wqM" type="text/javascript"></script>
+    @*<script src="https://maps.googleapis.com/maps/api/js?sensor=false"
+            type="text/javascript"></script>*@
+
     <script src="~/Scripts/View/MainMenu.js"></script>
 }

@@ -25,5 +25,25 @@ namespace ArduinoService.Models
             }
             return lst;
         }
+
+        public List<string> GetListPin(string tokenkey,string category) {
+            List<string> lstresult = new List<string>();
+            try
+            {
+                string sql = @"
+                    SELECT PIN FROM S_ARDUINO_TYPE_DETAIL UNO_DETAIL
+                    INNER JOIN S_GARDEN GARDEN ON UNO_DETAIL.ARDUINO_TYPE_ID = GARDEN.UNO_TYPE
+                    LEFT JOIN S_DEVICE D ON D.PIN_ID = UNO_DETAIL.PIN
+                    WHERE GARDEN.TOKEN_KEY = '"+ tokenkey + @"' AND CATEGORY_ID = '"+ category + @"'
+                    AND D.PIN_ID IS NULL
+                ";
+                lstresult = dbcontext.Database.SqlQuery<string>(sql).ToList();
+            }
+            catch (Exception ex)
+            {
+                lstresult = null;
+            }
+            return lstresult;
+        }
     }
 }

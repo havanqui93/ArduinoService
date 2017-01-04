@@ -124,7 +124,7 @@ namespace ArduinoService.Models
             }
             return res;
         }
-        public bool ActiveGarden(string gardenID, GardenRawData data)
+        public bool ActiveGarden(string gardenID, string tokenkey)
         {
             bool result = false;
             try
@@ -135,12 +135,12 @@ namespace ArduinoService.Models
                     // update garden and all device
                     string sql = @"
                         DECLARE @COUNT_TOKEN INT
-                        SET @COUNT_TOKEN =  (SELECT COUNT(*) FROM M_CODE WHERE CODE = '" + data.TOKEN_KEY + @"' AND STATUS = 1)
+                        SET @COUNT_TOKEN =  (SELECT COUNT(*) FROM S_CODE WHERE CODE_VALUE = '" + tokenkey + @"' AND STATUS = 1)
                         IF(@COUNT_TOKEN = 1)
                             BEGIN
-                            UPDATE M_CODE SET STATUS = 0 WHERE CODE = '" + data.TOKEN_KEY + @"'
-                            UPDATE S_GARDEN SET TOKEN_KEY = '" + data.TOKEN_KEY + "',ACTIVE = " + ConstantClass.LIVE + @" WHERE GARDEN_ID = '" + gardenID + @"'
-                            UPDATE DEVICE SET TOKEN_KEY = '" + data.TOKEN_KEY + "' WHERE TOKEN_KEY = '" + gardenID + @"'
+                            UPDATE S_CODE SET STATUS = 0 WHERE CODE_VALUE = '" + tokenkey + @"'
+                            UPDATE S_GARDEN SET TOKEN_KEY = '" + tokenkey + "',ACTIVE = " + ConstantClass.LIVE + @" WHERE GARDEN_ID = '" + gardenID + @"'
+                            UPDATE S_DEVICE SET TOKEN_KEY = '" + tokenkey + "' WHERE TOKEN_KEY = '" + gardenID + @"'
                             SELECT 1;
                             END
                         ELSE
@@ -240,6 +240,11 @@ namespace ArduinoService.Models
             {
                 string sql = @"
                     SELECT D.DEVICE_ID,DEVICE_NAME_VN AS DEVICE_NAME,VALUE,D.PIN_ID
+                    , IS_FULL = (
+	                    CASE WHEN((SELECT COUNT(*) FROM S_DEVICE WHERE TOKEN_KEY = '" + tokenkey + @"' AND DEVICE_CATEGORY = " + ConstantClass.CONTROL + @") 
+	                    >= (SELECT COUNT(*) FROM S_ARDUINO_TYPE_DETAIL WHERE CATEGORY_ID = 1 AND ARDUINO_TYPE_ID = (SELECT UNO_TYPE FROM S_GARDEN WHERE TOKEN_KEY = '" + tokenkey + @"')))
+	                    THEN CAST('TRUE'AS BIT) ELSE CAST('FALSE'AS BIT) END
+                    )
                     FROM S_DEVICE D
                     JOIN S_DEVICE_CONTROL_DETAIL C
                     ON D.DEVICE_ID = C.DEVICE_ID
@@ -340,6 +345,7 @@ namespace ArduinoService.Models
                 {
                     module.VALUE = model.VALUE;
                     module.TIME_UPDATE = DateTime.Now;
+                    module.PRIORITY = true;
 
                     _dbContext.SaveChanges();
                     bResult = true;
@@ -379,8 +385,8 @@ namespace ArduinoService.Models
                     BEGIN
 	                    INSERT INTO S_DEVICE(DEVICE_ID,TOKEN_KEY,DEVICE_NAME_EN,DEVICE_NAME_VN,DEVICE_CATEGORY,STATUS,PIN_ID)
 	                    VALUES ('" + autoid + @"','" + tokenkey + @"',N'" + namecontrol + @"',N'" + namecontrol + @"'," + ConstantClass.CONTROL + @"," + ConstantClass.LIVE + @",'" + pinid + @"')
-	                    INSERT INTO S_DEVICE_CONTROL_DETAIL(DEVICE_ID,VALUE,TIME_UPDATE)
-	                    VALUES ('" + autoid + @"','" + ConstantClass.VALUE_INIT_CONTROL_DEFAULT + @"',GETDATE())
+	                    INSERT INTO S_DEVICE_CONTROL_DETAIL(DEVICE_ID,VALUE,TIME_UPDATE,PRIORITY)
+	                    VALUES ('" + autoid + @"','" + ConstantClass.VALUE_INIT_CONTROL_DEFAULT + @"',GETDATE(),0)
                         INSERT INTO D_SETTING_CONTROL([DEVICE_ID],[TIME_ON],[TIME_OFF])
                         VALUES('" + autoid + @"','06:00','18:00')
                     END
@@ -644,8 +650,8 @@ namespace ArduinoService.Models
                         FROM D_DEVICE_SENSOR_DETAIL D
                         INNER JOIN
                         (
-                        SELECT U.UNIT,D.DEVICE_ID FROM S_DEVICE D
-                        LEFT JOIN S_UNIT U ON D.UNIT = U.ID
+                        SELECT U.UNIT_NAME UNIT,D.DEVICE_ID FROM S_DEVICE D
+                        LEFT JOIN S_UNIT U ON D.UNIT = U.UNIT_ID
                         WHERE DEVICE_ID = '" + deviceid + @"'
                         ) U ON U.DEVICE_ID = D.DEVICE_ID
                         WHERE D.DEVICE_ID = '" + deviceid + @"' 
@@ -919,13 +925,21 @@ namespace ArduinoService.Models
             try
             {
                 string sql = @"
-                        DECLARE @IS_SHEDULE INT = (SELECT IS_SHEDULE FROM S_GARDEN WHERE TOKEN_KEY = '" + tokenkey + @"')
-                        IF( @IS_SHEDULE = 1)
-                            UPDATE S_GARDEN SET IS_SHEDULE = 0 WHERE TOKEN_KEY = '" + tokenkey + @"'
-                        ELSE
-                            UPDATE S_GARDEN SET IS_SHEDULE = 1 WHERE TOKEN_KEY = '" + tokenkey + @"'
-                        SELECT CAST(@IS_SHEDULE AS INT)
-                            ";
+                        DECLARE @USER_ID VARCHAR(50) = (SELECT USER_ID FROM S_GARDEN WHERE TOKEN_KEY = '" + tokenkey + @"')
+                        IF((SELECT PACKED_ID FROM S_USER WHERE USER_ID = @USER_ID) = '" + ConstantClass.PACKED_DEFAULT + @"')
+						BEGIN
+							SELECT 2
+						END
+						ELSE
+						BEGIN
+                            DECLARE @IS_SHEDULE INT = (SELECT IS_SHEDULE FROM S_GARDEN WHERE TOKEN_KEY = '" + tokenkey + @"')
+                            IF( @IS_SHEDULE = 1)
+                                UPDATE S_GARDEN SET IS_SHEDULE = 0 WHERE TOKEN_KEY = '" + tokenkey + @"'
+                            ELSE
+                                UPDATE S_GARDEN SET IS_SHEDULE = 1 WHERE TOKEN_KEY = '" + tokenkey + @"'
+                            SELECT CAST(@IS_SHEDULE AS INT)
+                        END
+                        ";
                 result = _dbContext.Database.SqlQuery<int>(sql).FirstOrDefault();
             }
             catch (Exception ex)
@@ -985,6 +999,7 @@ namespace ArduinoService.Models
             List<ListValueTrackingUno> _newcolection = new List<ListValueTrackingUno>();
             try
             {
+                char constanstkey = 'z';
                 string sql = @" 
                     CREATE TABLE #TABLE_TEMP
                      (
@@ -996,15 +1011,18 @@ namespace ArduinoService.Models
 
                 foreach (var itemx in _collection)
                 {
-                    sql += "('" + itemx.DEVICE_ID + @"'," + itemx.VALUE + @",GETDATE()),";
+                    if (itemx.VALUE.Contains(constanstkey))
+                        sql += "('" + itemx.DEVICE_ID + @"'," + itemx.VALUE.Split(constanstkey)[0] + @",GETDATE())," + "('" + commonModel.GetLastIdInGrouHT(itemx.DEVICE_ID) + @"'," + itemx.VALUE.Split(constanstkey)[1] + @",GETDATE()),";
+                    else
+                        sql += "('" + itemx.DEVICE_ID + @"'," + itemx.VALUE + @",GETDATE()),";
                 }
                 sql = sql.Substring(0, sql.Length - 1);
                 sql += @"
                     -- FIND AND DELETE WHEN DOUBLE ROW IN HOUR
                     DELETE D_DEVICE_SENSOR_DETAIL
-                    WHERE ID IN
+                    WHERE DEVICE_SENSOR_DETAIL_ID IN
                     (
-                        SELECT B.ID
+                        SELECT B.DEVICE_SENSOR_DETAIL_ID
                         FROM #TABLE_TEMP A
                         INNER JOIN D_DEVICE_SENSOR_DETAIL B
                         ON A.DEVICE_ID = B.DEVICE_ID
@@ -1127,23 +1145,18 @@ namespace ArduinoService.Models
 
         #region APi for Mobile
 
-        public List<TrackingRawData> GetListTrackingMobile(string token)
+        public List<TrackingRawData> GetListTrackingMobile(string tokenkey)
         {
             List<TrackingRawData> lstResult = new List<TrackingRawData>();
             try
             {
                 string sql = @"
-                    SELECT DEVICE_ID,DEVICE_NAME FROM DEVICE A
-					JOIN (SELECT * FROM GARDEN WHERE TOKEN_KEY= '" + token + @"') B
-					ON A.TOKEN_KEY = B.TOKEN_KEY
-					WHERE A.DEVICE_CATEGORY = 2
+                    SELECT DEVICE_ID,DEVICE_NAME_EN AS DEVICE_NAME,PIN_ID FROM S_DEVICE A
+                    JOIN (SELECT * FROM S_GARDEN WHERE TOKEN_KEY= '"+ tokenkey + @"') B
+                    ON A.TOKEN_KEY = B.TOKEN_KEY
+                    WHERE A.DEVICE_CATEGORY = 2
                 ";
                 lstResult = _dbContext.Database.SqlQuery<TrackingRawData>(sql).ToList();
-
-                for (int i = 0; i < lstResult.Count; i++)
-                {
-                    lstResult[i].LIST_TRACKING = GetListValueTrackingMobile(token, lstResult[i].DEVICE_ID);
-                }
             }
             catch (Exception ex)
             {

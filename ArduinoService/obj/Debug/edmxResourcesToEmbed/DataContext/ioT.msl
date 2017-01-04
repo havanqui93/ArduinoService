@@ -139,6 +139,7 @@
     <EntitySetMapping Name="S_DEVICE_CONTROL_DETAIL">
       <EntityTypeMapping TypeName="ioTModel.S_DEVICE_CONTROL_DETAIL">
         <MappingFragment StoreEntitySet="S_DEVICE_CONTROL_DETAIL">
+          <ScalarProperty Name="PRIORITY" ColumnName="PRIORITY" />
           <ScalarProperty Name="TIME_UPDATE" ColumnName="TIME_UPDATE" />
           <ScalarProperty Name="VALUE" ColumnName="VALUE" />
           <ScalarProperty Name="DEVICE_ID" ColumnName="DEVICE_ID" />
