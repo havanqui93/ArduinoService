@@ -38,12 +38,15 @@ namespace ArduinoService.DataModels
         public string DEVICE_ID { get; set; }
         public string DEVICE_NAME { get; set; }
         public string PIN_ID { get; set; }
+
+        public string VALUE { get; set; }
     }
 
     public class ListValueTracking
     {
         public string TIME { get; set; }
         public string VALUE { get; set; }
+        public string VALUE_CHART { get; set; }
     }
 
     #region Class for UNO Tracking

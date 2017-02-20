@@ -22,11 +22,10 @@ namespace ArduinoService.Controllers
 
         public ActionResult ChangeUnoType()
         {
-            if (Session[ConstantClass.USER_TYPE].ToString() == "1")
+            if (Request.Cookies["UserSettings"][ConstantClass.USER_TYPE].ToString() == "1")
                 Session[ConstantClass.USER_TYPE] = "2";
             else
                 Session[ConstantClass.USER_TYPE] = "1";
-
             return RedirectToAction("MainMenu", "Home");
         }
 

@@ -16,10 +16,12 @@ namespace ArduinoService.Hubs
         {
             var hubContext = GlobalHost.ConnectionManager.GetHubContext<ControlHub>();
             hubContext.Clients.All.SendClient(rowdata);
+        }
 
-            //var mystring = JsonConvert.DeserializeObject<string>(list);
-            // Add message to all client
-            //Clients.All.SendClient(list);
+        public void UpdateSheduleClient(List<ControlRawData> rowdata)
+        {
+            var hubContext = GlobalHost.ConnectionManager.GetHubContext<ControlHub>();
+            hubContext.Clients.All.SendAllClient(rowdata);
         }
     }
 }

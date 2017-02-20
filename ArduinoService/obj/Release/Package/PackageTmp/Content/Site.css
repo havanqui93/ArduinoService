@@ -1,5 +1,5 @@
 ﻿:root {
-    --background-color-iot : #79b03b;
+    --background-color-iot: #79b03b;
 }
 
 body {
@@ -472,4 +472,23 @@ label {
 
 .displaynone {
     display: none;
+}
+
+
+/*Setting garden*/
+#settingshedule .panel-title {
+    font-size: 14px;
+    margin-top: 10px;
+}
+
+#settingshedule .panel-heading {
+    padding: 2px 15px;
+}
+
+#settingshedule .btn {
+    padding: 4px 12px;
+}
+
+#settingshedule .table {
+    margin-bottom: 0px;
 }

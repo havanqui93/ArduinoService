@@ -49,28 +49,80 @@
 
     });
 
-    $('#btnUpdateshedule').on('click', function () {
-
-
-        $.ajax({
-            method: "POST",
-            url: "/Home/",
-            data: {}
-        }).success(function (data) {
-            if (data == true)
-                console.log('true');
-            else
-                console.log('false');
-        });
-    });
-
     RegisterTimepicker();
     function RegisterTimepicker() {
         $('.timeshedule').datetimepicker({
-            format: "H:m"
+            format: "HH:mm"
         });
     }
 
+    // 
+    $('.btnaddsetting').on('click', function () {
+        var parent = $(this).parents('.panel-table');
+        var htmlAdd = '<tr><td><input class="form-control displaynone" value="" type="text" hidden></td>'
+                    + '<td><input class="form-control timeshedule" value="06:00" type="text"></td><td>_</td>'
+                    + '<td><input class="form-control timeshedule" value="18:00" type="text"></td>'
+                    + '<td><button type="button" class="btn btn-default btnremovesetting"><span class="glyphicon glyphicon-minus"></span></button></td></tr>';
 
+        $(parent).find('.panel-body').find('tbody').append(htmlAdd);
+        $('.btnremovesetting').on('click', function () {
+            $(this).parent().parent().remove();
+        });
+        RegisterTimepicker();
+    })
+
+    $('.btnsavesetting').on('click', function () {
+        // Get array object
+        var arrayPush = [];
+        var parent = $(this).parents('.panel-table');
+        var listtrObject = $(parent).find('.panel-body').find('tbody');
+        $.each((listtrObject).children(), function (index, data) {
+            var rowData = {
+                SETTING_CONTROL_ID: $(data).find('input[type="text"]:eq(0)').val(),
+                TIME_ON: $(data).find('input[type="text"]:eq(1)').val(),
+                TIME_OFF: $(data).find('input[type="text"]:eq(2)').val(),
+            };
+
+            arrayPush.push(rowData);
+        });
+
+        // validate
+        // Tat ca start > 0h, tat ca end < 23h
+        // khoang thoi gian start va end ko giao nhau.
+        // 
+        console.log(arrayPush);
+
+
+        SaveDataSetting(arrayPush, $(this).attr('deviceid'));
+
+    });
+
+    function ValidateDataSetting(rowdata) {
+        if (rowdata.length != 0) {
+            
+        }
+    }
+
+    function SaveDataSetting(data, deviceid) {
+        $.ajax({
+            method: "POST",
+            url: "/Home/SaveSettingControl",
+            data: { strArr: JSON.stringify(data), deviceid: deviceid }
+        }).success(function (data) {
+            if (data == true)
+                toastr.info("Cập nhật thành công !");
+            else
+                toastr.info("Cập nhật thất bại !");
+        });
+    }
+
+    $('.btnremovesetting').on('click', function () {
+        $(this).parent().parent().remove();
+    });
+
+    $('#btnAutomatic').on('click', function () {
+        toastr.info("Chức năng đang xây dựng. Vui lòng quay lại sau !");
+    });
+    
 });
 

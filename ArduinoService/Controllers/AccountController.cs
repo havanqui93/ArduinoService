@@ -41,12 +41,12 @@ namespace ArduinoService.Controllers
                 if (_account.checkGoupAdmin(model))
                 {
                     Session[ConstantClass.SESSION_ROLE] = 1;
-                    myCookie[ConstantClass.USER_TYPE] = "1";
+                    myCookie[ConstantClass.SESSION_ROLE] = "1";
                 }
                 else
                 {
                     Session[ConstantClass.SESSION_ROLE] = 2;
-                    myCookie[ConstantClass.USER_TYPE] = "2";
+                    myCookie[ConstantClass.SESSION_ROLE] = "2";
                 }
 
                 Session[ConstantClass.SESSION_USERNAME] = _account.GetSessionEmail(model);

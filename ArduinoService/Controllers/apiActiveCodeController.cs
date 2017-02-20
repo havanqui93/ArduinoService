@@ -26,18 +26,29 @@ namespace ArduinoService.Controllers
         }
 
         // POST: api/apiActiveCode
-        public bool Post([FromBody]string value)
-        {
-            return true;
-        }
-
-        // PUT: api/apiActiveCode/5
-        public bool Put(string id, string tokenkey)
+        [HttpPost]
+        public bool Post([FromBody]ActiveCodeRowData model)
         {
             bool result = true;
             try
             {
-                result = _homemodel.ActiveGarden(id, tokenkey);
+                result = _homemodel.ActiveGarden(model.GARDEN_ID, model.TOKEN_KEY);
+            }
+            catch (Exception ex)
+            {
+                result = false;
+            }
+            return result;
+        }
+
+        // PUT: api/apiActiveCode/5
+        [HttpPut]
+        public bool Put(string id, [FromBody]ActiveCodeRowData model)
+        {
+            bool result = true;
+            try
+            {
+                result = _homemodel.ActiveGarden(id, model.TOKEN_KEY);
             }
             catch (Exception ex)
             {

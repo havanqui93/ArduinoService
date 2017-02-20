@@ -57,5 +57,9 @@ namespace ArduinoService.Models
 
         public static string TIME_MIN = "00:00";
         public static string TIME_MAX = "23:00";
+
+        public static string TABLE_GROUP_HT = "D_DEVICE_SENSOR_HT";
+        public static string TABLE_GROUP_LIGHT = "D_DEVICE_SENSOR_LIGHT";
+        public static string TABLE_GROUP_MOISTURE = "D_DEVICE_SENSOR_MOISTURE";
     }
 }

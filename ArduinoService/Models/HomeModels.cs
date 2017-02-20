@@ -3,6 +3,8 @@ using ArduinoService.DataModels;
 using ArduinoService.Hubs;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Script.Serialization;
@@ -16,7 +18,7 @@ namespace ArduinoService.Models
         readonly log4net.ILog logger = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
         private CommonModel commonModel = new CommonModel();
         private CommonFunction commonFunction = new CommonFunction();
-
+        UpdateValueSheduleHub _hubShedule = new UpdateValueSheduleHub();
         TrackingHub _hubtracking = new TrackingHub();
         string userID = String.Empty;
         #endregion
@@ -49,6 +51,10 @@ namespace ArduinoService.Models
             {
                 var _data = _dbContext.S_GARDEN.Where(x => x.TOKEN_KEY == data.TOKEN_KEY || x.GARDEN_ID == data.TOKEN_KEY).FirstOrDefault();
 
+                if (!commonFunction.IsNullOrEmpty(data.IMAGE)) {
+                    data.IMAGE = ConvertBase64ToImage(data.IMAGE);
+                }
+
                 if (commonFunction.IsNullOrEmpty(data.TOKEN_KEY))
                 {
                     _data = new S_GARDEN();
@@ -60,11 +66,13 @@ namespace ArduinoService.Models
                     _data.IS_AUTO = false;
                     _data.UNO_TYPE = data.UNO_TYPE;
 
-                    data.GARDEN_ID = null;
+                    data.GARDEN_ID = _data.GARDEN_ID;
+                    data.IS_ADD = true;
                     _dbContext.S_GARDEN.Add(_data);
                 }
                 else
                 {
+                    data.IS_ADD = false;
                     data.GARDEN_ID = commonFunction.IsNullOrEmpty(_data.TOKEN_KEY) ? _data.GARDEN_ID : _data.TOKEN_KEY;
                 }
 
@@ -92,6 +100,22 @@ namespace ArduinoService.Models
             }
             return data;
         }
+
+        private string ConvertBase64ToImage(string base64String)
+        {
+            byte[] bytes = Convert.FromBase64String(base64String);
+            string fullOutputPath = "";
+
+            Image image;
+            using (MemoryStream ms = new MemoryStream(bytes))
+            {
+                image = Image.FromStream(ms);
+            }
+
+            image.Save(fullOutputPath, System.Drawing.Imaging.ImageFormat.Png);
+            return "";
+        }
+
         public GardenRawData GetGardenById(string tokenkey)
         {
             GardenRawData res = new GardenRawData();
@@ -182,7 +206,10 @@ namespace ArduinoService.Models
             bool result = false;
             try
             {
-                string sqlDel = "DELETE S_GARDEN WHERE TOKEN_KEY = '" + tokenkey + @"' OR GARDEN_ID = '" + tokenkey + @"'";
+                string sqlDel = @"
+                    DELETE S_GARDEN WHERE TOKEN_KEY = '" + tokenkey + @"' OR GARDEN_ID = '" + tokenkey + @"'
+                    DELETE S_CODE WHERE CODE_VALUE = '" + tokenkey + @"'
+                    ";
                 string sql = @"
                     BEGIN TRY
                     BEGIN TRANSACTION
@@ -557,11 +584,13 @@ namespace ArduinoService.Models
         /// </summary>
         /// <param name="tokenkey"></param>
         /// <returns></returns>
-        public List<List<string>> GetListDataDetails(string tokenkey)
+        public List<List<string>> GetListDataDetails(string tokenkey, string dateinput)
         {
             List<List<string>> lstResult = new List<List<string>>();
             try
             {
+                dateinput = commonFunction.IsNullOrEmpty(dateinput) ? DateTime.Now.ToString("yyyy/MM/dd") : commonModel.ConverDDMMYYYY_YYYYMMDD(dateinput);
+
                 string sql = @"
                     SELECT DEVICE_ID FROM S_DEVICE
                     WHERE TOKEN_KEY = '" + tokenkey + @"'
@@ -592,7 +621,7 @@ namespace ArduinoService.Models
                             WHERE Num <= 23
                         )
                         SELECT 
-                        CONVERT(VARCHAR(10), [Date], 101) + ' ' + SUBSTRING(convert(varchar, [Date],108),1,5)
+                        CONVERT(VARCHAR(5),[Date],108)
                         FROM Dates
                         ORDER BY [Date] ASC
                         ";
@@ -602,7 +631,7 @@ namespace ArduinoService.Models
 
                 for (int i = 0; i < lstDevices.Count; i++)
                 {
-                    List<string> lst = GetItemDetais(lstDevices[i]);
+                    List<string> lst = GetItemDetais(lstDevices[i], dateinput);
                     lstResult.Add(lst);
                 }
             }
@@ -612,20 +641,30 @@ namespace ArduinoService.Models
             }
             return lstResult;
         }
+
         /// <summary>
         /// Lay danh sach gia tri tung device sensor
         /// </summary>
         /// <param name="deviceid"></param>
+        /// <param name="dateinput">Default : YYYY/MM/DD</param>
         /// <returns></returns>
-        private List<string> GetItemDetais(string deviceid)
+        private List<string> GetItemDetais(string deviceid, string dateinput)
         {
             List<string> lstItems = new List<string>();
             try
             {
+                // Check using table
+                string tablename = string.Empty;
+                if (dateinput == DateTime.Now.ToString("yyyy/MM/dd"))
+                    tablename = "D_DEVICE_SENSOR_DETAIL";
+                else
+                    tablename = "( SELECT * FROM " + Gettablename(deviceid) + " WHERE CONVERT(VARCHAR(10), TIME_UPDATE, 111) = @DateInput AND DEVICE_ID = '" + deviceid + @"' )";
+
                 string sql = @"
+                    DECLARE @DateInput DATETIME = '" + dateinput + @"' -- yyyy/mm/dd
                     DECLARE @Date DATETIME
                     --SELECT @Date = CONVERT(VARCHAR(10),GETDATE(),111)
-                    SELECT @Date = (SELECT CONVERT(VARCHAR(20),GETDATE() + 1,111) + ' 00:00')
+                    SELECT @Date = (SELECT CONVERT(VARCHAR(20),@DateInput + 1,111) + ' 00:00')
 
                     ;WITH Dates AS
                     (
@@ -647,7 +686,7 @@ namespace ArduinoService.Models
                     LEFT JOIN
                     (
 	                    SELECT D.VALUE,D.TIME_UPDATE,U.UNIT
-                        FROM D_DEVICE_SENSOR_DETAIL D
+                        FROM " + tablename + @" D
                         INNER JOIN
                         (
                         SELECT U.UNIT_NAME UNIT,D.DEVICE_ID FROM S_DEVICE D
@@ -668,6 +707,35 @@ namespace ArduinoService.Models
             }
             return lstItems;
         }
+
+        /// <summary>
+        /// lAY TEN TABLE
+        /// </summary>
+        /// <param name="deviceid"></param>
+        /// <returns></returns>
+        private string Gettablename(string deviceid)
+        {
+            string tableResult = string.Empty;
+            int? groupid = 1;
+            var datadevice = _dbContext.S_DEVICE.FirstOrDefault(x => x.DEVICE_ID == deviceid);
+            if (datadevice != null)
+                groupid = datadevice.GROUP_SENSOR_ID;
+
+            switch (groupid)
+            {
+                case 1:
+                    tableResult = ConstantClass.TABLE_GROUP_HT;
+                    break;
+                case 2:
+                    tableResult = ConstantClass.TABLE_GROUP_MOISTURE;
+                    break;
+                case 3:
+                    tableResult = ConstantClass.TABLE_GROUP_LIGHT;
+                    break;
+            }
+            return tableResult;
+        }
+
         /// <summary>
         /// Lay danh sach don vi
         /// </summary>
@@ -692,7 +760,7 @@ namespace ArduinoService.Models
         /// <param name="strname"></param>
         /// <param name="deviceid"></param>
         /// <returns></returns>
-        public bool CheckExistsNameTracking(string strname, string deviceid)
+        public bool CheckExistsNameTracking(string strname, string deviceid, string tokenkey)
         {
             bool result = false;
             try
@@ -718,7 +786,7 @@ namespace ArduinoService.Models
 	                    DROP TABLE #TEMP_DELETE
 	                    IF(
 	                    (SELECT COUNT(*) FROM S_DEVICE WHERE DEVICE_CATEGORY = 2 AND DEVICE_NAME_VN = N'" + strname + @"'  
-	                    AND (DEVICE_ID <> @DEVICE_ID_1 AND DEVICE_ID <> @DEVICE_ID_2)) > 0)
+	                    AND (DEVICE_ID <> @DEVICE_ID_1 AND DEVICE_ID <> @DEVICE_ID_2) AND TOKEN_KEY = '" + tokenkey + @"') > 0)
 		                    SELECT 1
 	                    ELSE 
 		                    SELECT 0
@@ -726,12 +794,12 @@ namespace ArduinoService.Models
                     END
                     ELSE
 	                    SELECT COUNT(*) FROM S_DEVICE WHERE DEVICE_CATEGORY = 2 AND DEVICE_NAME_VN = N'" + strname + @"'
-	                    AND DEVICE_ID <> '" + deviceid + @"'
+	                    AND DEVICE_ID <> '" + deviceid + @"' AND TOKEN_KEY = '" + tokenkey + @"'
                         ";
                 }
                 else
                 {
-                    sql = "SELECT COUNT(*) FROM S_DEVICE WHERE DEVICE_CATEGORY = 2 AND DEVICE_NAME_VN = N'" + strname + @"'";
+                    sql = "SELECT COUNT(*) FROM S_DEVICE WHERE DEVICE_CATEGORY = 2 AND DEVICE_NAME_VN = N'" + strname + @"' AND TOKEN_KEY = '" + tokenkey + @"'";
                 }
                 int res = _dbContext.Database.SqlQuery<int>(sql).FirstOrDefault();
                 result = (res > 0 ? true : false);
@@ -777,21 +845,23 @@ namespace ArduinoService.Models
         /// <param name="tokenkey"></param>
         /// <param name="datechart"></param>
         /// <returns></returns>
-        public List<ChartRowData> GetListDataChartDetails(string tokenkey, int datechart)
+        public List<ChartRowData> GetListDataChartDetails(string tokenkey, string dateinput)
         {
             List<ChartRowData> lstResult = new List<ChartRowData>();
             try
             {
+                dateinput = commonFunction.IsNullOrEmpty(dateinput) ? DateTime.Now.ToString("yyyy/MM/dd") : commonModel.ConverDDMMYYYY_YYYYMMDD(dateinput);
+
                 string sql = @"
-                    SELECT CHART_ID = DEVICE_ID,CHART_NAME = DEVICE_NAME_VN 
-                    FROM S_DEVICE WHERE DEVICE_CATEGORY = 2 
-                    AND TOKEN_KEY = '" + tokenkey + @"' ORDER BY DEVICE_ID DESC
+                    SELECT CHART_ID = DEVICE_ID,CHART_NAME = DEVICE_NAME_VN,GROUP_SENSOR_ID,UNIT_NAME
+                    FROM S_DEVICE INNER JOIN S_UNIT U ON S_DEVICE.UNIT = U.UNIT_ID WHERE DEVICE_CATEGORY = 2 
+                    AND TOKEN_KEY = '" + tokenkey + @"' ORDER BY CAST(DEVICE_ID AS INT) ASC
                     ";
 
                 lstResult = _dbContext.Database.SqlQuery<ChartRowData>(sql).ToList();
                 for (int i = 0; i < lstResult.Count; i++)
                 {
-                    lstResult[i].CHART_DATA = GetItemChartDetais(lstResult[i].CHART_ID, datechart);
+                    lstResult[i].CHART_DATA = GetItemChartDetais(lstResult[i].CHART_ID, dateinput);
                 }
             }
             catch (Exception ex)
@@ -806,11 +876,13 @@ namespace ArduinoService.Models
         /// <param name="deviceid"></param>
         /// <param name="datechart"></param>
         /// <returns></returns>
-        private List<ChartData> GetItemChartDetais(string deviceid, int datechart)
+        private List<ChartData> GetItemChartDetais(string deviceid, string dateinput)
         {
             List<ChartData> lstItems = new List<ChartData>();
             try
             {
+                #region chart not customize
+                /*
                 string sql = @"
                     DECLARE @TABLE_TEMP_24H TABLE (ID VARCHAR(20))
                     DECLARE @TODAY VARCHAR(20) = CONVERT(VARCHAR(10),GETDATE(),111)
@@ -899,6 +971,56 @@ namespace ArduinoService.Models
                     END
    
                     ";
+                    */
+                #endregion
+
+                // Check using table
+                string tablename = string.Empty;
+                if (dateinput == DateTime.Now.ToString("yyyy/MM/dd"))
+                    tablename = "D_DEVICE_SENSOR_DETAIL";
+                else
+                    tablename = "( SELECT * FROM " + Gettablename(deviceid) + " WHERE CONVERT(VARCHAR(10), TIME_UPDATE, 111) = @DateInput AND DEVICE_ID = '" + deviceid + @"' )";
+
+                string sql = @"
+                    DECLARE @DateInput DATETIME = '" + dateinput + @"' -- yyyy/mm/dd
+                    DECLARE @Date DATETIME
+                    --SELECT @Date = CONVERT(VARCHAR(10),GETDATE(),111)
+                    SELECT @Date = (SELECT CONVERT(VARCHAR(20),@DateInput + 1,111) + ' 00:00')
+
+                    ;WITH Dates AS
+                    (
+                        SELECT DATEPART(HOUR,DATEADD(HOUR,-1,@Date)) [Hour], 
+                          DATEADD(HOUR,-1,@Date) [Date], 1 Num
+                        UNION ALL
+                        SELECT DATEPART(HOUR,DATEADD(HOUR,-1,[Date])), 
+                          DATEADD(HOUR,-1,[Date]), Num+1
+                        FROM Dates
+                        WHERE Num <= 23
+                    )
+                    SELECT [Hour], [Date]
+                    into #TEMP
+                    FROM Dates
+
+                    SELECT
+                    VALUE = ISNULL(A.VALUE,0),
+					DAY = CAST(Hour AS VARCHAR(5))
+                    FROM #TEMP T
+                    LEFT JOIN
+                    (
+	                    SELECT D.VALUE,D.TIME_UPDATE,U.UNIT
+                        FROM " + tablename + @" D
+                        INNER JOIN
+                        (
+                        SELECT U.UNIT_NAME UNIT,D.DEVICE_ID FROM S_DEVICE D
+                        LEFT JOIN S_UNIT U ON D.UNIT = U.UNIT_ID
+                        WHERE DEVICE_ID = '" + deviceid + @"'
+                        ) U ON U.DEVICE_ID = D.DEVICE_ID
+                        WHERE D.DEVICE_ID = '" + deviceid + @"' 
+                     ) A ON (CONVERT(VARCHAR(10),A.TIME_UPDATE,111) + CONVERT(VARCHAR(10),DATEPART(HOUR,A.TIME_UPDATE))) 
+					 --LIKE T.Date    
+					 = (CONVERT(VARCHAR(10),T.Date,111) + CONVERT(VARCHAR(10),DATEPART(HOUR,T.Date)))    
+                    ORDER BY [Date]
+                    ";
 
                 lstItems = _dbContext.Database.SqlQuery<ChartData>(sql).ToList();
             }
@@ -913,6 +1035,27 @@ namespace ArduinoService.Models
 
         #region Screen setting garden
 
+        public List<SettingControlRawData> GetControlDataSetting(string tokenkey)
+        {
+            List<SettingControlRawData> lstResult = new List<SettingControlRawData>();
+            try
+            {
+                string sql = @"SELECT DEVICE_ID,DEVICE_NAME = DEVICE_NAME_VN FROM S_DEVICE 
+                                WHERE TOKEN_KEY = '" + tokenkey + @"' 
+                                AND DEVICE_CATEGORY = 1 AND STATUS = 1";
+                lstResult = _dbContext.Database.SqlQuery<SettingControlRawData>(sql).ToList();
+                for (int i = 0; i < lstResult.Count; i++)
+                {
+                    sql = "SELECT SETTING_CONTROL_ID = CAST(SETTING_CONTROL_ID AS VARCHAR(20)),TIME_ON = CONVERT(VARCHAR(20),TIME_ON,108),TIME_OFF = CONVERT(VARCHAR(20),TIME_OFF,108) FROM D_SETTING_CONTROL WHERE DEVICE_ID = '" + lstResult[i].DEVICE_ID + @"'";
+                    lstResult[i].LIST_SETTING = _dbContext.Database.SqlQuery<SettingControlDetailRawData>(sql).ToList();
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return lstResult;
+        }
 
         /// <summary>
         /// Cap nhat tat mo shedule. ON/OFF shedule
@@ -936,7 +1079,10 @@ namespace ArduinoService.Models
                             IF( @IS_SHEDULE = 1)
                                 UPDATE S_GARDEN SET IS_SHEDULE = 0 WHERE TOKEN_KEY = '" + tokenkey + @"'
                             ELSE
+                            BEGIN
                                 UPDATE S_GARDEN SET IS_SHEDULE = 1 WHERE TOKEN_KEY = '" + tokenkey + @"'
+                                UPDATE S_DEVICE_CONTROL_DETAIL SET PRIORITY = 0
+                            END
                             SELECT CAST(@IS_SHEDULE AS INT)
                         END
                         ";
@@ -946,6 +1092,97 @@ namespace ArduinoService.Models
             {
                 result = -1;
                 logger.Error(ex);
+            }
+            // Send client
+            UpdateValueSheduleHub _hubShedule = new UpdateValueSheduleHub();
+            _hubShedule.UpdateShedule(result.ToString());
+            return result;
+        }
+
+        public bool SaveSettingControl(string strArr, string deviceid)
+        {
+            bool result = false;
+            try
+            {
+                JavaScriptSerializer jss = new JavaScriptSerializer();
+                List<SettingControlDetailRawData> listSetting = jss.Deserialize<List<SettingControlDetailRawData>>(strArr);
+
+                string sql = @" 
+                    -- Table data full
+                    DECLARE @DEVICE_ID VARCHAR(20) = '" + deviceid + @"'
+                    CREATE TABLE #TABLE_DATA_FULL
+                    (
+                    SETTING_CONTROL_ID BIGINT,
+                    DEVICE_ID VARCHAR(50),
+                    TIME_ON TIME(7),
+                    TIME_OFF TIME(7)
+                    )
+
+                    " + (listSetting.Count > 0 ? " INSERT INTO #TABLE_DATA_FULL VALUES " : "") + @"
+                    
+                    ";
+                foreach (var itemx in listSetting)
+                {
+                    sql += "('" + itemx.SETTING_CONTROL_ID + @"'," + deviceid + @",'" + itemx.TIME_ON + @"','" + itemx.TIME_OFF + @"'),";
+                }
+                sql = sql.Substring(0, sql.Length - 1);
+
+                sql += @"
+                    -- DELETE DATA NOT IN TABLE FULL
+                    DELETE FROM D_SETTING_CONTROL WHERE DEVICE_ID = @DEVICE_ID
+                    AND SETTING_CONTROL_ID NOT IN
+                    (
+                    SELECT D.SETTING_CONTROL_ID 
+                    FROM D_SETTING_CONTROL D INNER JOIN #TABLE_DATA_FULL F ON F.SETTING_CONTROL_ID = D.SETTING_CONTROL_ID
+                    )
+
+                    -- INSERT DATA NEW
+                    INSERT INTO D_SETTING_CONTROL
+                    SELECT DEVICE_ID,TIME_ON,TIME_OFF FROM #TABLE_DATA_FULL WHERE SETTING_CONTROL_ID = 0
+
+                    -- UPDATE DATA OLD
+                    UPDATE D
+	                    SET D.TIME_ON = A.TIME_ON,
+	                    D.TIME_OFF = A.TIME_OFF
+                    FROM D_SETTING_CONTROL D
+                    INNER JOIN (
+                    SELECT SETTING_CONTROL_ID,DEVICE_ID,TIME_ON,TIME_OFF FROM #TABLE_DATA_FULL WHERE SETTING_CONTROL_ID != 0
+                    ) A ON A.SETTING_CONTROL_ID = D.SETTING_CONTROL_ID
+
+                    DROP TABLE #TABLE_DATA_FULL
+                    ";
+
+                // run transaction
+                string sqlRun = @"
+                    BEGIN TRY
+                    BEGIN TRANSACTION
+                        " + sql + @"
+                        SELECT " + ConstantClass.IS_SUCCESS + @"
+                    COMMIT
+                    END TRY
+                    BEGIN CATCH
+                        SELECT " + ConstantClass.IS_FAILD + @"
+                    ROLLBACK
+                    END CATCH
+                    ";
+                int res = _dbContext.Database.SqlQuery<int>(sqlRun).FirstOrDefault();
+                result = (res == ConstantClass.IS_SUCCESS ? true : false);
+                if (result == true)
+                {
+                    string sqlSelect = @"
+                        SELECT SETTING_CONTROL_ID = CAST(SETTING_CONTROL_ID AS VARCHAR(20)),
+                        TIME_ON = CONVERT(VARCHAR(20),TIME_ON,108),
+                        TIME_OFF = CONVERT(VARCHAR(20),TIME_OFF,108)
+                        FROM D_SETTING_CONTROL WHERE DEVICE_ID = '" + deviceid + @"'
+                    ";
+                    List<SettingControlDetailRawData> lst = _dbContext.Database.SqlQuery<SettingControlDetailRawData>(sqlSelect).ToList();
+                    _hubShedule.Send(lst,deviceid);
+                }
+
+            }
+            catch (Exception ex)
+            {
+                result = false;
             }
             return result;
         }
@@ -973,7 +1210,7 @@ namespace ArduinoService.Models
                 // get sensor device
                 result += ",\"GET_SENSORS\":[{\"HT\":[";
                 // TH
-                sql = "SELECT STUFF((SELECT ',' +'\"' + CAST(CAST(DEVICE_ID AS INT) AS VARCHAR(MAX)) + '\"' FROM S_DEVICE D INNER JOIN S_GROUP_SENSOR G ON D.GROUP_SENSOR_ID = G.GROUP_SENSOR_ID WHERE TOKEN_KEY = '" + token_key + "' AND DEVICE_CATEGORY = 2 AND G.GROUP_SENSOR_ID = 1 FOR XML PATH('')), 1, 1, '')";
+                sql = "SELECT STUFF((SELECT ',' +'\"' + CAST(CAST(DEVICE_ID AS INT) AS VARCHAR(MAX)) + '\"' FROM S_DEVICE D INNER JOIN S_GROUP_SENSOR G ON D.GROUP_SENSOR_ID = G.GROUP_SENSOR_ID WHERE TOKEN_KEY = '" + token_key + "' AND DEVICE_CATEGORY = 2 AND G.GROUP_SENSOR_ID = 1 AND D.DEVICE_NAME_VN LIKE N'%Nhiệt độ%' FOR XML PATH('')), 1, 1, '')";
                 result += _dbContext.Database.SqlQuery<string>(sql).FirstOrDefault() + "],\"MOISTURE\":[";
 
                 // MOISTURE
@@ -1141,8 +1378,6 @@ namespace ArduinoService.Models
         #endregion
 
 
-
-
         #region APi for Mobile
 
         public List<TrackingRawData> GetListTrackingMobile(string tokenkey)
@@ -1151,9 +1386,18 @@ namespace ArduinoService.Models
             try
             {
                 string sql = @"
-                    SELECT DEVICE_ID,DEVICE_NAME_EN AS DEVICE_NAME,PIN_ID FROM S_DEVICE A
-                    JOIN (SELECT * FROM S_GARDEN WHERE TOKEN_KEY= '"+ tokenkey + @"') B
+                    SELECT A.DEVICE_ID,DEVICE_NAME_EN AS DEVICE_NAME,PIN_ID 
+                    ,VALUE = CASE WHEN D.VALUE IS NULL THEN '0 ' + U.UNIT_NAME ELSE D.VALUE + ' ' + U.UNIT_NAME END
+
+                    FROM S_DEVICE A
+                    JOIN (SELECT * FROM S_GARDEN WHERE TOKEN_KEY= '" + tokenkey + @"') B
                     ON A.TOKEN_KEY = B.TOKEN_KEY
+                    
+                    LEFT JOIN (SELECT * FROM D_DEVICE_SENSOR_DETAIL 
+					WHERE FORMAT(GETDATE(),'HH') = FORMAT(TIME_UPDATE,'HH')) D 
+					ON D.DEVICE_ID = A.DEVICE_ID
+					INNER JOIN S_UNIT U ON A.UNIT= U.UNIT_ID
+
                     WHERE A.DEVICE_CATEGORY = 2
                 ";
                 lstResult = _dbContext.Database.SqlQuery<TrackingRawData>(sql).ToList();
@@ -1167,24 +1411,56 @@ namespace ArduinoService.Models
 
         public List<ListValueTracking> GetListValueTrackingMobile(string tokenkey, string deviceid)
         {
-            List<ListValueTracking> result = new List<ListValueTracking>();
+            List<ListValueTracking> lstItems = new List<ListValueTracking>();
             try
             {
                 string sql = @"
-                        SELECT 
-                            TIME = CONVERT(VARCHAR(10), TIME_UPDATE, 101) + ' ' + SUBSTRING( convert(varchar, TIME_UPDATE,108),1,5),
-                            VALUE = VALUE
-                        FROM D_DEVICE_SENSOR_DETAIL
+                    DECLARE @Date DATETIME
+                    --SELECT @Date = CONVERT(VARCHAR(10),GETDATE(),111)
+                    SELECT @Date = (SELECT CONVERT(VARCHAR(20),GETDATE() + 1,111) + ' 00:00')
+
+                    ;WITH Dates AS
+                    (
+                        SELECT DATEPART(HOUR,DATEADD(HOUR,-1,@Date)) [Hour], 
+                          DATEADD(HOUR,-1,@Date) [Date], 1 Num
+                        UNION ALL
+                        SELECT DATEPART(HOUR,DATEADD(HOUR,-1,[Date])), 
+                          DATEADD(HOUR,-1,[Date]), Num+1
+                        FROM Dates
+                        WHERE Num <= 23
+                    )
+                    SELECT [Hour], [Date]
+                    into #TEMP
+                    FROM Dates
+
+                    SELECT
+                    VALUE = CASE WHEN A.VALUE IS NULL THEN 'NULL' ELSE A.VALUE + ' ' + A.UNIT END
+                    , VALUE_CHART = ISNULL(A.VALUE,0)
+					, [TIME] = CONVERT(VARCHAR(5),Date,108) 
+                    FROM #TEMP T
+                    LEFT JOIN
+                    (
+	                    SELECT D.VALUE,D.TIME_UPDATE,U.UNIT
+                        FROM D_DEVICE_SENSOR_DETAIL D
+                        INNER JOIN
+                        (
+                        SELECT U.UNIT_NAME UNIT,D.DEVICE_ID FROM S_DEVICE D
+                        LEFT JOIN S_UNIT U ON D.UNIT = U.UNIT_ID
                         WHERE DEVICE_ID = '" + deviceid + @"'
-                        ORDER BY TIME_UPDATE DESC
+                        ) U ON U.DEVICE_ID = D.DEVICE_ID
+                        WHERE D.DEVICE_ID = '" + deviceid + @"' 
+                     ) A ON (CONVERT(VARCHAR(10),A.TIME_UPDATE,111) + CONVERT(VARCHAR(10),DATEPART(HOUR,A.TIME_UPDATE))) 
+					 --LIKE T.Date    
+					 = (CONVERT(VARCHAR(10),T.Date,111) + CONVERT(VARCHAR(10),DATEPART(HOUR,T.Date)))    
+                    ORDER BY [Date]
                     ";
-                result = _dbContext.Database.SqlQuery<ListValueTracking>(sql).ToList();
+                lstItems = _dbContext.Database.SqlQuery<ListValueTracking>(sql).ToList();
             }
             catch (Exception ex)
             {
-
+                lstItems = null;
             }
-            return result;
+            return lstItems;
         }
 
 

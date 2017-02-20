@@ -17,6 +17,17 @@ namespace ArduinoService.Controllers
         // GET: AdminArea
         public ActionResult AdminArea()
         {
+            if (Request.Cookies["UserSettings"] != null)
+            {
+                if (Request.Cookies["UserSettings"][ConstantClass.SESSION_USERNAME] != null)
+                {
+                    Session[ConstantClass.SESSION_USERNAME] = Request.Cookies["UserSettings"][ConstantClass.SESSION_USERNAME];
+                    Session[ConstantClass.SESSION_USERID] = Request.Cookies["UserSettings"][ConstantClass.SESSION_USERID];
+                    Session[ConstantClass.USER_TYPE] = Request.Cookies["UserSettings"][ConstantClass.USER_TYPE];
+                    Session[ConstantClass.SESSION_FULLNAME] = Request.Cookies["UserSettings"][ConstantClass.SESSION_FULLNAME];
+                    Session[ConstantClass.SESSION_ROLE] = Request.Cookies["UserSettings"][ConstantClass.SESSION_ROLE];
+                }
+            }
             // check permission
             if (Session[ConstantClass.SESSION_USERNAME] == null)
                 return Redirect("/Account/Login");

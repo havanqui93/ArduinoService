@@ -904,15 +904,10 @@ a {
 
 footer {
     background: #fff;
-    padding: 15px 20px;
+    padding: 10px 20px;
     display: block;
 }
 
-@media (min-width: 768px) {
-    footer {
-        margin-left: 230px;
-    }
-}
 
 .nav-sm footer {
     margin-left: 70px;
@@ -5496,11 +5491,11 @@ ul.notifications {
     text-align: center;
 }
 
-.details tbody tr:nth-child(1) {
+/*.details tbody tr:nth-child(1) {
     font-size: 26px;
     background: #4b8609;
     color: white;
-}
+}*/
 
 #filterDate {
     float: right;
@@ -5572,4 +5567,18 @@ ul li {
     background: #4b8609;
     color: white;
     padding: 10px;
+}
+
+.top1details {
+    background-color: #4ca709;
+    font-size: 30px;
+    color: white;
+}
+
+.dashboard-div-wrapper {
+    transition:.2s linear;
+}
+
+.dashboard-div-wrapper:hover {
+    margin-top: -5px;
 }

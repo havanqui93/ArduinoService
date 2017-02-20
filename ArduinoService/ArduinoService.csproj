@@ -341,6 +341,7 @@
     <Compile Include="Hubs\ControlHub.cs" />
     <Compile Include="Hubs\LedHub.cs" />
     <Compile Include="Hubs\TrackingHub.cs" />
+    <Compile Include="Hubs\UpdateValueSheduleHub.cs" />
     <Compile Include="Models\CommonAPI.cs" />
     <Compile Include="Models\CommonFunction.cs" />
     <Compile Include="Models\CommonModel.cs" />
@@ -374,6 +375,9 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Bootstrap_Agri_Pro.css" />
+    <Content Include="Content\Flexslider_Agri_Pro.css" />
+    <Content Include="Content\font-awesome_Agri_Pro.css" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Content\Images\background.jpg" />
     <Content Include="Content\Images\bg_no_image.gif" />
@@ -383,6 +387,7 @@
     <Content Include="Content\Imggif\loading.gif" />
     <Content Include="Content\jquery.jqGrid\ui.jqgrid.css" />
     <Content Include="Content\Profile.css" />
+    <Content Include="Content\Style_Agri_Pro.css" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
@@ -810,6 +815,8 @@
     <Content Include="Views\Home\Infogarden.cshtml" />
     <Content Include="Views\Shared\_LayoutJqGrid.cshtml" />
     <Content Include="Views\Home\SettingGarden.cshtml" />
+    <Content Include="Views\Shared\Layout_Agri_Pro.cshtml" />
+    <Content Include="Views\Home\Welcome_IOT.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

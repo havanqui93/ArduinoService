@@ -64,8 +64,9 @@ namespace ArduinoService.Controllers
         }
 
         // DELETE: api/apiControl/5
-        public void Delete(int id)
+        public bool Delete(string id)
         {
+            return _homemodel.DeleteDevice(id);
         }
     }
 }

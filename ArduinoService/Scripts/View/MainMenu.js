@@ -19,7 +19,7 @@
         if (isActive == 1)
             window.location = $(this).attr('url');
         else
-            toastr.warning("Khu vườn chưa active !");
+            toastr.warning("Khu vườn chưa kích hoạt !");
     })
 
     $('.delete-garden').on('click', function () {
@@ -47,6 +47,12 @@
         var lon = $('#longitude').val();
         $('#addtext-garden').focus();
 
+        // Set default
+        if (lat == '') {
+            var lat = -34.397;
+            var lon = 150.644;
+        }
+
         // validate
         var rowData = {
             'TOKEN_KEY': tokenkey,
@@ -60,7 +66,6 @@
             toastr.warning(resValidate);
             return false;
         }
-        ResetModal();
         AddGarden(gardenname, img, unotype, acreage, address, lat, lon, description, tokenkey);
     });
 
@@ -75,7 +80,7 @@
             }
         }).success(function (msg) {
             $("#ModalGarden").modal("hide");
-            if (msg.GARDEN_ID == null) {
+            if (msg.IS_ADD == true) {
                 var html =
                 '<div class="col-md-4 col-sm-4 col-xs-12">'
                 + '<div class="x_panel tile fixed_height_275" garden_id=' + msg.GARDEN_ID + ' uno_type=' + msg.UNO_TYPE + ' >'
@@ -107,19 +112,26 @@
                 $('.collapse-link').bind('click');
 
                 $('.edit-garden').click(function () {
-                    $('#ModalGarden').modal('show');
+
 
                     var objgarden = $(this).parents('.x_panel');
                     var gardenid = $(objgarden).attr('garden_id');
+                    LoadInfoGarden(gardenid);
+
+                    $('#ModalGarden').modal('show');
+                    var objgarden = $(this).parents('.x_panel');
                     var gardenname = $(objgarden).find('.x_title').find('h2').text();
                     var gardenimg = $(objgarden).find('.x_content').find('img').attr('src');
-                    var unotypeid = $(objgarden).attr('uno_type');
+                    $('#preview-add-garden').attr('src', gardenimg);
+                    //var gardenname = $(objgarden).find('.x_title').find('h2').text();
+                    //var gardenimg = $(objgarden).find('.x_content').find('img').attr('src');
+                    //var unotypeid = $(objgarden).attr('uno_type');
 
-                    $('#addtext-garden').val(gardenname);
-                    $('#gardenid').val(gardenid);
-                    $('#unotypeid').val(unotypeid);
-                    $('#preview-edit-garden').attr('src', gardenimg);
-                    GetListUnoType($('#unotypeid').val());
+                    //$('#addtext-garden').val(gardenname);
+                    //$('#gardenid').val(gardenid);
+                    //$('#unotypeid').val(unotypeid);
+                    //$('#preview-edit-garden').attr('src', gardenimg);
+                    //GetListUnoType($('#unotypeid').val());
                     $('#edittext-garden').focus();
 
                 });
@@ -135,15 +147,18 @@
                 $('div[garden_id="' + msg.GARDEN_ID + '"]').find('h2').text(msg.GARDEN_NAME);
                 $('div[garden_id="' + msg.GARDEN_ID + '"]').find('.x_content').find('img').attr('src', '/' + (msg.IMAGE == null ? "Content/Images/bg_no_image.gif" : msg.IMAGE));
             }
+            ResetModal();
         });
     }
 
     function ResetModal() {
+        $('#garden-id').val('');
         $('#addtext-garden').val('');
         $('#acreage-garden').val('1');
         $('#address-garden').val('');
         $('#note-garden').val('');
         $('#preview-add-garden').attr('src', '');
+
     }
 
     function LoadInfoGarden(tokenkey) {
@@ -162,6 +177,8 @@
             $('#garden-id').val(msg.TOKEN_KEY);
             $('#latite').val(msg.LATITUDE);
             $('#longitude').val(msg.LONGITUDE);
+            // disable uno type
+            $('#uno_type').attr('disabled', true);
         });
     }
 
@@ -243,6 +260,7 @@
     $('#ModalGarden').on('show.bs.modal', function (e) {
         ResetModal();
         GetListUnoType('');
+        $('#uno_type').attr('disabled', false);
     });
 
     // get current location

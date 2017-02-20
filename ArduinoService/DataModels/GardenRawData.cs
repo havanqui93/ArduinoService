@@ -26,5 +26,8 @@ namespace ArduinoService.DataModels
         public string START_GARDEN { get; set; }
         public string END_GARDEN { get; set; }
         public int IS_SHEDULE { get; set; }
+
+        public bool IS_ADD { get; set; }
+
     }
 }

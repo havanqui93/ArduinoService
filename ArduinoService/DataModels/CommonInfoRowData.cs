@@ -15,4 +15,10 @@ namespace ArduinoService.DataModels
         public string ARDUINO_TYPE_NAME { get; set; }
     }
 
+    public class ActiveCodeRowData
+    {
+        public string GARDEN_ID { get; set; }
+        public string TOKEN_KEY { get; set; }
+    }
+
 }

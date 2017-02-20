@@ -1,4 +1,6 @@
 ﻿using ArduinoService.DataContext;
+using ArduinoService.DataModels;
+using ArduinoService.Hubs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +14,7 @@ namespace ArduinoService.Models
         readonly log4net.ILog logger = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
         private CommonModel commonModel = new CommonModel();
         private CommonFunction commonFunction = new CommonFunction();
+        ControlHub _hub = new ControlHub();
 
         public void UpdateJob()
         {
@@ -72,7 +75,7 @@ namespace ArduinoService.Models
             try
             {
                 string sql = @"
-                        DECLARE @TIME_COMPARE TIME = '"+ time + @"'
+                        DECLARE @TIME_COMPARE TIME = '" + time + @"'
                         DECLARE @TIME_MAX TIME = '" + ConstantClass.TIME_MAX + @"'
                         DECLARE @TIME_MIN TIME = '" + ConstantClass.TIME_MIN + @"'
 
@@ -97,33 +100,56 @@ namespace ArduinoService.Models
 							RETURN
 						END
 */
+						-- LAY DANH SACH THIET BI KO CAN PHAI UPDATE VE OFF
+						SELECT D.DEVICE_ID 
+                        INTO #T_UPDATE_TEMP
+                        FROM S_USER US
+                        INNER JOIN (SELECT TOKEN_KEY,USER_ID FROM S_GARDEN WHERE TOKEN_KEY IS NOT NULL AND IS_SHEDULE = 1) G ON US.USER_ID = G.USER_ID
+                        INNER JOIN (SELECT DEVICE_ID,TOKEN_KEY FROM S_DEVICE WHERE DEVICE_CATEGORY = 1) D ON G.TOKEN_KEY = D.TOKEN_KEY
+						INNER JOIN S_DEVICE_CONTROL_DETAIL SETTING ON SETTING.DEVICE_ID = D.DEVICE_ID
+                        WHERE US.PACKED_ID = '" + ConstantClass.PACKED_SHEDULE + @"' AND SETTING.PRIORITY = 0
 
                          -- UPDATE ALL TO OFF
-                        UPDATE S_DEVICE_CONTROL_DETAIL SET VALUE = 'OFF'
+                        UPDATE S_DEVICE_CONTROL_DETAIL SET VALUE = 'OFF' WHERE DEVICE_ID IN (SELECT DEVICE_ID FROM #T_UPDATE_TEMP)
                         UPDATE S
                         SET S.VALUE = 'ON'
                         FROM S_DEVICE_CONTROL_DETAIL S 
                         INNER JOIN 
-                        ( SELECT DISTINCT A.DEVICE_ID FROM #LIST_DEVICE_SETTING A INNER JOIN #LIST_DEVICE B ON A.DEVICE_ID = B.DEVICE_ID )
+                        ( SELECT DISTINCT A.DEVICE_ID FROM #LIST_DEVICE_SETTING A INNER JOIN #LIST_DEVICE B ON A.DEVICE_ID = B.DEVICE_ID 
+                            WHERE A.DEVICE_ID NOT IN (
+							    SELECT DEVICE_ID FROM D_SETTING_CONTROL WHERE TIME_OFF = @TIME_COMPARE
+						    )
+                        )
                         D ON S.DEVICE_ID = D.DEVICE_ID
+                        WHERE S.DEVICE_ID IN (SELECT DEVICE_ID FROM #T_UPDATE_TEMP)
+
+                        SELECT VALUE,DEVICE_ID
+                        FROM S_DEVICE_CONTROL_DETAIL
 
                         --DROP TABLE #LIST_DEVICE
                         --DROP TABLE #LIST_DEVICE_SETTING
+                        --DROP TABLE #T_UPDATE_TEMP
+
                     ";
-                int res = _dbContext.Database.ExecuteSqlCommand(sql);
-                if (res > 0)
+                //int res = _dbContext.Database.ExecuteSqlCommand(sql);
+                List<ControlRawData> lstRes = _dbContext.Database.SqlQuery<ControlRawData>(sql).ToList();
+
+                if (lstRes != null)
                 {
-                    // send mail
+                    _hub.UpdateSheduleClient(lstRes);
+                    // sent mail
                 }
                 else
                 {
-                    // send mail
+                    // send mail Error
                 }
             }
             catch (Exception ex)
             {
+                // sent mail
 
             }
         }
+
     }
 }

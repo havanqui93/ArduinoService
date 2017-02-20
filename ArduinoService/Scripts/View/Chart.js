@@ -8,6 +8,25 @@ function GetTokenKey() {
     return currentLocation.split('/')[3];
 }
 
+$('#filterDate').datetimepicker({
+    showTodayButton: false
+}).on('dp.change', function (ev) {
+    //ShowLoading();
+    $('#contentchart').html('');
+    dataChartLocal = GetDataChart($(this).val());
+    CreateChart(dataChartLocal, 'line');
+    //HideLoading();
+});
+
+$('#btnToday').on('click', function () {
+    //ShowLoading();
+    $('#contentchart').html('');
+    dataChartLocal = GetDataChart(GetDateToday());
+    CreateChart(dataChartLocal, 'line');
+    $('#filterDate').val(GetDateToday());
+    //HideLoading();
+});
+
 
 doOnLoad();
 
@@ -28,8 +47,8 @@ $('#datechart').on('change', function () {
 });
 
 function doOnLoad() {
-    dataChartLocal = GetDataChart("1"); // 1 : today
-    CreateChart(dataChartLocal, "spline");
+    dataChartLocal = GetDataChart(GetDateToday()); // 1 : today
+    CreateChart(dataChartLocal, "line");
 }
 
 // convert mm/dd/yyyy to new Date
@@ -56,13 +75,30 @@ function GetDataChart(datechart) {
 
 function CreateChart(data, typechart) {
     // define when change type char
-    var arrChartType = { VIEW: "spline" };
+    var arrChartType = { VIEW: "line" };
     switch (typechart) {
-        case "spline": arrChartType = { VIEW: "spline" }; break;
+        case "line": arrChartType = { VIEW: "line" }; break;
         case "bar": arrChartType = { VIEW: "bar" }; break;
     }
+    var START = 0, END = 100;
 
     $.each(data, function (index, data) {
+        // check start/end
+        if (data.GROUP_SENSOR_ID != 1) {
+            START = 0;
+            END = 100;
+        }
+        else {
+            if (data.CHART_NAME.indexOf("[Nhiệt độ]") != -1) {
+                START = -50;
+                END = 50;
+            }
+            else {
+                START = 0;
+                END = 100;
+            }
+        }
+
         $('#contentchart').append('<label class="sensorchart">' + data.CHART_NAME + '</label><div id="chartbox_' + index + '" class="chartbox"></div>');
 
         var datajson = [];
@@ -73,8 +109,10 @@ function CreateChart(data, typechart) {
             view: arrChartType.VIEW, //"spline",
             container: 'chartbox_' + index,
             value: "#VALUE#",
+            //label:"#VALUE#",
             color: "#2b9fe4",
             width: 30,
+            labelLines: true,
             item: {
                 borderColor: "#1293f8",
                 color: "#ffffff"
@@ -88,12 +126,14 @@ function CreateChart(data, typechart) {
             },
             offset: 0,
             xAxis: {
+                title: "Thời gian (giờ)",
                 template: "#DAY#"
             },
             yAxis: {
-                start: 0,
-                step: 50,
-                end: 500,
+                title: '(' + data.UNIT_NAME + ')',
+                start: START,
+                step: 10,
+                end: END,
                 template: function (value) {
                     return value % 5 ? "" : value
                 }
@@ -115,6 +155,11 @@ function CreateChart(data, typechart) {
         // add new line
         myLineChart = new dhtmlXChart(dataChart);
         myLineChart.parse(datajson, "json");
+
+        // Custom position
+        //$('.dhx_axis_title_y').attr('style', 'top: 0px !important');
+
+
 
     });
 }

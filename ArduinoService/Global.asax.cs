@@ -34,7 +34,7 @@ namespace ArduinoService
             .WithIdentity("trigger1", "group1")
             .StartNow()
             .WithSimpleSchedule(x => x
-            .WithIntervalInSeconds(60)
+            .WithIntervalInSeconds(30)
             .RepeatForever())
             .Build();
 

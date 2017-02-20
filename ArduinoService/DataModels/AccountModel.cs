@@ -2,6 +2,8 @@
 using ArduinoService.Models;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Web;
 
@@ -46,6 +48,7 @@ namespace ArduinoService.DataModels
         public bool Register(RegisterRowData data)
         {
             bool result = false;
+            
             try
             {
                 var record = dbcontext.S_USER.FirstOrDefault(x => x.EMAIL == data.Email || x.PHONE == data.Phone);

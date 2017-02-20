@@ -8,6 +8,11 @@
     ViewBag.Title = "Control Systems ioT";
     Layout = "~/Views/Shared/_MainLayout.cshtml";
 }
+<style>
+    #acreage-garden {
+        max-width: 125px;
+    }
+</style>
 
 <div class="col-sm-12">
     <section class="content-header">
@@ -15,7 +20,7 @@
     </section>
 </div>
 
-@if (Session[ConstantClass.USER_TYPE] != null && Session[ConstantClass.USER_TYPE].ToString() == "1")
+@if (Request.Cookies["UserSettings"][ConstantClass.USER_TYPE] != null && Request.Cookies["UserSettings"][ConstantClass.USER_TYPE].ToString() == "1")
 {
     <div class="col-sm-12">
         <div id="listgarden">
@@ -70,7 +75,7 @@
         <div class="col-md-4 col-sm-4 col-xs-12" id="addnewgarden">
             <div class="x_panel tile fixed_height_275">
                 <div class="x_title">
-                    <h2>Add new garden</h2>
+                    <h2>Thêm mới khu vườn</h2>
                     <div class="clearfix"></div>
                 </div>
                 <div class="x_content" data-toggle="modal" data-target="#ModalGarden">
@@ -185,7 +190,7 @@
 @section scripts {
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDYwEnWeO39XsxmVB3hydF4r6hlgNQ6wqM" type="text/javascript"></script>
     @*<script src="https://maps.googleapis.com/maps/api/js?sensor=false"
-            type="text/javascript"></script>*@
+        type="text/javascript"></script>*@
 
     <script src="~/Scripts/View/MainMenu.js"></script>
 }

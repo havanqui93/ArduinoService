@@ -5,6 +5,18 @@ $(document).ready(function () {
     //    handle: ".modal-header"
     //});
 
+    // Register datepicker
+    $('#filterDate').datetimepicker({
+        showTodayButton: false
+    }).on('dp.change', function (ev) {
+        GetDeciveDetails(1, $(this).val());
+    });
+
+    $('#btnToday').on('click', function () {
+        GetDeciveDetails(1, '');
+        $('#filterDate').val(GetDateToday());
+    });
+
     $('#add-tracking').on('click', function () {
         $('#group-sensor').attr('disabled', false);
         $('#cbopin').attr('disabled', false);
@@ -79,7 +91,9 @@ $(document).ready(function () {
             'NAME_CONTROL_1': namecontrol,
             'NAME_CONTROL_2': namecontrol2,
             'GROUP_SENSOR': groupsensor,
-            'DEVICE_ID': id_device
+            'DEVICE_ID': id_device,
+            'REAL_DEVICE_NAME_1': $("#addtext-device").val().trim(),
+            'REAL_DEVICE_NAME_2': $("#addtext-device2").val().trim()
         };
 
         var resValidate = ValidateTracking(rowData);
@@ -137,8 +151,18 @@ $(document).ready(function () {
 
                 html += '</table>';
                 $('.details').html(html);
+                // add top row
+                var now = new moment();
+                var hourNow = now.format("HH") + ':00';
+                $.each($('.details').find('tr'), function (index, data) {
+                    if ($(data).find('td').first().text().trim() == hourNow) {
+                        $('.details').find('tbody').prepend('<tr class="top1details">' + $(data).html() + '</tr>');
+                    }
+                });
+
                 // resize table
-                $('.details').width($(document).outerWidth() - $('.left_col').outerWidth() - 20);
+                var w = $('.container:eq(1)').width();
+                $('.details').width(w);
 
                 $('.icon-setting').on('click', function () {
                     // modal setting tracking
@@ -230,35 +254,35 @@ $(document).ready(function () {
 
     // validate
     function ValidateTracking(rowdata) {
-        if (IsNullOrEmpty(rowdata.NAME_CONTROL_1)) {
-
+        var tokenkey = GetTokenKey();
+        if (IsNullOrEmpty(rowdata.REAL_DEVICE_NAME_1)) {
             return "Vui lòng nhập tên thiết bị !";
         }
         else if (IsNullOrEmpty(rowdata.NAME_CONTROL_2) && rowdata.GROUP_SENSOR == '1') {
 
             return "Vui lòng nhập tên thiết bị !";
         }
-        else if (CheckExistsNameTracking(rowdata.NAME_CONTROL_1, rowdata.DEVICE_ID) == true && rowdata.GROUP_SENSOR == '1') {
+        else if (CheckExistsNameTracking(rowdata.NAME_CONTROL_1, rowdata.DEVICE_ID, tokenkey) == true && rowdata.GROUP_SENSOR == '1') {
 
             return "Tên thiết bị đã được đăng kí. Vui lòng nhập tên thiết bị khác !";
         }
-        else if (CheckExistsNameTracking(rowdata.NAME_CONTROL_1, rowdata.DEVICE_ID) == true && rowdata.GROUP_SENSOR != '1') {
+        else if (CheckExistsNameTracking(rowdata.NAME_CONTROL_1, rowdata.DEVICE_ID, tokenkey) == true && rowdata.GROUP_SENSOR != '1') {
 
             return "Tên thiết bị đã được đăng kí. Vui lòng nhập tên thiết bị khác !";
         }
-        else if (CheckExistsNameTracking(rowdata.NAME_CONTROL_2, rowdata.DEVICE_ID) == true && rowdata.GROUP_SENSOR == '1') {
+        else if (CheckExistsNameTracking(rowdata.NAME_CONTROL_2, rowdata.DEVICE_ID, tokenkey) == true && rowdata.GROUP_SENSOR == '1') {
 
             return "Tên thiết bị đã được đăng kí. Vui lòng nhập tên thiết bị khác !";
         }
     }
 
-    function CheckExistsNameTracking(name, deviceid) {
+    function CheckExistsNameTracking(name, deviceid, tokenkey) {
         var result = false;
         $.ajax({
             async: false,
             method: "POST",
             url: "/Home/CheckExistsNameTracking",
-            data: { 'name': name, 'deviceid': deviceid }
+            data: { 'name': name, 'deviceid': deviceid, 'tokenkey': tokenkey }
         }).success(function (data) {
             result = data;
         });

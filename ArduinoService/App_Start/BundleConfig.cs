@@ -26,6 +26,11 @@ namespace ArduinoService
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
+
+
+            // Setting Garden
+            bundles.Add(new ScriptBundle("~/Scripts/View/SettingGarden").Include("~/Scripts/View/SettingGarden.js"));
+
         }
     }
 }

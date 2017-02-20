@@ -1,38 +1,650 @@
 ﻿@using ArduinoService.Resource
 @{
-    ViewBag.Title = "Welcome";
-    Layout = "~/Views/Shared/_LayoutWelcome.cshtml";
+    Layout = "~/Views/Shared/Layout_Agri_Pro.cshtml";
 }
 
-<div class="container" id="center-text">
-    <div id="title" class="col-sm-12">Internet Of Things</div>
-    <div id="caption" class="col-sm-12">SMART AGRICULTURE</div>
-    <div class="col-sm-12">
-        <a href="#" class="btn btn-big"><i class="fa fa-android" aria-hidden="true"></i>  Comming Soon</a>
-        <a href="#" class="btn btn-big"><i class="fa fa-apple" aria-hidden="true"></i>  Comming Soon</a>
-    </div>
-    <div class="col-sm-12 start-tutorials">
-        <a href="/Home/MainMenu" class="btn btn-big"><i class="fa fa-paper-plane-o" aria-hidden="true"></i>Start</a>
-    </div>
-</div>
+<!-- header -->
+	<div class="agileits_header">
+		<div class="w3l_offers">
+			<span style="font-family:Arial, Helvetica, sans-serif;">Rất vui vì bạn đã ghé thăm</span>
+		</div>
+		<!--div class="w3l_search">
+			<form action="#" method="post">
+				<input type="text" name="Product" value="Search a product..." onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Search a product...';}" required="">
+				<input type="submit" value=" ">
+			</form>
+		</div>
+		<div class="product_list_header">
+			<form action="#" method="post" class="last">
+                <fieldset>
+                    <input type="hidden" name="cmd" value="_cart" />
+                    <input type="hidden" name="display" value="1" />
+                    <input type="submit" name="submit" value="View your cart" class="button" />
+                </fieldset>
+            </form>
+		</div>
+		<div class="w3l_header_right">
+			<ul>
+				<li class="dropdown profile_details_drop">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user" aria-hidden="true"></i><span class="caret"></span></a>
+					<div class="mega-dropdown-menu">
+						<div class="w3ls_vegetables">
+							<ul class="dropdown-menu drp-mnu">
+								<li><a href="login.html">Login</a></li> 
+								<li><a href="login.html">Sign Up</a></li>
+							</ul>
+						</div>                  
+					</div>	
+				</li>
+			</ul>
+		</div>
+		<div class="w3l_header_right1">
+			<h2><a href="mail.html">Contact Us</a></h2>
+		</div-->
+		<div class="clearfix"> </div>
+	</div>
+<!-- script-for sticky-nav -->
+	<script>
+	$(document).ready(function() {
+		 var navoffeset=$(".agileits_header").offset().top;
+		 $(window).scroll(function(){
+			var scrollpos=$(window).scrollTop(); 
+			if(scrollpos >=navoffeset){
+				$(".agileits_header").addClass("fixed");
+			}else{
+				$(".agileits_header").removeClass("fixed");
+			}
+		 });
+		 
+	});
+	</script>
+<!-- //script-for sticky-nav -->
+	<div class="logo_products">
+		<div class="container">
+			<div class="w3ls_logo_products_left">
+				<h1><a href="index.html"><span>Vì sức khỏe người Việt</span><p>vietnongsan.com</p></a></h1>
+			</div>
+			<!--div class="w3ls_logo_products_left1">
+				<ul class="special_items">
+					<li><a href="events.html">Events</a><i>/</i></li>
+					<li><a href="about.html">About Us</a><i>/</i></li>
+					<li><a href="products.html">Best Deals</a><i>/</i></li>
+					<li><a href="services.html">Services</a></li>
+				</ul>
+			</div-->
+			<div class="w3ls_logo_products_left1">
+				<ul class="phone_email">
+					<li><i class="fa fa-phone" aria-hidden="true"></i>(+0972) 281182</li>
+					<li><i class="fa fa-envelope-o" aria-hidden="true"></i><a href="mailto:store@grocery.com">sales@vietnongsan.com</a></li>
+				</ul>
+			</div>
+			<div class="clearfix"> </div>
+		</div>
+	</div>
+<!-- //header -->
+<!-- banner -->
+	<div class="banner">
+		<div class="w3l_banner_nav_left">
+			<nav class="navbar nav_bottom">
+			 <!-- Brand and toggle get grouped for better mobile display -->
+			  <div class="navbar-header nav_2">
+				  <button type="button" class="navbar-toggle collapsed navbar-toggle1" data-toggle="collapse" data-target="#bs-megadropdown-tabs">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				  </button>
+			   </div> 
+			   <!-- Collect the nav links, forms, and other content for toggling -->
+				<div class="collapse navbar-collapse" id="bs-megadropdown-tabs">
+					<ul class="nav navbar-nav nav_1">
+						<li><a href="products.html">Rau củ quả sạch</a></li>
+						<li><a href="household.html">Sản phẩm từ hạt Macca</a></li>
+						<!--li class="dropdown mega-dropdown active">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown">Veggies & Fruits<span class="caret"></span></a>				
+							<div class="dropdown-menu mega-dropdown-menu w3ls_vegetables_menu">
+								<div class="w3ls_vegetables">
+									<ul>	
+										<li><a href="vegetables.html">Vegetables</a></li>
+										<li><a href="vegetables.html">Fruits</a></li>
+									</ul>
+								</div>                  
+							</div>				
+						</li-->
+						<li><a href="kitchen.html">Bột màu rau câu tự nhiên</a></li>
+						<li><a href="short-codes.html">Thịt gà Đông Tảo</a></li>
+						<li><a href="pet.html">Dụng cụ rau câu 3D</a></li>
+					</ul>
+				 </div><!-- /.navbar-collapse -->
+			</nav>
+		</div>
+		<div class="w3l_banner_nav_right">
+			<section class="slider">
+				<div class="flexslider">
+					<ul class="slides">
+						<li>
+							<div class="w3l_banner_nav_right_banner">
+								<h3>Make your <span>food</span> with Spicy.</h3>
+								<div class="more">
+									<a href="products.html" class="button--saqui button--round-l button--text-thick" data-text="Shop now">Shop now</a>
+								</div>
+							</div>
+						</li>
+						<li>
+							<div class="w3l_banner_nav_right_banner1">
+								<h3>Make your <span>food</span> with Spicy.</h3>
+								<div class="more">
+									<a href="products.html" class="button--saqui button--round-l button--text-thick" data-text="Shop now">Shop now</a>
+								</div>
+							</div>
+						</li>
+						<li>
+							<div class="w3l_banner_nav_right_banner2">
+								<h3>upto <i>50%</i> off.</h3>
+								<div class="more">
+									<a href="products.html" class="button--saqui button--round-l button--text-thick" data-text="Shop now">Shop now</a>
+								</div>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</section>
+			<!-- flexSlider -->
+				<link rel="stylesheet" href="css/flexslider.css" type="text/css" media="screen" property="" />
+				<script defer src="js/jquery.flexslider.js"></script>
+				<script type="text/javascript">
+				$(window).load(function(){
+				  $('.flexslider').flexslider({
+					animation: "slide",
+					start: function(slider){
+					  $('body').removeClass('loading');
+					}
+				  });
+				});
+			  </script>
+			<!-- //flexSlider -->
+		</div>
+		<div class="clearfix"></div>
+	</div>
+<!-- banner -->
+	<!--div class="banner_bottom">
+			<div class="wthree_banner_bottom_left_grid_sub">
+			</div>
+			<div class="wthree_banner_bottom_left_grid_sub1">
+				<div class="col-md-4 wthree_banner_bottom_left">
+					<div class="wthree_banner_bottom_left_grid">
+						<img src="images/4.jpg" alt=" " class="img-responsive" />
+						<div class="wthree_banner_bottom_left_grid_pos">
+							<h4>Discount Offer <span>25%</span></h4>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-4 wthree_banner_bottom_left">
+					<div class="wthree_banner_bottom_left_grid">
+						<img src="images/5.jpg" alt=" " class="img-responsive" />
+						<div class="wthree_banner_btm_pos">
+							<h3>introducing <span>best store</span> for <i>groceries</i></h3>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-4 wthree_banner_bottom_left">
+					<div class="wthree_banner_bottom_left_grid">
+						<img src="images/6.jpg" alt=" " class="img-responsive" />
+						<div class="wthree_banner_btm_pos1">
+							<h3>Save <span>Upto</span> $10</h3>
+						</div>
+					</div>
+				</div>
+				<div class="clearfix"> </div>
+			</div>
+			<div class="clearfix"> </div>
+	</div-->
+<!-- top-brands -->
+	<div class="top-brands">
+		<div class="container">
+			<h3>Sản Phẩm Hiện Có</h3>
+			<div class="agile_top_brands_grids">
+				<div class="col-md-3 top_brand_left">
+					<div class="hover14 column">
+						<div class="agile_top_brand_left_grid">
+							<!--div class="tag">
+								<img src="images/tag.png" alt=" " class="img-responsive" />
+							</div-->
+							<div class="agile_top_brand_left_grid1">
+								<figure>
+									<div class="snipcart-item block" >
+										<div class="snipcart-thumb">
+											<a href="single.html"><img title=" " alt=" " src="images/1.png" /></a>		
+											<p>Hạt Macca Rang</p>
+											<h4>300,000 vnđ<span>320,000 vnđ</span></h4>
+										</div>
+										<!--div class="snipcart-details top_brand_home_details">
+											<form action="#" method="post">
+												<fieldset>
+													<input type="hidden" name="cmd" value="_cart" />
+													<input type="hidden" name="add" value="1" />
+													<input type="hidden" name="business" value=" " />
+													<input type="hidden" name="item_name" value="Fortune Sunflower Oil" />
+													<input type="hidden" name="amount" value="7.99" />
+													<input type="hidden" name="discount_amount" value="1.00" />
+													<input type="hidden" name="currency_code" value="USD" />
+													<input type="hidden" name="return" value=" " />
+													<input type="hidden" name="cancel_return" value=" " />
+													<input type="submit" name="submit" value="Add to cart" class="button" />
+												</fieldset>
+											</form>
+										</div!-->
+									</div>
+								</figure>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-3 top_brand_left">
+					<div class="hover14 column">
+						<div class="agile_top_brand_left_grid">
+							<div class="agile_top_brand_left_grid1">
+								<figure>
+									<div class="snipcart-item block" >
+										<div class="snipcart-thumb">
+											<a href="single.html"><img title=" " alt=" " src="images/3.png" /></a>		
+											<p>Rau cải cầu vồng (0.5 Kg)</p>
+											<h4>30,000 vnđ<span>35,000 vnđ</span></h4>
+										</div>
+									</div>
+								</figure>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-3 top_brand_left">
+					<div class="hover14 column">
+						<div class="agile_top_brand_left_grid">
+							<!--div class="agile_top_brand_left_grid_pos">
+								<img src="images/offer.png" alt=" " class="img-responsive" />
+							</div-->
+							<div class="agile_top_brand_left_grid1">
+								<figure>
+									<div class="snipcart-item block">
+										<div class="snipcart-thumb">
+											<a href="single.html"><img src="images/2.png" alt=" " class="img-responsive" /></a>
+											<p>Cà chua đen (0.5 kg)</p>
+											<h4>30,000 vnđ <span>35,000 vnđ</span></h4>
+										</div>
+									</div>
+								</figure>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-3 top_brand_left">
+					<div class="hover14 column">
+						<div class="agile_top_brand_left_grid">
+							<div class="agile_top_brand_left_grid1">
+								<figure>
+									<div class="snipcart-item block">
+										<div class="snipcart-thumb">
+											<a href="single.html"><img src="images/4.png" alt=" " class="img-responsive" /></a>
+											<p>Bột màu dành dành (25 gr)</p>
+											<h4>50,000 vnđ</h4>
+										</div>
+									</div>
+								</figure>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="clearfix"> </div>
+			</div>
 
-<footer>
-    <div class="pull-right">
-        <a href="#"><i class="fa fa-facebook-official" style="font-size:24px;color:white;"></i></a>
-        <a href="#"><i class="fa fa-twitter-square" style="font-size:24px;color:white;"></i></a>
-    </div>
-    <div class="dropup pull-left">
-        <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            @Languages._0008
-            <span class="caret"></span>
-        </button>
-        <ul class="dropdown-menu dropdown-menu-left" aria-labelledby="dropdownMenu2">
-            <li><a href="@Url.Action("ChangeCulture", "Home", new { lang = "vn",returnUrl = Request.Url })">@Languages._0010</a></li>
-            <li><a href="@Url.Action("ChangeCulture", "Home", new { lang = "en",returnUrl = Request.Url })">@Languages._0009</a></li>
-        </ul>
-    </div>
-</footer>
+			<div class = "agile_top_brands_grids">
+				<div class="col-md-3 top_brand_left">
+					<div class="hover14 column">
+						<div class="agile_top_brand_left_grid">
+							<div class="agile_top_brand_left_grid1">
+								<figure>
+									<div class="snipcart-item block">
+										<div class="snipcart-thumb">
+											<a href="single.html"><img src="images/4.png" alt=" " class="img-responsive" /></a>
+											<p>Bột màu củ dền (25 gr)</p>
+											<h4>50,000 vnđ</h4>
+										</div>
+									</div>
+								</figure>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-3 top_brand_left">
+					<div class="hover14 column">
+						<div class="agile_top_brand_left_grid">
+							<div class="agile_top_brand_left_grid1">
+								<figure>
+									<div class="snipcart-item block">
+										<div class="snipcart-thumb">
+											<a href="single.html"><img src="images/4.png" alt=" " class="img-responsive" /></a>
+											<p>Bột màu thanh long (25 gr)</p>
+											<h4>50,000 vnđ</h4>
+										</div>
+									</div>
+								</figure>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-3 top_brand_left">
+					<div class="hover14 column">
+						<div class="agile_top_brand_left_grid">
+							<div class="agile_top_brand_left_grid1">
+								<figure>
+									<div class="snipcart-item block">
+										<div class="snipcart-thumb">
+											<a href="single.html"><img src="images/4.png" alt=" " class="img-responsive" /></a>
+											<p>Bột màu lá cẩm (25 gr)</p>
+											<h4>50,000 vnđ</h4>
+										</div>
+									</div>
+								</figure>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-3 top_brand_left">
+					<div class="hover14 column">
+						<div class="agile_top_brand_left_grid">
+							<div class="agile_top_brand_left_grid1">
+								<figure>
+									<div class="snipcart-item block">
+										<div class="snipcart-thumb">
+											<a href="single.html"><img src="images/4.png" alt=" " class="img-responsive" /></a>
+											<p>Bột màu dâu tằm (25 gr)</p>
+											<h4>50,000 vnđ</h4>
+										</div>
+									</div>
+								</figure>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="clearfix"> </div>
+			</div>
 
 
+
+			<div class = "agile_top_brands_grids">
+				<div class="col-md-3 top_brand_left">
+					<div class="hover14 column">
+						<div class="agile_top_brand_left_grid">
+							<div class="agile_top_brand_left_grid1">
+								<figure>
+									<div class="snipcart-item block">
+										<div class="snipcart-thumb">
+											<a href="single.html"><img src="images/4.png" alt=" " class="img-responsive" /></a>
+											<p>Bánh quy bơ Macca (0.5 kg)</p>
+											<h4>90,000 vnđ</h4>
+										</div>
+									</div>
+								</figure>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-3 top_brand_left">
+					<div class="hover14 column">
+						<div class="agile_top_brand_left_grid">
+							<div class="agile_top_brand_left_grid1">
+								<figure>
+									<div class="snipcart-item block">
+										<div class="snipcart-thumb">
+											<a href="single.html"><img src="images/4.png" alt=" " class="img-responsive" /></a>
+											<p>Cà chua cherry (0.5 kg)</p>
+											<h4>30,000 vnđ <span>35,000 vnđ</span></h4>
+										</div>
+									</div>
+								</figure>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-3 top_brand_left">
+					<div class="hover14 column">
+						<div class="agile_top_brand_left_grid">
+							<div class="agile_top_brand_left_grid1">
+								<figure>
+									<div class="snipcart-item block">
+										<div class="snipcart-thumb">
+											<a href="single.html"><img src="images/4.png" alt=" " class="img-responsive" /></a>
+											<p>Gà đông tảo (1 kg)</p>
+											<h4>300,000 vnđ</h4>
+										</div>
+									</div>
+								</figure>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-3 top_brand_left">
+					<div class="hover14 column">
+						<div class="agile_top_brand_left_grid">
+							<div class="agile_top_brand_left_grid1">
+								<figure>
+									<div class="snipcart-item block">
+										<div class="snipcart-thumb">
+											<a href="single.html"><img src="images/4.png" alt=" " class="img-responsive" /></a>
+											<p>Măng tây (0.5 kg)</p>
+											<h4>Hết hàng</h4>
+										</div>
+									</div>
+								</figure>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+
+
+
+		</div>
+	</div>
+<!-- //top-brands -->
+<!-- fresh-vegetables -->
+	<!--div class="fresh-vegetables">
+		<div class="container">
+			<h3>Top Products</h3>
+			<div class="w3l_fresh_vegetables_grids">
+				<div class="col-md-3 w3l_fresh_vegetables_grid w3l_fresh_vegetables_grid_left">
+					<div class="w3l_fresh_vegetables_grid2">
+						<ul>
+							<li><i class="fa fa-check" aria-hidden="true"></i><a href="products.html">All Brands</a></li>
+							<li><i class="fa fa-check" aria-hidden="true"></i><a href="vegetables.html">Vegetables</a></li>
+							<li><i class="fa fa-check" aria-hidden="true"></i><a href="vegetables.html">Fruits</a></li>
+							<li><i class="fa fa-check" aria-hidden="true"></i><a href="drinks.html">Juices</a></li>
+							<li><i class="fa fa-check" aria-hidden="true"></i><a href="pet.html">Pet Food</a></li>
+							<li><i class="fa fa-check" aria-hidden="true"></i><a href="bread.html">Bread & Bakery</a></li>
+							<li><i class="fa fa-check" aria-hidden="true"></i><a href="household.html">Cleaning</a></li>
+							<li><i class="fa fa-check" aria-hidden="true"></i><a href="products.html">Spices</a></li>
+							<li><i class="fa fa-check" aria-hidden="true"></i><a href="products.html">Dry Fruits</a></li>
+							<li><i class="fa fa-check" aria-hidden="true"></i><a href="products.html">Dairy Products</a></li>
+						</ul>
+					</div>
+				</div>
+				<div class="col-md-9 w3l_fresh_vegetables_grid_right">
+					<div class="col-md-4 w3l_fresh_vegetables_grid">
+						<div class="w3l_fresh_vegetables_grid1">
+							<img src="images/8.jpg" alt=" " class="img-responsive" />
+						</div>
+					</div>
+					<div class="col-md-4 w3l_fresh_vegetables_grid">
+						<div class="w3l_fresh_vegetables_grid1">
+							<div class="w3l_fresh_vegetables_grid1_rel">
+								<img src="images/7.jpg" alt=" " class="img-responsive" />
+								<div class="w3l_fresh_vegetables_grid1_rel_pos">
+									<div class="more m1">
+										<a href="products.html" class="button--saqui button--round-l button--text-thick" data-text="Shop now">Shop now</a>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="w3l_fresh_vegetables_grid1_bottom">
+							<img src="images/10.jpg" alt=" " class="img-responsive" />
+							<div class="w3l_fresh_vegetables_grid1_bottom_pos">
+								<h5>Special Offers</h5>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-4 w3l_fresh_vegetables_grid">
+						<div class="w3l_fresh_vegetables_grid1">
+							<img src="images/9.jpg" alt=" " class="img-responsive" />
+						</div>
+						<div class="w3l_fresh_vegetables_grid1_bottom">
+							<img src="images/11.jpg" alt=" " class="img-responsive" />
+						</div>
+					</div>
+					<div class="clearfix"> </div>
+					<div class="agileinfo_move_text">
+						<div class="agileinfo_marquee">
+							<h4>get <span class="blink_me">25% off</span> on first order and also get gift voucher</h4>
+						</div>
+						<div class="agileinfo_breaking_news">
+							<span> </span>
+						</div>
+						<div class="clearfix"></div>
+					</div>
+				</div>
+				<div class="clearfix"> </div>
+			</div>
+		</div>
+	</div-->
+<!-- //fresh-vegetables -->
+<!-- newsletter -->
+	<!--div class="newsletter">
+		<div class="container">
+			<div class="w3agile_newsletter_left">
+				<h3>sign up for our newsletter</h3>
+			</div>
+			<div class="w3agile_newsletter_right">
+				<form action="#" method="post">
+					<input type="email" name="Email" value="Email" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Email';}" required="">
+					<input type="submit" value="subscribe now">
+				</form>
+			</div>
+			<div class="clearfix"> </div>
+		</div>
+	</div-->
+<!-- //newsletter -->
+<!-- footer -->
+	<div class="footer">
+		<div class="container">
+			<div class="col-md-3 w3_footer_grid">
+				<h3>thông tin</h3>
+				<ul class="w3_footer_grid_list">
+					<li><a href="events.html">Sự Kiện</a></li>
+					<li><a href="about.html">Tìm hiểu Việt Nông Sản</a></li>
+					<li><a href="services.html">Dịch vụ</a></li>
+				</ul>
+			</div>
+			<div class="col-md-3 w3_footer_grid">
+				<h3>thông tin bảo mật</h3>
+				<ul class="w3_footer_grid_list">
+					<li><a href="faqs.html">hỏi đáp</a></li>
+					<li><a href="privacy.html">chính sách bảo mật</a></li>
+					<li><a href="privacy.html">điều kiện sử dụng</a></li>
+				</ul>
+			</div>
+			<div class="col-md-3 w3_footer_grid">
+				<h3>sản phẩm</h3>
+				<ul class="w3_footer_grid_list">
+					<li><a href="pet.html">Rau sạch</a></li>
+					<li><a href="frozen.html">Sản phẩm Macca</a></li>
+					<li><a href="kitchen.html">Kitchen</a></li>
+					<li><a href="products.html">Branded Foods</a></li>
+					<li><a href="household.html">Households</a></li>
+				</ul>
+			</div>
+			<div class="col-md-3 w3_footer_grid">
+				<h3>twitter posts</h3>
+				<ul class="w3_footer_grid_list1">
+					<li><label class="fa fa-twitter" aria-hidden="true"></label><i>01 day ago</i><span>Non numquam <a href="#">http://sd.ds/13jklf#</a>
+						eius modi tempora incidunt ut labore et
+						<a href="#">http://sd.ds/1389kjklf#</a>quo nulla.</span></li>
+					<li><label class="fa fa-twitter" aria-hidden="true"></label><i>02 day ago</i><span>Con numquam <a href="#">http://fd.uf/56hfg#</a>
+						eius modi tempora incidunt ut labore et
+						<a href="#">http://fd.uf/56hfg#</a>quo nulla.</span></li>
+				</ul>
+			</div>
+			<div class="clearfix"> </div>
+			<!--div class="agile_footer_grids">
+				<div class="col-md-3 w3_footer_grid agile_footer_grids_w3_footer">
+					<div class="w3_footer_grid_bottom">
+						<h4>100% secure payments</h4>
+						<img src="images/card.png" alt=" " class="img-responsive" />
+					</div>
+				</div>
+				<div class="col-md-3 w3_footer_grid agile_footer_grids_w3_footer">
+					<div class="w3_footer_grid_bottom">
+						<h5>connect with us</h5>
+						<ul class="agileits_social_icons">
+							<li><a href="#" class="facebook"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+							<li><a href="#" class="twitter"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+							<li><a href="#" class="google"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
+							<li><a href="#" class="instagram"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+							<li><a href="#" class="dribbble"><i class="fa fa-dribbble" aria-hidden="true"></i></a></li>
+						</ul>
+					</div>
+				</div>
+				<div class="clearfix"> </div>
+			</div-->
+			<div class="wthree_footer_copy">
+				<p>© 2016 Việt Nông Sản. Bản quyền đã được bảo hộ và thiết kế bởi <a href="http://w3layouts.com/">W3layouts</a></p>
+			</div>
+		</div>
+	</div>
+<!-- //footer -->
+<!-- Bootstrap Core JavaScript -->
+<script src="js/bootstrap.min.js"></script>
+<script>
+$(document).ready(function(){
+    $(".dropdown").hover(            
+        function() {
+            $('.dropdown-menu', this).stop( true, true ).slideDown("fast");
+            $(this).toggleClass('open');        
+        },
+        function() {
+            $('.dropdown-menu', this).stop( true, true ).slideUp("fast");
+            $(this).toggleClass('open');       
+        }
+    );
+});
+</script>
+<!-- here stars scrolling icon -->
+	<script type="text/javascript">
+		$(document).ready(function() {
+			/*
+				var defaults = {
+				containerID: 'toTop', // fading element id
+				containerHoverID: 'toTopHover', // fading element hover id
+				scrollSpeed: 1200,
+				easingType: 'linear' 
+				};
+			*/
+								
+			$().UItoTop({ easingType: 'easeOutQuart' });
+								
+			});
+	</script>
+<!-- //here ends scrolling icon -->
+<script src="js/minicart.min.js"></script>
+<script>
+	// Mini Cart
+	paypal.minicart.render({
+		action: '#'
+	});
+
+	if (~window.location.search.indexOf('reset=true')) {
+		paypal.minicart.reset();
+	}
+</script>
 
 

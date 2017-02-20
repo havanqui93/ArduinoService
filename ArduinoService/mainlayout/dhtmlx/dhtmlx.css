@@ -3033,6 +3033,7 @@ div.dhx_toolbar_slider_label_material {
     -ms-transform: rotate(-90deg);
     -o-transform: rotate(-90deg);
     transform: rotate(-90deg);
+    font-weight:bold;
 }
 .dhx_ie_filter {
     filter: progid: DXImageTransform.Microsoft.BasicImage(rotation=3);

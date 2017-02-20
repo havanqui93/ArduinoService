@@ -33,7 +33,6 @@ namespace ArduinoService.Controllers
                 {
                     Session[ConstantClass.SESSION_USERNAME] = Request.Cookies["UserSettings"][ConstantClass.SESSION_USERNAME];
                     Session[ConstantClass.SESSION_USERID] = Request.Cookies["UserSettings"][ConstantClass.SESSION_USERID];
-                    Session[ConstantClass.USER_TYPE] = Request.Cookies["UserSettings"][ConstantClass.USER_TYPE];
                 }
             }
 
@@ -62,7 +61,14 @@ namespace ArduinoService.Controllers
 
         public PartialViewResult MenuLeft()
         {
-
+            if (Request.Cookies["UserSettings"] != null)
+            {
+                if (Request.Cookies["UserSettings"][ConstantClass.SESSION_USERNAME] != null)
+                {
+                    Session[ConstantClass.SESSION_USERNAME] = Request.Cookies["UserSettings"][ConstantClass.SESSION_USERNAME];
+                    Session[ConstantClass.SESSION_ROLE] = Request.Cookies["UserSettings"][ConstantClass.SESSION_ROLE];
+                }
+            }
             // check permission
             if (Session[ConstantClass.SESSION_USERNAME] == null)
                 return PartialView();
@@ -258,7 +264,7 @@ namespace ArduinoService.Controllers
             var result = new
             {
                 listDevice = _model.GetListDevice(tokenkey),
-                listItem = _model.GetListDataDetails(tokenkey)
+                listItem = _model.GetListDataDetails(tokenkey, filterDate)
             };
             return Json(result, JsonRequestBehavior.AllowGet);
         }
@@ -314,9 +320,9 @@ namespace ArduinoService.Controllers
         /// </summary>
         /// <param name="name"></param>
         /// <returns>true : co, false : ko</returns>
-        public JsonResult CheckExistsNameTracking(string name, string deviceid)
+        public JsonResult CheckExistsNameTracking(string name, string deviceid, string tokenkey)
         {
-            return Json(_model.CheckExistsNameTracking(name, deviceid), JsonRequestBehavior.AllowGet);
+            return Json(_model.CheckExistsNameTracking(name, deviceid, tokenkey), JsonRequestBehavior.AllowGet);
         }
 
         /// <summary>
@@ -355,7 +361,7 @@ namespace ArduinoService.Controllers
         /// <param name="tokenkey"></param>
         /// <param name="datechart"></param>
         /// <returns></returns>
-        public JsonResult GetDataChart(string tokenkey, int datechart)
+        public JsonResult GetDataChart(string tokenkey, string datechart)
         {
             return Json(_model.GetListDataChartDetails(tokenkey, datechart), JsonRequestBehavior.AllowGet);
         }
@@ -401,7 +407,7 @@ namespace ArduinoService.Controllers
             if (Session[ConstantClass.SESSION_USERNAME] == null)
                 return Redirect("/Account/Login");
             ViewBag.modelgarden = _model.GetGardenById(id);
-            ViewBag.datasettingcontrol = "";
+            ViewBag.datasettingcontrol = _model.GetControlDataSetting(id);
 
             return View();
         }
@@ -409,6 +415,11 @@ namespace ArduinoService.Controllers
         public JsonResult UpdateShedule(string tokenkey)
         {
             return Json(_model.UpdateShedule(tokenkey), JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult SaveSettingControl(string strArr, string deviceid)
+        {
+            return Json(_model.SaveSettingControl(strArr, deviceid), JsonRequestBehavior.AllowGet);
         }
 
         #endregion

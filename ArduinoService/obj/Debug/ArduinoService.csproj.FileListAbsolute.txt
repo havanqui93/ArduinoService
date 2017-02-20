@@ -80,9 +80,9 @@ E:\ArduinoProject\ArduinoService\ArduinoService\bin\Microsoft.AspNet.SignalR.Sys
 E:\ArduinoProject\ArduinoService\ArduinoService\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
 E:\ArduinoProject\ArduinoService\ArduinoService\bin\Quartz.pdb
 E:\ArduinoProject\ArduinoService\ArduinoService\bin\Quartz.xml
+E:\ArduinoProject\ArduinoService\ArduinoService\bin\System.Web.Optimization.xml
 E:\ArduinoProject\ArduinoService\ArduinoService\bin\System.Web.Helpers.xml
 E:\ArduinoProject\ArduinoService\ArduinoService\bin\System.Web.Mvc.xml
-E:\ArduinoProject\ArduinoService\ArduinoService\bin\System.Web.Optimization.xml
 E:\ArduinoProject\ArduinoService\ArduinoService\bin\System.Web.Razor.xml
 E:\ArduinoProject\ArduinoService\ArduinoService\bin\System.Web.WebPages.xml
 E:\ArduinoProject\ArduinoService\ArduinoService\bin\System.Web.WebPages.Deployment.xml

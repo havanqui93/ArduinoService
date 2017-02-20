@@ -116,7 +116,7 @@ namespace ArduinoService.Models
                 string sql = @"
                     SELECT D2.DEVICE_ID FROM S_DEVICE D1
                     INNER JOIN S_DEVICE D2 ON D1.DEVICE_CATEGORY = D2.DEVICE_CATEGORY AND D1.GROUP_SENSOR_ID = D2.GROUP_SENSOR_ID
-                    AND D1.PIN_ID = D2.PIN_ID AND D1.DEVICE_ID = "+ deviceid + @" AND D2.DEVICE_ID != " + deviceid + @"
+                    AND D1.PIN_ID = D2.PIN_ID AND D1.DEVICE_ID = " + deviceid + @" AND D2.DEVICE_ID != " + deviceid + @"
                     ";
 
                 result = _dbContext.Database.SqlQuery<string>(sql).FirstOrDefault();
@@ -126,6 +126,14 @@ namespace ArduinoService.Models
 
             }
             return result;
+        }
+
+        public string ConverDDMMYYYY_YYYYMMDD(string datetime)
+        {
+            if (String.IsNullOrEmpty(datetime))
+                return DateTime.Now.ToString("yyyy/MM/dd");
+            else
+                return datetime.Split('/')[2] + "/" + datetime.Split('/')[1] + "/" + datetime.Split('/')[0];
         }
 
 

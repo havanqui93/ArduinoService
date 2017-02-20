@@ -23,7 +23,7 @@
         if (isActive == 1)
             window.location = $(this).attr('url');
         else
-            toastr.warning("Khu vườn chưa active !");
+            toastr.warning("Khu vườn chưa kích hoạt !");
     })
 
     $('#editgarden').on('click', function () {

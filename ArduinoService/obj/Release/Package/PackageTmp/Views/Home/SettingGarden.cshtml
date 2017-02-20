@@ -62,7 +62,7 @@
                     </tr>
                     <tr>
                         <td>Chế độ điều khiển tự động</td>
-                        <td><input type="button" class="btn" value="Bật" /></td>
+                        <td><input type="button" class="btn" id="btnAutomatic" value="Bật" /></td>
                     </tr>
 
                 </tbody>
@@ -80,24 +80,115 @@
         </div>
         <div class="panel-body @if (ViewBag.modelgarden.IS_SHEDULE == 0) {<text>displaynone</text>} " id="settingshedule">
             <div class="col-xs-12">
-                <button id="btnaddshedule" isshedule="@ViewBag.modelgarden.IS_SHEDULE" type="button" class="btn btn-default"><span class="glyphicon glyphicon-plus"></span> Thêm thời gian</button>
-                <button id="btnUpdateshedule" isshedule="@ViewBag.modelgarden.IS_SHEDULE" type="button" class="btn btn-default"><span class="glyphicon glyphicon-save"></span> Cập nhật</button>
+                @if (ViewBag.datasettingcontrol != null)
+            {
+                for (int i = 0; i < ViewBag.datasettingcontrol.Count; i++)
+                {
+                        <div class="panel panel-default panel-table">
+                            <div class="panel-heading">
+                                <div class="row">
+                                    <div class="col col-xs-6">
+                                        <h6 class="panel-title">@ViewBag.datasettingcontrol[i].DEVICE_NAME</h6>
+                                    </div>
+                                    <div class="col col-xs-6">
+                                        <button type="button" deviceid="@ViewBag.datasettingcontrol[i].DEVICE_ID" class="btn btn-default pull-right btnsavesetting"><span class="glyphicon glyphicon-floppy-disk"></span> Lưu</button>
+                                        <button type="button" class="btn btn-default pull-right btnaddsetting"><span class="glyphicon glyphicon-plus"></span> Thêm</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel-body">
+                                <table class="table">
+                                    <tbody>
+                                        @{ var dataSetting = ViewBag.datasettingcontrol[i].LIST_SETTING;  }
+                                        @{
+                                            if (dataSetting != null)
+                                            {
+                                                for (int j = 0; j < dataSetting.Count; j++)
+                                                {
+                                                    <tr>
+                                                        <td><input class="form-control displaynone" value="@dataSetting[j].SETTING_CONTROL_ID" type="text" hidden /></td>
+                                                        <td><input class="form-control timeshedule" value="@dataSetting[j].TIME_ON" type="text" /></td>
+                                                        <td>_</td>
+                                                        <td><input class="form-control timeshedule" value="@dataSetting[j].TIME_OFF" type="text" /></td>
+                                                        <td><button type="button" class="btn btn-default btnremovesetting"><span class="glyphicon glyphicon-minus"></span></button></td>
+                                                    </tr>
+                                                }
+                                            }
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                                                }
+
+                                            }
+
+
             </div>
-            <table class="table">
-                <tbody>
-                    <tr>
-                        <td><input class="form-control timeshedule" type="text" /></td>
-                        <td>_</td>
-                        <td><input class="form-control timeshedule" type="text" /></td>
-                    </tr>
-                </tbody>
-            </table>
         </div>
     </div>
-</div>
 
-@section scripts {
+    @section scripts {
 
-    <script src="~/Scripts/bootstrap-datetimepicker.js"></script>
-    <script src="~/Scripts/View/SettingGarden.js"></script>
-}
+        <script src="~/Scripts/bootstrap-datetimepicker.js"></script>
+        <script src="~/Scripts/View/SettingGarden.js"></script>
+
+        <script type="text/javascript">
+            function UpdateSetting(rowdata, deviceid) {
+                var htmlAdd = '';
+                $.each(rowdata, function (index, data) {
+                    htmlAdd += '<tr><td><input class="form-control displaynone" value="' + data.SETTING_CONTROL_ID + '" type="text" hidden></td>'
+                            + '<td><input class="form-control timeshedule" value="' + data.TIME_ON + '" type="text"></td><td>_</td>'
+                            + '<td><input class="form-control timeshedule" value="' + data.TIME_OFF + '" type="text"></td>'
+                            + '<td><button type="button" class="btn btn-default btnremovesetting"><span class="glyphicon glyphicon-minus"></span></button></td></tr>';
+                });
+                $('button[deviceid="' + deviceid + '"]').parents('.panel-table').find('.table tbody').html(htmlAdd);
+                // register datetimepicker
+                $('.timeshedule').datetimepicker({
+                    format: "HH:mm"
+                });
+                $('.btnremovesetting').on('click', function () {
+                    $(this).parent().parent().remove();
+                });
+            }
+        </script>
+
+        <!--Script references. -->
+        <!--The jQuery library is required and is referenced by default in _Layout.cshtml. -->
+        <!--Reference the SignalR library. -->
+        <script src="~/Scripts/jquery.signalR-2.2.0.min.js"></script>
+        <!--Reference the autogenerated SignalR hub script. -->
+        <script src="~/signalr/hubs"></script>
+        <!--SignalR script to update the chat page and send messages.-->
+        <script>
+            $(function () {
+                // Reference the auto-generated proxy for the hub.
+                var chat = $.connection.UpdateValueSheduleHub;
+                // Create a function that the hub can call back to display messages.
+                chat.client.SendClient = function (data, deviceid) {
+                    // update button
+                    UpdateSetting(data,deviceid);
+                };
+
+                chat.client.SendStatusClient = function (data) {
+                    if (data == '1') {
+                        $('#btnshedule').val('Bật');
+                        $('#settingshedule').hide();
+                        $('#btnshedule').attr('isshedule', 0);
+                    }
+                    else {
+                        $('#settingshedule').show();
+                        $('#btnshedule').val('Tắt');
+                        $('#btnshedule').attr('isshedule', 1);
+                    }
+                    $('#btnshedule').prop('disabled', false);
+                };
+
+                $.connection.hub.start().done(function () {
+                });
+            });
+
+
+
+        </script>
+    }

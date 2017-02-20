@@ -1,0 +1,38 @@
+﻿@using ArduinoService.Resource
+@{
+    ViewBag.Title = "Welcome";
+    Layout = "~/Views/Shared/_LayoutWelcome.cshtml";
+}
+
+<div class="container" id="center-text">
+    <div id="title" class="col-sm-12">Internet of Things</div>
+    <div id="caption" class="col-sm-12">SMART AGRICULTURE</div>
+    <div class="col-sm-12">
+        <a href="#" class="btn btn-big"><i class="fa fa-android" aria-hidden="true"></i>  Commimg Soon</a>
+        <a href="#" class="btn btn-big"><i class="fa fa-apple" aria-hidden="true"></i>  Comming Soon</a>
+    </div>
+    <div class="col-sm-12 start-tutorials">
+        <a href="/Home/MainMenu" class="btn btn-big"><i class="fa fa-paper-plane-o" aria-hidden="true"></i>Start</a>
+    </div>
+</div>
+
+<footer>
+    <div class="pull-right">
+        <a href="#"><i class="fa fa-facebook-official" style="font-size:24px;color:white;"></i></a>
+        <a href="#"><i class="fa fa-twitter-square" style="font-size:24px;color:white;"></i></a>
+    </div>
+    <div class="dropup pull-left">
+        <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            @Languages._0008
+            <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu dropdown-menu-left" aria-labelledby="dropdownMenu2">
+            <li><a href="@Url.Action("ChangeCulture", "Home", new { lang = "vn",returnUrl = Request.Url })">@Languages._0010</a></li>
+            <li><a href="@Url.Action("ChangeCulture", "Home", new { lang = "en",returnUrl = Request.Url })">@Languages._0009</a></li>
+        </ul>
+    </div>
+</footer>
+
+
+
+

@@ -10,6 +10,8 @@ namespace ArduinoService.DataModels
     {
         public string CHART_ID { get; set; }
         public string CHART_NAME { get; set; }
+        public int GROUP_SENSOR_ID { get; set; }
+        public string UNIT_NAME { get; set; }
         public List<ChartData> CHART_DATA { get; set; }
     }
 

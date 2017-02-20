@@ -102,6 +102,23 @@
 
     @section scripts {
         <script src="~/Scripts/View/Control.js"></script>
+        <script type="text/javascript">
+            // Cap nhat ON/OFF cua tat ca cac control.
+            //var rowdata = [{ "DEVICE_ID": "17", "VALUE": "ON" }, { "DEVICE_ID": "27", "VALUE": "ON" }];
+            //UpdateAllControl(rowdata);
+            function UpdateAllControl(rowdata) {
+                var lst = $('.control-system').children();
+                $.each(lst, function (index, data) {
+                    var id = $(data).find('.edit-control').attr('idcontrol');
+                    var fobject = $.grep(rowdata, function (e) { return e.DEVICE_ID == id; });
+                    if (fobject.length != 0) {
+                        var objectval = $.grep(rowdata, function (e) { return e.DEVICE_ID == id; });
+                        $('.btn-control[attrControl="' + id + '"]').removeClass('btn-success');
+                        $('.btn-control[attrControl="' + id + '"][value="' + objectval[0].VALUE + '"]').addClass('btn-success');
+                    }
+                });
+            }
+        </script>
 
         <!--Script references. -->
         <!--The jQuery library is required and is referenced by default in _Layout.cshtml. -->
@@ -119,6 +136,13 @@
                     // update button
                     $('.btn-control[attrControl="' + model.DEVICE_ID + '"]').removeClass('btn-success');
                     $('.btn-control[attrControl="' + model.DEVICE_ID + '"][value="' + model.VALUE + '"]').addClass('btn-success');
+                };
+
+
+                chat.client.SendAllClient = function (rowdata) {
+                    if (rowdata.length == 0)
+                        return false;
+                    UpdateAllControl(rowdata);
                 };
 
                 $.connection.hub.start().done(function () {

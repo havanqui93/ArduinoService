@@ -43,7 +43,7 @@ namespace ArduinoService.Controllers
         }
 
         // PUT: api/apiGarden/5
-        public bool Put(int id, [FromBody]GardenRawData model)
+        public bool Put(string id, [FromBody]GardenRawData model)
         {
             bool result = false;
             try
