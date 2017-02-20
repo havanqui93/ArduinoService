@@ -11,8 +11,6 @@ namespace ArduinoService.Controllers
     public class AccountController : Controller
     {
         private AccountModel _account = new AccountModel();
-
-
         [HttpGet]
         public ActionResult Login()
         {
