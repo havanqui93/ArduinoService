@@ -14,6 +14,7 @@ namespace ArduinoService.Controllers
         [HttpGet]
         public ActionResult Login()
         {
+            var x = 1;
             if (Request.Cookies["UserSettings"] != null)
             {
                 if (Request.Cookies["UserSettings"][ConstantClass.SESSION_USERNAME] != null)
