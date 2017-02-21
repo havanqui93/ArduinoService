@@ -5,14 +5,39 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vietnongsan - Nông sản sạch cho bạn</title>
     @*@Styles.Render("~/Content/css")*@
-	<link href="~/Content/Style_Agri_Pro.css" rel="stylesheet" />
 	<link href="~/Content/Bootstrap_Agri_Pro.css" rel="stylesheet" />
+	
+	<link href="~/Content/Style_Agri_Pro.css" rel="stylesheet" />
+	
+	
+
 	<link href="~/Content/Flexslider_Agri_Pro.css" rel="stylesheet" />
+
 	<link href="~/Content/font-awesome_Agri_Pro.css" rel="stylesheet" />
-
-
+	<link href='//fonts.googleapis.com/css?family=Ubuntu:400,300,300italic,400italic,500,500italic,700,700italic' rel='stylesheet' 			  		type='text/css'>
+	<link href='//fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' 					rel='stylesheet' type='text/css'>
+	<script src="@Url.Content("~/Scripts/jquery-1.11.1.min.js")" type="text/javascript"></script>
+	<script src="@Url.Content("~/Scripts/Move_Top_Agri_Pro.js")" type="text/javascript"></script>
+	<script src="@Url.Content("~/Scripts/Easing_Agri_Pro.js")" type="text/javascript"></script>
+	<script src="@Url.Content("~/Scripts/Bootstrap_Agri_Pro.min.js")" type="text/javascript"></script>
+	<script src="@Url.Content("~/Scripts/Minicart_Agri_Pro.min.js")" type="text/javascript"></script>
+	
+	<!-- start-smoth-scrolling -->
+	<script src="~/Scripts/Move_Top_Agri_Pro.js"></script>
+	<script src="~/Scripts/Easing_Agri_Pro.js"></script>
+	<script type="text/javascript">
+		jQuery(document).ready(function($) {
+			$(".scroll").click(function(event){		
+				event.preventDefault();
+				$('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
+			});
+		});
+	</script>
+<!-- start-smoth-scrolling -->
 </head>
 <body>
+	
     @RenderBody()
+	
 </body>
 </html>
