@@ -19,7 +19,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>06/21/2016 23:39:17</publishTime>
     </File>
     <File Include="bin/ArduinoService.dll">
-      <publishTime>02/12/2017 15:43:07</publishTime>
+      <publishTime>02/21/2017 21:50:24</publishTime>
     </File>
     <File Include="bin/Common.Logging.Core.dll">
       <publishTime>11/14/2015 13:35:30</publishTime>
@@ -28,7 +28,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>11/14/2015 13:35:30</publishTime>
     </File>
     <File Include="bin/en/ArduinoService.resources.dll">
-      <publishTime>02/12/2017 15:43:08</publishTime>
+      <publishTime>02/21/2017 21:50:25</publishTime>
     </File>
     <File Include="bin/EntityFramework.dll">
       <publishTime>09/11/2013 09:10:04</publishTime>
@@ -1414,10 +1414,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>07/07/2016 22:34:11</publishTime>
     </File>
     <File Include="Views/Home/Welcome.cshtml">
-      <publishTime>02/12/2017 15:36:22</publishTime>
+      <publishTime>02/12/2017 15:55:50</publishTime>
     </File>
     <File Include="Views/Home/Welcome_IOT.cshtml">
-      <publishTime>02/12/2017 15:36:26</publishTime>
+      <publishTime>02/12/2017 15:55:51</publishTime>
     </File>
     <File Include="Views/Manage/AddPhoneNumber.cshtml">
       <publishTime>06/21/2016 23:38:15</publishTime>
