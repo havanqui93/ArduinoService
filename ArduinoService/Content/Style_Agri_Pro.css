@@ -113,10 +113,10 @@ input[type="submit"],#PPMiniCart .minicart-submit,.w3ls_vegetables ul li a,input
     width: 15%;
     border: 1px solid;
     position: relative;
-    background: url(../images/img-sp.png) no-repeat 14px 5px #FA1818;
+    background: url(Images_Agri_Pro/img-sp.png) no-repeat 14px 5px #FA1818;
 }
 .w3l_search input[type="submit"]:hover{
-    background: url(../images/img-sp.png) no-repeat 14px 5px #84C639;
+    background: url(Images_Agri_Pro/img-sp.png) no-repeat 14px 5px #84C639;
 }
 .w3l_header_right{
 	float: left;
@@ -165,7 +165,7 @@ ul.dropdown-menu.drp-mnu li a i {
     color: #212121;
     text-decoration: none;
     display: block;
-    background: url(../images/img-sp.png) no-repeat 54px 6px;
+    background: url(Images_Agri_Pro/img-sp.png) no-repeat 54px 6px;
     line-height: 1;
     height: 97px;
 }
@@ -308,7 +308,7 @@ ul.dropdown-menu.drp-mnu li a i {
 	margin-bottom: 5em;
 }
 .w3l_banner_nav_right_banner{
-	background:url(../images/1.jpg) no-repeat 0px 0px;
+	background:url(Images_Agri_Pro/1.jpg) no-repeat 0px 0px;
 	background-size:cover;
 	-webkit-background-size:cover;
 	-moz-background-size:cover;
@@ -316,7 +316,7 @@ ul.dropdown-menu.drp-mnu li a i {
 	-ms-background-size:cover;
 }
 .w3l_banner_nav_right_banner1{
-	background:url(../images/2.jpg) no-repeat 0px 0px;
+	background:url(Images_Agri_Pro/2.jpg) no-repeat 0px 0px;
 	background-size:cover;
 	-webkit-background-size:cover;
 	-moz-background-size:cover;
@@ -324,7 +324,7 @@ ul.dropdown-menu.drp-mnu li a i {
 	-ms-background-size:cover;
 }
 .w3l_banner_nav_right_banner2{
-	background:url(../images/3.jpg) no-repeat 0px 0px;
+	background:url(Images_Agri_Pro/3.jpg) no-repeat 0px 0px;
 	background-size:cover;
 	-webkit-background-size:cover;
 	-moz-background-size:cover;
@@ -763,7 +763,7 @@ ul.dropdown-menu.drp-mnu li a i {
 	text-align:right;
 }
 .agileinfo_breaking_news span{
-    background: url(../images/img-sp.png) no-repeat 1px -116px;
+    background: url(Images_Agri_Pro/img-sp.png) no-repeat 1px -116px;
     display: block;
     width: 50px;
     height: 50px;
@@ -847,7 +847,7 @@ ul.dropdown-menu.drp-mnu li a i {
 	list-style-type: none;
     margin-bottom: 1.5em;
     padding-left: 2em;
-    background: url(../images/img-sp.png) no-repeat -14px -193px;
+    background: url(Images_Agri_Pro/img-sp.png) no-repeat -14px -193px;
 }
 .w3_footer_grid ul.w3_footer_grid_list li a{
 	color:#999;
@@ -966,7 +966,7 @@ ul.dropdown-menu.drp-mnu li a i {
 	height: 32px;
 	border: none;
 	text-indent: 100%;
-	background: url(../images/arrow.png) no-repeat 0px 0px;
+	background: url(Images_Agri_Pro/arrow.png) no-repeat 0px 0px;
 }
 #toTopHover {
 	width: 32px;
@@ -1086,7 +1086,7 @@ ul.dropdown-menu.drp-mnu li a i {
 	position:relative;
 }
 .w3l_banner_nav_right_banner3 span,.w3l_banner_nav_right_banner4 span,.w3l_banner_nav_right_banner5 span,.w3l_banner_nav_right_banner6 span,.w3l_banner_nav_right_banner7 span,.w3l_banner_nav_right_banner8 span,.w3l_banner_nav_right_banner9 span,.w3l_banner_nav_right_banner10 span{
-	background: url(../images/img-sp.png) no-repeat 1px -116px;
+	background: url(Images_Agri_Pro/img-sp.png) no-repeat 1px -116px;
     display: block;
     width: 50px;
     height: 50px;
@@ -2489,10 +2489,10 @@ ul.wmuSliderPagination {
 		width: 30%;
 	}
 	.w3l_search input[type="submit"] {
-		background: url(../images/img-sp.png) no-repeat 6px 5px #FA1818;
+		background: url(Images_Agri_Pro/img-sp.png) no-repeat 6px 5px #FA1818;
 	}
 	.w3l_search input[type="submit"]:hover {
-		background: url(../images/img-sp.png) no-repeat 6px 5px #84C639;
+		background: url(Images_Agri_Pro/img-sp.png) no-repeat 6px 5px #84C639;
 	}
 	.product_list_header {
 		margin-left: 2em;
@@ -2508,7 +2508,7 @@ ul.wmuSliderPagination {
 	}
 	.w3ls_logo_products_left h1 a {
 		font-size: 1.3em;
-		background: url(../images/img-sp.png) no-repeat 43px -3px;
+		background: url(Images_Agri_Pro/img-sp.png) no-repeat 43px -3px;
 		height: 88px;
 	}
 	.w3ls_logo_products_left1 ul.phone_email li:last-child {
@@ -2696,7 +2696,7 @@ ul.wmuSliderPagination {
 	}
 	.w3ls_logo_products_left h1 a {
 		font-size: 1.2em;
-		background: url(../images/img-sp.png) no-repeat 38px -9px;
+		background: url(Images_Agri_Pro/img-sp.png) no-repeat 38px -9px;
 		height: 83px;
 	}
 	.w3ls_logo_products_left1 ul.phone_email li {
@@ -2974,11 +2974,11 @@ ul.wmuSliderPagination {
 		margin: .1em 0 0em 1em;
 	}
 	.w3l_search input[type="submit"] {
-		background: url(../images/img-sp.png) no-repeat 0px 5px #FA1818;
+		background: url(Images_Agri_Pro/img-sp.png) no-repeat 0px 5px #FA1818;
 		width: 18%;
 	}
 	.w3l_search input[type="submit"]:hover {
-		background: url(../images/img-sp.png) no-repeat 0px 5px #84C639;
+		background: url(Images_Agri_Pro/img-sp.png) no-repeat 0px 5px #84C639;
 	}
 	.w3l_search input[type="text"] {
 		width: 82%;
@@ -2999,7 +2999,7 @@ ul.wmuSliderPagination {
 	}
 	.w3ls_logo_products_left h1 a {
 		font-size: 1em;
-		background: url(../images/img-sp.png) no-repeat 28px -17px;
+		background: url(Images_Agri_Pro/img-sp.png) no-repeat 28px -17px;
 		height: 74px;
 	}
 	.w3ls_logo_products_left1 {
@@ -3110,7 +3110,7 @@ ul.wmuSliderPagination {
 	}
 	.w3ls_logo_products_left h1 a {
 		font-size: 1.2em;
-		background: url(../images/img-sp.png) no-repeat 38px -8px;
+		background: url(Images_Agri_Pro/img-sp.png) no-repeat 38px -8px;
 		height: 85px;
 	}
 	ul.dropdown-menu.drp-mnu {
@@ -3216,10 +3216,10 @@ ul.wmuSliderPagination {
 		padding-left: 6.5em;
 	}
 	.w3l_search input[type="submit"] {
-		background: url(../images/img-sp.png) no-repeat 10px 5px #FA1818;
+		background: url(Images_Agri_Pro/img-sp.png) no-repeat 10px 5px #FA1818;
 	}
 	.w3l_search input[type="submit"]:hover {
-		background: url(../images/img-sp.png) no-repeat 10px 5px #84C639;
+		background: url(Images_Agri_Pro/img-sp.png) no-repeat 10px 5px #84C639;
 	}
 	.logo_products {
 		padding: 8em 0 1em;
@@ -3430,11 +3430,11 @@ ul.wmuSliderPagination {
 		font-size: 13px;
 	}
 	.w3l_search input[type="submit"] {
-		background: url(../images/img-sp.png) no-repeat 0px 3px #FA1818;
+		background: url(Images_Agri_Pro/img-sp.png) no-repeat 0px 3px #FA1818;
 		padding: 8px 0 9.9px;
 	}
 	.w3l_search input[type="submit"]:hover {
-		background: url(../images/img-sp.png) no-repeat 0px 3px #84C639;
+		background: url(Images_Agri_Pro/img-sp.png) no-repeat 0px 3px #84C639;
 	}
 	.w3l_offers a {
 		padding: .62em 1em;
@@ -3459,7 +3459,7 @@ ul.wmuSliderPagination {
 	}
 	.w3ls_logo_products_left h1 a {
 		font-size: 1em;
-		background: url(../images/img-sp.png) no-repeat 28px -18px;
+		background: url(Images_Agri_Pro/img-sp.png) no-repeat 28px -18px;
 		height: 75px;
 	}
 	.w3ls_logo_products_left1 ul.special_items li i {
@@ -3504,7 +3504,7 @@ ul.wmuSliderPagination {
 		width: 90%;
 	}
 	.agileinfo_breaking_news span {
-		background: url(../images/img-sp.png) no-repeat 1px -103px;
+		background: url(Images_Agri_Pro/img-sp.png) no-repeat 1px -103px;
 		height: 65px;
 	}
 	.agileinfo_marquee {
@@ -3857,7 +3857,7 @@ ul.wmuSliderPagination {
 }
 @media (max-width: 384px){
 	.w3l_search input[type="submit"]:hover {
-		background: url(../images/img-sp.png) no-repeat 17px 3px #84C639;
+		background: url(Images_Agri_Pro/img-sp.png) no-repeat 17px 3px #84C639;
 	}
 	.w3l_offers {
 		float: none;
@@ -3869,7 +3869,7 @@ ul.wmuSliderPagination {
 		width: 100%;
 	}
 	.w3l_search input[type="submit"] {
-		background: url(../images/img-sp.png) no-repeat 17px 3px #FA1818;
+		background: url(Images_Agri_Pro/img-sp.png) no-repeat 17px 3px #FA1818;
 		padding: 8px 0 8.9px;
 	}
 	.more {
@@ -4006,10 +4006,10 @@ ul.wmuSliderPagination {
 		width: 42%;
 	}
 	.w3l_search input[type="submit"] {
-		background: url(../images/img-sp.png) no-repeat 11px 3px #FA1818;
+		background: url(Images_Agri_Pro/img-sp.png) no-repeat 11px 3px #FA1818;
 	}
 	.w3l_search input[type="submit"]:hover {
-		background: url(../images/img-sp.png) no-repeat 11px 3px #84C639;
+		background: url(Images_Agri_Pro/img-sp.png) no-repeat 11px 3px #84C639;
 	}
 	.w3l_banner_nav_right_banner1, .w3l_banner_nav_right_banner, .w3l_banner_nav_right_banner2 {
 		min-height: 190px;
@@ -4275,7 +4275,7 @@ ul.wmuSliderPagination {
 	}
 	.product_list_header input.button {
 		padding: .3em 2.5em .3em 0.8em;
-		background: url(../images/cart.png) no-repeat 105px 5px;
+		background: url(Images_Agri_Pro/cart.png) no-repeat 105px 5px;
 		font-size: 13px;
 	}
 
