@@ -809,6 +809,9 @@
     </None>
     <None Include="Properties\PublishProfiles\iot.pubxml" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\Bootstrap_Agri_Pro.min.js" />
+    <Content Include="Scripts\Easing_Agri_Pro.js" />
+    <Content Include="Scripts\Flexslider_Agri_Pro.js" />
     <Content Include="Scripts\i18n\grid.locale-ar.js" />
     <Content Include="Scripts\i18n\grid.locale-bg.js" />
     <Content Include="Scripts\i18n\grid.locale-bg1251.js" />
@@ -852,14 +855,17 @@
     <Content Include="Scripts\i18n\grid.locale-tw.js" />
     <Content Include="Scripts\i18n\grid.locale-ua.js" />
     <Content Include="Scripts\i18n\grid.locale-vi.js" />
+    <Content Include="Scripts\jquery-1.11.1.min.js" />
     <Content Include="Scripts\jquery-ui-1.8.11.js" />
     <Content Include="Scripts\jquery-ui-1.8.11.min.js" />
     <Content Include="Scripts\jquery.jqGrid.min.js" />
     <Content Include="Scripts\jquery.jqGrid.src.js" />
+    <Content Include="Scripts\Minicart_Agri_Pro.min.js" />
     <Content Include="Scripts\moment-with-locales.js" />
     <Content Include="Scripts\moment-with-locales.min.js" />
     <Content Include="Scripts\moment.js" />
     <Content Include="Scripts\moment.min.js" />
+    <Content Include="Scripts\Move_Top_Agri_Pro.js" />
     <Content Include="Scripts\npm.js" />
     <Content Include="Scripts\View\Chart.js" />
     <Content Include="Scripts\Common.js" />
