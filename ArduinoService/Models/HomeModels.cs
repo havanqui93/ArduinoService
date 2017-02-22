@@ -104,7 +104,7 @@ namespace ArduinoService.Models
         private string ConvertBase64ToImage(string base64String)
         {
             byte[] bytes = Convert.FromBase64String(base64String);
-            string fullOutputPath = "";
+            string fullOutputPath = "/Content/UpLoad";
 
             Image image;
             using (MemoryStream ms = new MemoryStream(bytes))
